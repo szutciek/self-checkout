@@ -1,0 +1,48 @@
+{
+  "menu": [
+    {
+      "name": "Pizza Margherita",
+      "ingredients": ["tomato", "mozzarella", "basil"],
+      "sizes": {
+        "small": {
+          "price": 5.99,
+          "size": "20cm"
+        },
+        "medium": {
+          "price": 7.99,
+          "size": "30cm"
+        },
+        "large": {
+          "price": 9.99,
+          "size": "40cm"
+        }
+      }
+    },
+    {
+      "name": "Pizza Salami",
+      "ingredients": ["tomato", "mozzarella", "basil", "salami"],
+      "sizes": {
+        "small": {
+          "price": 5.99,
+          "size": "2 pcs"
+        },
+        "medium": {
+          "price": 7.99,
+          "size": "3 pcs"
+        },
+        "large": {
+          "price": 9.99,
+          "size": "4 pcs"
+        }
+      }
+    }
+  ],
+  "users": [
+    {
+      "name": "John Doe",
+      "age": 13,
+      "sugarLimit": 20,
+      "allergies": ["tomato"]
+    }
+  ]
+}
