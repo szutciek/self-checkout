@@ -4,26 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Self-Checkout System</title>
-    <link rel="stylesheet" href="style.css" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/lock.css" />
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
     <div class="app">
-      <div class="main" id="mainElement">
-        <div class="head">
-          <h1>Self-Checkout System</h1>
+      <div class="lock fullScreenPosition" id="lockElement">
+        <div class="visual">
+          <img src="https://assets.kanapka.eu/images/ceo.webp" />
         </div>
-        <div class="search"></div>
-        <div class="filters"></div>
-        <div class="menu"></div>
+        <div class="start">
+          <button class="startOrderButton">Touch to start</button>
+        </div>
       </div>
 
-      <div class="itemPopup" id="itemPopupElement"></div>
+      <div class="main fullScreenPosition hidden" id="mainElement">
+        <div class="topOver">
+          <div class="head">
+            <div class="info"></div>
+            <ul class="languages"></ul>
+          </div>
+          <div class="filters">
+            <ul class="filtersList"></ul>
+          </div>
+        </div>
+        <div class="menu">
+          <div class="item"></div>
+        </div>
+      </div>
 
-      <div class="loginPopup" id="loginPopupElement"></div>
+      <div class="itemPopup hidden" id="itemPopupElement"></div>
 
-      <div class="checkoutPopup" id="checkoutPopupElement"></div>
+      <div class="loginPopup hidden" id="loginPopupElement"></div>
+
+      <div class="checkoutPopup hidden" id="checkoutPopupElement"></div>
     </div>
 
-    <script defer type="module" src="script.js"></script>
+    <script defer type="module" src="js/script.js"></script>
   </body>
 </html>
