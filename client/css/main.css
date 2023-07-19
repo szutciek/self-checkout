@@ -39,11 +39,9 @@
 .main .head .languages li {
   margin-bottom: 0.5rem;
   list-style: none;
-  padding: 5px 0;
+  padding: 0.25rem 0.75rem;
   background-color: #ededed;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  border-radius: 50px;
 
   text-align: center;
   font-size: 15px;
@@ -55,7 +53,7 @@
   margin-bottom: 0;
 }
 .main .head .languages li.active {
-  background-color: gray;
+  background-color: #181818;
   color: #fff;
 }
 
@@ -66,8 +64,8 @@
   overflow-y: hidden;
   overflow-x: auto;
 
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .main .filters::-webkit-scrollbar {
   display: none;
@@ -118,6 +116,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
+
+  height: calc(100vh - 206px);
+  overflow-y: scroll;
 }
 
 .main .item {
@@ -125,6 +126,10 @@
   box-shadow: 0 10px 20px #00000018;
 
   margin-top: 3rem;
+  height: min-content;
+}
+.main .item:last-of-type {
+  margin-bottom: calc(20vh + 1rem);
 }
 .main .item img {
   width: calc(100% - 1rem);

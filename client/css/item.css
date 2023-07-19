@@ -9,9 +9,10 @@
   max-height: 90vh;
   overflow: hidden;
 
-  background-color: white;
   box-shadow: 0 -10px 20px #00000028;
   border-radius: 1rem;
+
+  background-color: #ffffff;
 }
 
 .itemPopup .move {
@@ -22,7 +23,7 @@
   height: 50px;
   justify-content: center;
 
-  background-color: #ffffffb2;
+  background-color: #f4f4f4b2;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
 }
@@ -41,10 +42,16 @@
   max-height: 100%;
   overflow-y: scroll;
   padding-top: 50px;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.itemPopup .content::-webkit-scrollbar {
+  display: none;
 }
 
 .itemPopup .item {
-  height: 100vh;
+  height: max-content;
 }
 .itemPopup .item .desription {
   padding: 1rem 2rem;
@@ -58,8 +65,8 @@
   object-fit: contain;
 }
 .itemPopup .details h1 {
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 2rem;
+  font-weight: 600;
   color: #181818;
 }
 .itemPopup .details .section {

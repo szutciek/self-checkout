@@ -3,7 +3,7 @@ import languages from "../languages.js";
 
 export default class Main extends Window {
   prepared = false;
-  duration = 700;
+  duration = 800;
 
   currentFilter = "popular";
 
@@ -21,9 +21,7 @@ export default class Main extends Window {
     this.element.addEventListener("click", this.handleClick);
   }
 
-  handleOutsideClick(e) {
-    console.log("Main", e);
-  }
+  handleOutsideClick(e) {}
 
   handleClick = (e) => {
     if (e.target.closest(".menu")) this.handleMenuClick(e);
@@ -32,12 +30,17 @@ export default class Main extends Window {
 
   handleMenuClick(e) {
     if (!e.target.closest(".item")?.dataset.id) return;
+    // stop if item busy
+    if (this.controller.itemPopup.inTransition) return;
     const item = e.target.closest(".item");
     const product = this.findMenuItemById(item.dataset.id);
 
     this.controller.itemPopup.showItem(product, item);
-    // this.handleImageZoom(item);
-    console.log(`${product.name} clicked`);
+    setTimeout(
+      () => this.handleImageZoom(item),
+      this.controller.itemPopup.animationDelay
+    );
+    // console.log(`${product.name} clicked`);
   }
 
   handleImageZoom(item) {
@@ -48,9 +51,11 @@ export default class Main extends Window {
     const finalPos = this.controller.itemPopup.imageZoomPosition;
 
     const imageZoom = image.cloneNode(false);
+    image.style.opacity = 0;
     imageZoom.classList.add("menuItemPreview");
     imageZoom.style.position = "absolute";
-    // document.body.appendChild(imageZoom);
+    imageZoom.style.zIndex = 1000;
+    document.body.appendChild(imageZoom);
 
     const animation = [
       {
@@ -67,12 +72,14 @@ export default class Main extends Window {
     const options = {
       duration: this.duration,
       iterations: 1,
+      fill: "forwards",
       easing: "cubic-bezier(0.87, 0, 0.13, 1)",
     };
     imageZoom.animate(animation, options);
 
     setTimeout(() => {
       document.body.removeChild(imageZoom);
+      image.style.opacity = 1;
     }, this.duration);
   }
 
