@@ -1,8 +1,16 @@
 {
   "menu": [
     {
+      "id": "1232435235",
       "name": "Pizza Margherita",
+      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
+      "properties": [
+        {
+          "name": "vegetarian",
+          "icon": "🥕"
+        }
+      ],
       "sizes": {
         "small": {
           "price": 5.99,
@@ -19,11 +27,23 @@
       }
     },
     {
+      "id": "756785658556",
       "name": "Pizza Salami",
+      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil", "salami"],
+      "properties": [
+        {
+          "name": "spicy",
+          "icon": "🌶️"
+        },
+        {
+          "name": "meat",
+          "icon": "🍖"
+        }
+      ],
       "sizes": {
         "small": {
-          "price": 5.99,
+          "price": 6.49,
           "size": "2 pcs"
         },
         "medium": {
@@ -32,6 +52,36 @@
         },
         "large": {
           "price": 9.99,
+          "size": "4 pcs"
+        }
+      }
+    },
+    {
+      "id": "2546756846452",
+      "name": "Pizza Siciliana",
+      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
+      "ingredients": ["tomato", "mozzarella", "basil", "salami"],
+      "properties": [
+        {
+          "name": "meat",
+          "icon": "🍖"
+        },
+        {
+          "name": "lactose",
+          "icon": "🥛"
+        }
+      ],
+      "sizes": {
+        "small": {
+          "price": 6.99,
+          "size": "2 pcs"
+        },
+        "medium": {
+          "price": 8.99,
+          "size": "3 pcs"
+        },
+        "large": {
+          "price": 11.99,
           "size": "4 pcs"
         }
       }

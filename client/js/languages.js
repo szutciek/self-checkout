@@ -17,7 +17,7 @@ export default {
       filters: {
         popular: {
           title: "Popular",
-          second: "Most popular items",
+          second: "Quickly buy the most popular items",
           icon: "🤩",
         },
         meals: {
@@ -51,6 +51,9 @@ export default {
           icon: "🥤",
         },
       },
+    },
+    items: {
+      starting: "starting at",
     },
   },
   pl: {
@@ -93,6 +96,9 @@ export default {
           icon: "🥤",
         },
       },
+    },
+    items: {
+      starting: "zaczyna się od",
     },
   },
 };

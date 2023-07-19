@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/lock.css" />
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/item.css" />
   </head>
   <body>
     <div class="app">
@@ -35,7 +36,37 @@
         </div>
       </div>
 
-      <div class="itemPopup hidden" id="itemPopupElement"></div>
+      <div class="itemPopup hidden" id="itemPopupElement">
+        <div class="move flexVert"><div class="grab"></div></div>
+        <div class="content">
+          <div class="item">
+            <div class="desription" id="itemPopupDescription">
+              <img
+                src="https://assets.kanapka.eu/images/pizzaCheckoutApp.png"
+                alt="${item.name}"
+                class="menuItemPreview"
+              />
+              <div class="details">
+                <h1>Pizza Pepperoni</h1>
+                <div class="section properties">
+                  <p>Properties</p>
+                  <ul>
+                    <li>🌶️ spicy</li>
+                  </ul>
+                </div>
+                <div class="section ingredients">
+                  <p>Ingredients</p>
+                  <ul>
+                    <li>tomato</li>
+                    <li>mozarella</li>
+                    <li>bazil</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="loginPopup hidden" id="loginPopupElement"></div>
 

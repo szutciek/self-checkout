@@ -12,6 +12,7 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid #e6e6e6;
   box-shadow: 0 10px 20px #00000018;
+  background-color: white;
 
   user-select: none;
   -webkit-user-select: none;
@@ -116,20 +117,48 @@
   padding: 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .main .item {
-  background-color: white;
-  overflow: hidden;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), white, white);
+  box-shadow: 0 10px 20px #00000018;
+
+  margin-top: 3rem;
 }
 .main .item img {
-  object-fit: contain;
-  width: 100%;
-  aspect-ratio: 1;
+  width: calc(100% - 1rem);
+  margin: -3rem 0.5rem 0 0.5rem;
+}
+.main .item .info {
+  padding: 0.25rem 1rem 1rem 1rem;
+}
+.main .item .name {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #181818;
+}
+.main .item .properties {
+  font-size: 1rem;
+
+  border-bottom: 1px dashed #d8d8d8;
+  padding-bottom: 0.5rem;
+}
+.main .item .starting {
+  text-align: right;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #373737;
+  padding-top: 0.5rem;
 }
 .main .item .price {
   text-align: right;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #181818;
+}
 
-  font-size: 0.8rem;
+.menuItemPreview {
+  object-fit: contain;
+  aspect-ratio: 1;
 }

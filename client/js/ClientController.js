@@ -74,4 +74,9 @@ export default class ClientController {
     this.mainWindow.handleLanguageChange(this.lang);
     this.lockWindow.handleLanguageChange(this.lang);
   }
+
+  handleClick(e) {
+    if (!e.target.closest(".main")) this.mainWindow.handleOutsideClick(e);
+    if (!e.target.closest(".itemPopup")) this.itemPopup.handleOutsideClick(e);
+  }
 }

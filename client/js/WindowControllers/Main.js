@@ -3,6 +3,7 @@ import languages from "../languages.js";
 
 export default class Main extends Window {
   prepared = false;
+  duration = 700;
 
   currentFilter = "popular";
 
@@ -20,16 +21,68 @@ export default class Main extends Window {
     this.element.addEventListener("click", this.handleClick);
   }
 
+  handleOutsideClick(e) {
+    console.log("Main", e);
+  }
+
   handleClick = (e) => {
     if (e.target.closest(".menu")) this.handleMenuClick(e);
+    this.controller.handleClick(e);
   };
 
   handleMenuClick(e) {
-    console.log(e);
+    if (!e.target.closest(".item")?.dataset.id) return;
+    const item = e.target.closest(".item");
+    const product = this.findMenuItemById(item.dataset.id);
+
+    this.controller.itemPopup.showItem(product, item);
+    // this.handleImageZoom(item);
+    console.log(`${product.name} clicked`);
+  }
+
+  handleImageZoom(item) {
+    const image = item.querySelector("img");
+    if (!image) return;
+
+    const initialPos = image.getBoundingClientRect();
+    const finalPos = this.controller.itemPopup.imageZoomPosition;
+
+    const imageZoom = image.cloneNode(false);
+    imageZoom.classList.add("menuItemPreview");
+    imageZoom.style.position = "absolute";
+    // document.body.appendChild(imageZoom);
+
+    const animation = [
+      {
+        top: `calc(${initialPos.top}px + 3rem)`,
+        left: `${initialPos.left}px`,
+        width: `${initialPos.width}px`,
+      },
+      {
+        top: `${finalPos.top}px`,
+        left: `${finalPos.left}px`,
+        width: `${finalPos.width}px`,
+      },
+    ];
+    const options = {
+      duration: this.duration,
+      iterations: 1,
+      easing: "cubic-bezier(0.87, 0, 0.13, 1)",
+    };
+    imageZoom.animate(animation, options);
+
+    setTimeout(() => {
+      document.body.removeChild(imageZoom);
+    }, this.duration);
+  }
+
+  findMenuItemById(id) {
+    return this.currentMenu.find((item) => item.id === id);
   }
 
   updateMenu(menu) {
     if (!menu) return;
+    this.currentMenu = menu;
     this.prepared = true;
 
     const menuArea = this.element.querySelector(".menu");
@@ -42,16 +95,22 @@ export default class Main extends Window {
 
       const el = document.createElement("div");
       el.classList.add("item");
+      el.dataset.id = item.id;
       el.innerHTML = `
         <img
-          src="https://png.pngtree.com/png-vector/20230331/ourmid/pngtree-gourmet-pizza-cartoon-png-image_6656160.png"
+          src="${item.image}"
           alt="${item.name}"
+          class="menuItemPreview"
         />
         <div class="info">
           <p class="name">${item.name}</p>
+          <p class="properties">${item.properties
+            .map((p) => p.icon)
+            .join(" ")}</p>
           <p class="starting">${
             starting[0][0].toUpperCase() + starting[0].slice(1)
-          } size for ${starting[1]}PLN</p>
+          } ${languages[this.controller.lang].items.starting}</p>
+          <p class="price">${starting[1]}PLN</p>
         </div>
       `;
       menuArea.appendChild(el);
