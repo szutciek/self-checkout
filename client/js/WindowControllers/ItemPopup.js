@@ -20,7 +20,7 @@ export default class ItemPopup extends Popup {
   };
   #animationDelay = 0;
   currentClamp = 2;
-  clamps = ["px:150", "vh:50", "vh:90"];
+  clamps = ["px:120", "vh:50", "vh:90"];
 
   animation = [
     {
@@ -65,8 +65,7 @@ export default class ItemPopup extends Popup {
 
     const predictedPositionX = marginLeft + 16;
 
-    const width =
-      window.innerWidth >= 800 ? 368 : (window.innerWidth - 112) / 3;
+    const width = window.innerWidth >= 800 ? 368 : (window.innerWidth - 64) / 2;
 
     this.#imageZoomPosition = {
       top: predictedPositionY,
@@ -140,7 +139,9 @@ export default class ItemPopup extends Popup {
       );
     }
 
-    this.currentClamp = this.determineClamp(direction);
+    const newClamp = this.determineClamp(direction);
+    if (newClamp === -1) return this.hide();
+    this.currentClamp = newClamp;
     this.elementHeight = this.translateChangeElementHeight(
       this.clamps[this.currentClamp]
     );
@@ -154,6 +155,8 @@ export default class ItemPopup extends Popup {
     const differences = heights.map((height) => height - this.elementHeight);
 
     if (direction === -1) {
+      const n = differences.filter((difference) => difference < 0).length - 1;
+      if (n < 0) return -1;
       return differences.filter((difference) => difference < 0).length - 1;
     }
     if (direction === 1) {

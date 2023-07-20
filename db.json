@@ -1,6 +1,36 @@
 {
   "menu": [
     {
+      "id": "967857456345423",
+      "name": "Pierogi my G",
+      "image": "https://assets.kanapka.eu/images/pierogiCheckoutApp.png",
+      "ingredients": ["tomato", "mozzarella", "basil", "salami"],
+      "properties": [
+        {
+          "name": "lactose",
+          "icon": "🥛"
+        },
+        {
+          "name": "meat",
+          "icon": "🍖"
+        }
+      ],
+      "sizes": {
+        "small": {
+          "price": 6.49,
+          "size": "2 pcs"
+        },
+        "medium": {
+          "price": 7.99,
+          "size": "5 pcs"
+        },
+        "large": {
+          "price": 9.99,
+          "size": "8 pcs"
+        }
+      }
+    },
+    {
       "id": "1232435235",
       "name": "Pizza Margherita",
       "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp2.png",
@@ -83,40 +113,14 @@
       }
     },
     {
-      "id": "1232435235",
-      "name": "Pizza Margherita",
-      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
+      "id": "576643475346",
+      "name": "Kebab",
+      "image": "https://assets.kanapka.eu/images/kebabCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
       "properties": [
         {
           "name": "vegetarian",
           "icon": "🥕"
-        }
-      ],
-      "sizes": {
-        "small": {
-          "price": 5.99,
-          "size": "20cm"
-        },
-        "medium": {
-          "price": 7.99,
-          "size": "30cm"
-        },
-        "large": {
-          "price": 9.99,
-          "size": "40cm"
-        }
-      }
-    },
-    {
-      "id": "756785658556",
-      "name": "Pizza Salami",
-      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
-      "ingredients": ["tomato", "mozzarella", "basil", "salami"],
-      "properties": [
-        {
-          "name": "spicy",
-          "icon": "🌶️"
         },
         {
           "name": "meat",
@@ -124,17 +128,17 @@
         }
       ],
       "sizes": {
-        "small": {
-          "price": 6.49,
-          "size": "2 pcs"
+        "no meat": {
+          "price": 4.99,
+          "size": "20cm"
         },
-        "medium": {
-          "price": 7.99,
-          "size": "3 pcs"
+        "meat": {
+          "price": 6.99,
+          "size": "25cm"
         },
-        "large": {
+        "large meat": {
           "price": 9.99,
-          "size": "4 pcs"
+          "size": "40cm"
         }
       }
     }

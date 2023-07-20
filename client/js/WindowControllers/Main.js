@@ -38,8 +38,40 @@ export default class Main extends Window {
 
     this.controller.itemPopup.showItem(product, item);
     this.handleImageZoom(item);
+    this.handleItemAnimation(item);
 
     // console.log(`${product.name} clicked`);
+  }
+
+  handleItemAnimation(item) {
+    const animation = [
+      {
+        backgroundSize: "0% 0%",
+        offset: 0,
+      },
+      {
+        backgroundSize: "250% 250%",
+        backgroundColor: "#fff",
+        offset: 0.5,
+      },
+      {
+        backgroundSize: "0% 0%",
+        backgroundColor: "#ececec",
+        offset: 0.5001,
+      },
+      {
+        backgroundColor: "#ececec",
+        offset: 0.6,
+      },
+      {
+        backgroundColor: "#fff",
+        offset: 1,
+      },
+    ];
+    const options = {
+      duration: 400,
+    };
+    item.animate(animation, options);
   }
 
   handleImageZoom(item) {
