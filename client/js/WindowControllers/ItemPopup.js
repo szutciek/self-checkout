@@ -2,12 +2,13 @@ import Popup from "./Popup.js";
 
 export default class ItemPopup extends Popup {
   duration = 800;
-  delay = 200;
+  delay = 400;
 
   currentProduct = {};
 
   elementHeight = 0;
   previousTouch = 0;
+  movementDirection = 0;
   moving = false;
   visible = false;
   inTransition = false;
@@ -18,6 +19,8 @@ export default class ItemPopup extends Popup {
     width: 0,
   };
   #animationDelay = 0;
+  currentClamp = 2;
+  clamps = ["px:150", "vh:50", "vh:90"];
 
   animation = [
     {
@@ -32,7 +35,6 @@ export default class ItemPopup extends Popup {
     },
   ];
   options = {
-    duration: this.duration,
     iterations: 1,
     fill: "forwards",
     easing: "cubic-bezier(0.16, 1, 0.3, 1)",
@@ -61,10 +63,10 @@ export default class ItemPopup extends Popup {
     const marginLeft =
       window.innerWidth >= 800 ? (window.innerWidth - 800) / 2 : 0;
 
-    const predictedPositionX = marginLeft + 32;
+    const predictedPositionX = marginLeft + 16;
 
     const width =
-      window.innerWidth >= 800 ? 230 : (window.innerWidth - 112) / 3;
+      window.innerWidth >= 800 ? 368 : (window.innerWidth - 112) / 3;
 
     this.#imageZoomPosition = {
       top: predictedPositionY,
@@ -74,9 +76,12 @@ export default class ItemPopup extends Popup {
   }
 
   handleOutsideClick(e) {
-    // this.hide();
+    if (this.inTransition) return;
     if (e.target.closest(".item")?.dataset.id !== this.currentProduct.id) {
-      this.elementHeight = window.innerHeight * 0.2;
+      this.currentClamp = 0;
+      this.elementHeight = this.translateChangeElementHeight(
+        this.clamps[this.currentClamp]
+      );
       this.smoothResize();
     }
   }
@@ -108,6 +113,9 @@ export default class ItemPopup extends Popup {
     if (this.moving === true) {
       e.preventDefault();
       const touch = e.targetTouches[0];
+      this.movementDirection = -Math.sign(touch.clientY - this.previousTouch);
+      if (touch.clientY - this.previousTouch > 25) this.movementDirection = -2;
+      if (touch.clientY - this.previousTouch < -25) this.movementDirection = 2;
       this.resize(touch.clientY - this.previousTouch);
       this.previousTouch = e.targetTouches[0].clientY;
     }
@@ -116,26 +124,54 @@ export default class ItemPopup extends Popup {
   handleTouchEnd(e) {
     if (this.moving === true) {
       e.preventDefault();
-      const height = this.element.getBoundingClientRect().height;
-      this.clampHeight(height);
+      this.clampHeight(this.movementDirection);
+      this.movementDirection = 0;
     }
     this.moving = false;
   }
 
-  clampHeight(height) {
-    if (height <= (window.innerHeight * 2) / 10) {
-      this.hide();
-    } else {
-      if (
-        height > (window.innerHeight * 2) / 10 &&
-        height < (window.innerHeight * 7) / 10
-      ) {
-        this.elementHeight = window.innerHeight / 2;
-      } else if (height >= (window.innerHeight * 7) / 10) {
-        this.elementHeight = window.innerHeight * 0.9;
-      }
-      this.smoothResize();
+  clampHeight(direction) {
+    if (direction === 0) return;
+    if (direction === -2) return this.hide();
+    if (direction === 2) {
+      this.currentClamp = this.clamps.length - 1;
+      this.elementHeight = this.translateChangeElementHeight(
+        this.clamps[this.currentClamp]
+      );
     }
+
+    this.currentClamp = this.determineClamp(direction);
+    this.elementHeight = this.translateChangeElementHeight(
+      this.clamps[this.currentClamp]
+    );
+    this.smoothResize();
+  }
+
+  determineClamp(direction) {
+    const heights = this.clamps.map((clamp) =>
+      this.translateChangeElementHeight(clamp)
+    );
+    const differences = heights.map((height) => height - this.elementHeight);
+
+    if (direction === -1) {
+      return differences.filter((difference) => difference < 0).length - 1;
+    }
+    if (direction === 1) {
+      return (
+        differences.length -
+        differences.filter((difference) => difference > 0).length
+      );
+    }
+
+    return this.currentClamp;
+  }
+
+  translateChangeElementHeight(string) {
+    if (!string) return this.elementHeight;
+    const [unit, value] = string.split(":");
+    if (!unit || !value) return this.elementHeight;
+    if (unit === "px") return Number(value);
+    if (unit === "vh") return Number((window.innerHeight * value) / 100);
   }
 
   resize(difference = 0) {
@@ -144,7 +180,7 @@ export default class ItemPopup extends Popup {
   }
 
   smoothResize() {
-    this.element.style.transition = "0.5s cubic-bezier(0.34, 1.56, 0.64, 1)";
+    this.element.style.transition = "0.5s cubic-bezier(0.16, 1, 0.3, 1)";
     this.resize();
     this.inTransition = true;
     setTimeout(() => {
@@ -154,7 +190,6 @@ export default class ItemPopup extends Popup {
   }
 
   showItem(product, item) {
-    this.currentProduct = product;
     if (this.visible === true) {
       this.#animationDelay = 300;
       this.hide();
@@ -162,11 +197,13 @@ export default class ItemPopup extends Popup {
         this.insertContent(product, item);
         this.show();
         this.#animationDelay = 0;
-      }, 300);
+      }, this.#animationDelay);
     } else {
+      this.#animationDelay = 0;
       this.insertContent(product, item);
       this.show();
     }
+    this.currentProduct = product;
   }
 
   insertContent(product, item) {
@@ -208,23 +245,23 @@ export default class ItemPopup extends Popup {
     if (this.visible || this.inTransition) return;
     this.inTransition = true;
     this.visible = true;
+    this.currentClamp = 2;
     this.elementHeight = window.innerHeight * this.defaultOpenMultiplier;
     this.resize();
     const staticImage = this.element.querySelector("img");
     staticImage.style.opacity = 0;
     this.element.animate(this.animation, {
       ...this.options,
+      duration: this.duration,
       delay: this.delay,
     });
     setTimeout(() => {
       staticImage.style.opacity = 1;
-      setTimeout(() => {
-        this.element.style.pointerEvents = "none";
-        this.element.style.opacity = 0;
-        this.resize();
-        this.inTransition = false;
-      }, this.delay);
-    }, this.duration);
+      this.element.style.pointerEvents = "none";
+      this.element.style.opacity = 0;
+      this.resize();
+      this.inTransition = false;
+    }, this.duration + this.delay);
   }
 
   hide() {
@@ -248,5 +285,12 @@ export default class ItemPopup extends Popup {
   }
   get imageZoomPosition() {
     return this.#imageZoomPosition;
+  }
+
+  get zoomDuration() {
+    return this.duration;
+  }
+  get zoomDelay() {
+    return this.delay + this.#animationDelay;
   }
 }

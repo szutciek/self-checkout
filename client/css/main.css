@@ -8,6 +8,7 @@
   left: 0;
   width: 100%;
   overflow: hidden;
+  z-index: 99;
 
   padding-bottom: 1rem;
   border-bottom: 1px solid #e6e6e6;
@@ -115,14 +116,15 @@
   padding: 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
+  gap: 2rem;
 
   height: calc(100vh - 206px);
   overflow-y: scroll;
 }
 
 .main .item {
-  background-image: linear-gradient(rgba(255, 255, 255, 0), white, white);
+  /* background-image: linear-gradient(rgba(255, 255, 255, 0), white); */
+  background-color: white;
   box-shadow: 0 10px 20px #00000018;
 
   margin-top: 3rem;
@@ -164,6 +166,8 @@
 }
 
 .menuItemPreview {
+  -webkit-filter: drop-shadow(5px 5px 5px #0000004c);
+  filter: drop-shadow(5px 5px 5px #0000004c);
   object-fit: contain;
   aspect-ratio: 1;
 }

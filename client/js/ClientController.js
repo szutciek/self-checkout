@@ -22,7 +22,7 @@ export default class ClientController {
   setup() {
     return new Promise(async (res, rej) => {
       try {
-        // this.lockWindow.show();
+        this.lockWindow.show();
         await this.getMenuItems();
         this.updateMenu();
         this.mainWindow.show();

@@ -25,6 +25,7 @@ export default class Main extends Window {
 
   handleClick = (e) => {
     if (e.target.closest(".menu")) this.handleMenuClick(e);
+
     this.controller.handleClick(e);
   };
 
@@ -36,10 +37,8 @@ export default class Main extends Window {
     const product = this.findMenuItemById(item.dataset.id);
 
     this.controller.itemPopup.showItem(product, item);
-    setTimeout(
-      () => this.handleImageZoom(item),
-      this.controller.itemPopup.animationDelay
-    );
+    this.handleImageZoom(item);
+
     // console.log(`${product.name} clicked`);
   }
 
@@ -54,12 +53,18 @@ export default class Main extends Window {
     image.style.opacity = 0;
     imageZoom.classList.add("menuItemPreview");
     imageZoom.style.position = "absolute";
+    imageZoom.style.top = `${initialPos.top}px`;
+    imageZoom.style.left = `${initialPos.left}px`;
+    imageZoom.style.width = `${initialPos.width}px`;
     imageZoom.style.zIndex = 1000;
     document.body.appendChild(imageZoom);
 
+    const zoomDuration = this.controller.itemPopup.zoomDuration;
+    const zoomDelay = this.controller.itemPopup.zoomDelay;
+
     const animation = [
       {
-        top: `calc(${initialPos.top}px + 3rem)`,
+        top: `${initialPos.top}px`,
         left: `${initialPos.left}px`,
         width: `${initialPos.width}px`,
       },
@@ -70,17 +75,20 @@ export default class Main extends Window {
       },
     ];
     const options = {
-      duration: this.duration,
+      duration: zoomDuration,
       iterations: 1,
       fill: "forwards",
-      easing: "cubic-bezier(0.87, 0, 0.13, 1)",
+      easing: "ease-in-out",
     };
-    imageZoom.animate(animation, options);
 
     setTimeout(() => {
-      document.body.removeChild(imageZoom);
-      image.style.opacity = 1;
-    }, this.duration);
+      imageZoom.animate(animation, options);
+
+      setTimeout(() => {
+        document.body.removeChild(imageZoom);
+        image.style.opacity = 1;
+      }, zoomDuration);
+    }, zoomDelay);
   }
 
   findMenuItemById(id) {
