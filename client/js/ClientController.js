@@ -1,5 +1,5 @@
 import config from "./config.js";
-import { ingredientInfo } from "./tempData.js";
+import { ingredientInfo, menu as tempMenuString } from "./tempData.js";
 
 import MainWindow from "./WindowControllers/Main.js";
 import ItemPopup from "./WindowControllers/ItemPopup.js";
@@ -37,9 +37,10 @@ export default class ClientController {
 
   async getMenuItems() {
     try {
-      const res = await fetch(`${config.apiBaseUrl}/menu`);
-      if (!res.ok) throw new Error("Failed to get menu items");
-      const data = await res.json();
+      // const res = await fetch(`${config.apiBaseUrl}/menu`);
+      // if (!res.ok) throw new Error("Failed to get menu items");
+      // const data = await res.json();
+      const data = JSON.parse(tempMenuString);
       if (!data) throw new Error("Failed to parse menu items");
       this.replaceIngredientsData(data);
       this.menu = data;

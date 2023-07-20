@@ -1,4 +1,4 @@
 export default {
-  apiBaseUrl: "http://localhost:3000",
-  wsBaseUrl: "ws://localhost:6000",
+  apiBaseUrl: "http://192.168.0.237:3000",
+  wsBaseUrl: "ws://192.168.0.237:6000",
 };

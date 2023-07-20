@@ -29,9 +29,6 @@
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
 }
-.itemPopup .move:hover {
-  background-color: #f6f6f6;
-}
 
 .itemPopup .move .grab {
   width: 70px;
@@ -54,9 +51,6 @@
 
 .itemPopup .part {
   padding: 2rem 1rem;
-}
-.itemPopup .part:last-of-type {
-  margin-bottom: 150px;
 }
 .itemPopup .part .topBorder {
   position: relative;
@@ -214,6 +208,9 @@
   color: #6871a7;
 }
 
+.itemPopup .sizeBox {
+  margin-bottom: 10rem;
+}
 .itemPopup .sizeBox ul {
   display: flex;
   gap: 1rem;

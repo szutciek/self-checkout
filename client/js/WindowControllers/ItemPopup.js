@@ -4,7 +4,7 @@ export default class ItemPopup extends Popup {
   // Customizable variables
   duration = 600;
   delay = 200;
-  clamps = ["px:150", "px:320", "vh:85", "vh:100"];
+  clamps = ["px:150", "px:330", "vh:85", "vh:100"];
 
   // Keep the same (require more changes)
   currentProduct = {};

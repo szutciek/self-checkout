@@ -123,7 +123,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem 2rem;
 
-  height: calc(100vh - 206px);
+  max-height: calc(100vh - 206px);
   overflow-y: scroll;
 }
 
