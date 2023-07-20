@@ -1,9 +1,12 @@
 import Popup from "./Popup.js";
 
 export default class ItemPopup extends Popup {
-  duration = 800;
-  delay = 400;
+  // Customizable variables
+  duration = 600;
+  delay = 200;
+  clamps = ["px:150", "px:320", "vh:85", "vh:100"];
 
+  // Keep the same (require more changes)
   currentProduct = {};
 
   elementHeight = 0;
@@ -19,8 +22,7 @@ export default class ItemPopup extends Popup {
     width: 0,
   };
   #animationDelay = 0;
-  currentClamp = 2;
-  clamps = ["px:120", "vh:50", "vh:90"];
+  #currentClamp = 2;
 
   animation = [
     {
@@ -54,7 +56,7 @@ export default class ItemPopup extends Popup {
 
   calculateImageZoomPosition() {
     // change value if css is adjusted in any way
-    const imageToPopupEdgeY = 66;
+    const imageToPopupEdgeY = 50;
 
     const predictedPositionY =
       window.innerHeight * (1 - this.defaultOpenMultiplier) + imageToPopupEdgeY;
@@ -90,6 +92,10 @@ export default class ItemPopup extends Popup {
     this.element.addEventListener("touchmove", this.handleTouch);
     this.element.addEventListener("touchend", this.handleTouch);
     this.element.addEventListener("touchcancel", this.handleTouch);
+    window.addEventListener(
+      "resize",
+      this.calculateImageZoomPosition.bind(this)
+    );
   }
 
   handleTouch = (e) => {
@@ -100,6 +106,18 @@ export default class ItemPopup extends Popup {
   };
 
   handleTouchStart(e) {
+    if (e.target.closest(".move")) this.handleStartMovement(e);
+  }
+
+  handleTouchMove(e) {
+    if (this.moving === true) this.handleMovement(e);
+  }
+
+  handleTouchEnd(e) {
+    if (this.moving === true) this.handleEndMovement(e);
+  }
+
+  handleStartMovement(e) {
     const target = e.target.closest(".move");
     if (target && !this.inTransition && !this.moving) {
       e.preventDefault();
@@ -108,24 +126,20 @@ export default class ItemPopup extends Popup {
     }
   }
 
-  handleTouchMove(e) {
-    if (this.moving === true) {
-      e.preventDefault();
-      const touch = e.targetTouches[0];
-      this.movementDirection = -Math.sign(touch.clientY - this.previousTouch);
-      if (touch.clientY - this.previousTouch > 25) this.movementDirection = -2;
-      if (touch.clientY - this.previousTouch < -25) this.movementDirection = 2;
-      this.resize(touch.clientY - this.previousTouch);
-      this.previousTouch = e.targetTouches[0].clientY;
-    }
+  handleMovement(e) {
+    e.preventDefault();
+    const touch = e.targetTouches[0];
+    this.movementDirection = -Math.sign(touch.clientY - this.previousTouch);
+    if (touch.clientY - this.previousTouch > 25) this.movementDirection = -2;
+    if (touch.clientY - this.previousTouch < -25) this.movementDirection = 2;
+    this.resize(touch.clientY - this.previousTouch);
+    this.previousTouch = e.targetTouches[0].clientY;
   }
 
-  handleTouchEnd(e) {
-    if (this.moving === true) {
-      e.preventDefault();
-      this.clampHeight(this.movementDirection);
-      this.movementDirection = 0;
-    }
+  handleEndMovement(e) {
+    e.preventDefault();
+    this.clampHeight(this.movementDirection);
+    this.movementDirection = 0;
     this.moving = false;
   }
 
@@ -156,10 +170,16 @@ export default class ItemPopup extends Popup {
 
     if (direction === -1) {
       const n = differences.filter((difference) => difference < 0).length - 1;
+      if (n === differences.length) return differences.length - 1;
       if (n < 0) return -1;
       return differences.filter((difference) => difference < 0).length - 1;
     }
     if (direction === 1) {
+      const n =
+        differences.length -
+        differences.filter((difference) => difference > 0).length;
+      if (n === differences.length) return differences.length - 1;
+      if (n < 0) return -1;
       return (
         differences.length -
         differences.filter((difference) => difference > 0).length
@@ -192,59 +212,118 @@ export default class ItemPopup extends Popup {
     }, 400);
   }
 
-  showItem(product, item) {
+  showItem(product, item, zooming = false) {
     if (this.visible === true) {
       this.#animationDelay = 300;
       this.hide();
       setTimeout(() => {
         this.insertContent(product, item);
-        this.show();
+        this.show(zooming);
         this.#animationDelay = 0;
       }, this.#animationDelay);
     } else {
       this.#animationDelay = 0;
       this.insertContent(product, item);
-      this.show();
+      this.show(zooming);
     }
     this.currentProduct = product;
   }
 
   insertContent(product, item) {
-    const imageToClone = item.querySelector("img");
-    const image = imageToClone.cloneNode(false);
+    const detailsParent = this.element.querySelector("#itemPopupDescription");
+    if (!detailsParent) return;
+    detailsParent.innerHTML = "";
+    const image = item.querySelector("img").cloneNode(false);
+    const details = this.createDetails(product);
+    detailsParent.insertAdjacentElement("afterbegin", image);
+    detailsParent.insertAdjacentElement("beforeend", details);
 
+    const sizeMenuParent = this.element.querySelector("#itemPopupSizeMenu");
+    if (!sizeMenuParent) return;
+    sizeMenuParent.innerHTML = "";
+    const sizeMenu = this.createSizeMenu(product);
+    sizeMenuParent.insertAdjacentElement("afterbegin", sizeMenu);
+
+    const ingredientsParent = this.element.querySelector(
+      "#itemPopupIngredients"
+    );
+    if (!ingredientsParent) return;
+    ingredientsParent.innerHTML = "";
+    const ingredients = this.createIngredients(product);
+    ingredientsParent.insertAdjacentElement("afterbegin", ingredients);
+  }
+
+  createIngredients(product) {
+    const ingredients = document.createElement("div");
+    ingredients.classList.add("scroller");
+    ingredients.innerHTML = `
+        ${product.ingredients
+          .map(
+            (ingredient) =>
+              `<div>
+                <p class="info"><span>${ingredient.icon}</span>&nbsp;${ingredient.name}</p>
+                <div class="benefits">
+                  <p>${ingredient.info}</p>
+                  <a href="${ingredient.learnUrl}" target="_blank">Learn more &rarr;</a>
+                </div>
+              </div>
+              `
+          )
+          .join("")}
+      `;
+    return ingredients;
+  }
+
+  createSizeMenu(product) {
+    const sizeMenu = document.createElement("div");
+    sizeMenu.innerHTML = `
+      <ul>
+        ${Object.entries(product.sizes)
+          .map(
+            ([name, info]) => `
+          <li data-size="${name}">
+            <p class="name">${name[0].toUpperCase() + name.slice(1)}</p>
+            <p class="size">${info.size}</p>
+            <p class="price">${info.price / 100}PLN</p>
+          </li>
+        `
+          )
+          .join("")}
+      </ul>
+      `;
+
+    return sizeMenu;
+  }
+
+  createDetails(product) {
     const details = document.createElement("div");
     details.classList.add("details");
 
     details.innerHTML = `
     <h1>${product.name}</h1>
     <div class="section properties">
-      <p>Properties</p>
-        <ul>
-          ${product.properties
-            .map((property) => `<li>${property.icon} ${property.name}</li>`)
-            .join("")}
-      </ul>
-    </div>
-    <div class="section ingredients">
-      <p>Ingredients</p>
       <ul>
-        ${product.ingredients
-          .map((ingredient) => `<li>${ingredient}</li>`)
+        ${product.properties
+          .map((property) => `<li>${property.icon} ${property.name}</li>`)
           .join("")}
       </ul>
     </div>
+    <div class="section nutrition">
+      <ul>
+        ${product.nutrition
+          .map(
+            (value) =>
+              `<li><p class="name">${value.name}</p><p class="value">${value.value}</p></li>`
+          )
+          .join("")}
+      </ul>
+      <p class="info">* ${product.nutritionInfo}</p>
+    </div>
     `;
-
-    const parent = this.element.querySelector("#itemPopupDescription");
-    if (!parent) return;
-    parent.innerHTML = "";
-
-    parent.insertAdjacentElement("afterbegin", image);
-    parent.insertAdjacentElement("beforeend", details);
+    return details;
   }
 
-  show() {
+  show(zooming) {
     if (this.visible || this.inTransition) return;
     this.inTransition = true;
     this.visible = true;
@@ -252,19 +331,22 @@ export default class ItemPopup extends Popup {
     this.elementHeight = window.innerHeight * this.defaultOpenMultiplier;
     this.resize();
     const staticImage = this.element.querySelector("img");
-    staticImage.style.opacity = 0;
+    if (zooming) staticImage.style.opacity = 0;
     this.element.animate(this.animation, {
       ...this.options,
       duration: this.duration,
       delay: this.delay,
     });
-    setTimeout(() => {
-      staticImage.style.opacity = 1;
-      this.element.style.pointerEvents = "none";
-      this.element.style.opacity = 0;
-      this.resize();
-      this.inTransition = false;
-    }, this.duration + this.delay);
+    setTimeout(
+      () => {
+        staticImage.style.opacity = 1;
+        this.element.style.pointerEvents = "none";
+        this.element.style.opacity = 0;
+        this.resize();
+        this.inTransition = false;
+      },
+      zooming ? this.duration + this.delay : this.duration
+    );
   }
 
   hide() {
@@ -281,6 +363,23 @@ export default class ItemPopup extends Popup {
       this.element.style.opacity = 0;
       this.inTransition = false;
     }, 300);
+  }
+
+  toggleFloatingButton() {
+    const floatingButton = this.element.querySelector(".floatingButton");
+    if (this.currentClamp >= 2) {
+      floatingButton.style.transform = "translateY(0)";
+    } else {
+      floatingButton.style.transform = "translateY(100%)";
+    }
+  }
+
+  get currentClamp() {
+    return this.#currentClamp;
+  }
+  set currentClamp(value) {
+    this.#currentClamp = value;
+    this.toggleFloatingButton();
   }
 
   get animationDelay() {

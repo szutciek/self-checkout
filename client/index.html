@@ -14,7 +14,7 @@
     <div class="app">
       <div class="lock fullScreenPosition" id="lockElement">
         <div class="visual">
-          <img src="https://assets.kanapka.eu/images/Antech.jpg" />
+          <img src="https://assets.kanapka.eu/images/ceo.webp" />
         </div>
         <div class="start">
           <button class="startOrderButton">Touch to start</button>
@@ -39,10 +39,30 @@
       <div class="itemPopup" id="itemPopupElement">
         <div class="move flexVert"><div class="grab"></div></div>
         <div class="content maxWidth">
-          <div class="item">
-            <div class="desription" id="itemPopupDescription"></div>
-            <div class="purchaseOptions" id="itemPopupPurchaseOptions">
-              <!-- <h1>Stuff</h1> -->
+          <div class="part item">
+            <div class="description" id="itemPopupDescription"></div>
+          </div>
+          <div class="part ingredients">
+            <div class="topBorder">
+              <h3>Ingredients</h3>
+              <div class="border"></div>
+            </div>
+            <div class="ingredientsBox" id="itemPopupIngredients"></div>
+          </div>
+          <div class="part sizeMenu">
+            <div class="topBorder">
+              <h3>Size</h3>
+              <div class="border"></div>
+            </div>
+            <div class="sizeBox" id="itemPopupSizeMenu"></div>
+          </div>
+
+          <div class="floatingButton">
+            <div class="container flexVert maxWidth">
+              <button class="cancel cancelItem">&times; Close</button>
+              <button class="confirm confirmAddButton locked">
+                &check; Add to cart
+              </button>
             </div>
           </div>
         </div>

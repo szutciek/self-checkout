@@ -1,5 +1,7 @@
 :root {
   --main-color: #921124;
+  --accent-color: #2b5eca;
+  --whiteItemBorder: 1px solid #c0c0c0;
 }
 
 * {
@@ -37,6 +39,13 @@ body {
 .maxWidth {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.menuItemPreview {
+  -webkit-filter: drop-shadow(5px 5px 5px #0000004c);
+  filter: drop-shadow(5px 5px 5px #0000004c);
+  object-fit: contain;
+  aspect-ratio: 1.5;
 }
 
 @font-face {

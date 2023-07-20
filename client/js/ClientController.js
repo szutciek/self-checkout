@@ -1,4 +1,5 @@
 import config from "./config.js";
+import { ingredientInfo } from "./tempData.js";
 
 import MainWindow from "./WindowControllers/Main.js";
 import ItemPopup from "./WindowControllers/ItemPopup.js";
@@ -40,10 +41,19 @@ export default class ClientController {
       if (!res.ok) throw new Error("Failed to get menu items");
       const data = await res.json();
       if (!data) throw new Error("Failed to parse menu items");
+      this.replaceIngredientsData(data);
       this.menu = data;
     } catch (err) {
       console.warn(err.message);
     }
+  }
+
+  replaceIngredientsData(menu) {
+    menu.forEach((item) => {
+      item.ingredients = item.ingredients.map(
+        (ingredient) => ingredientInfo[ingredient]
+      );
+    });
   }
 
   updateMenu() {

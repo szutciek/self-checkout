@@ -11,24 +11,155 @@
           "icon": "🥛"
         },
         {
-          "name": "meat",
+          "name": "w/ meat",
           "icon": "🍖"
         }
       ],
       "sizes": {
         "small": {
-          "price": 6.49,
+          "price": 1000,
           "size": "2 pcs"
         },
         "medium": {
-          "price": 7.99,
+          "price": 7000,
           "size": "5 pcs"
         },
         "large": {
-          "price": 9.99,
+          "price": 10000,
           "size": "8 pcs"
         }
-      }
+      },
+      "nutrition": [
+        {
+          "name": "calories",
+          "value": "400cal"
+        },
+        {
+          "name": "fat",
+          "value": "40g"
+        },
+        {
+          "name": "salt",
+          "value": "7g"
+        },
+        { "name": "sugar", "value": "10g" }
+      ],
+      "nutritionInfo": "Values per piece."
+    },
+    {
+      "id": "576643475346",
+      "name": "Kebab",
+      "image": "https://assets.kanapka.eu/images/kebabCheckoutApp.png",
+      "ingredients": ["tomato", "mozzarella", "basil"],
+      "properties": [
+        {
+          "name": "vegetarian",
+          "icon": "🥕"
+        },
+        {
+          "name": "w/ meat",
+          "icon": "🍖"
+        }
+      ],
+      "sizes": {
+        "no meat": {
+          "price": 499,
+          "size": "20cm"
+        },
+        "meat": {
+          "price": 699,
+          "size": "25cm"
+        },
+        "large meat": {
+          "price": 999,
+          "size": "40cm"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "calories",
+          "value": "1700cal"
+        },
+        {
+          "name": "fat",
+          "value": "260g"
+        },
+        { "name": "sugar", "value": "23g" }
+      ],
+      "nutritionInfo": "Values per kebab."
+    },
+    {
+      "id": "756785658556",
+      "name": "Pizza Salami",
+      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
+      "ingredients": ["tomato", "mozzarella", "basil", "salami"],
+      "properties": [
+        {
+          "name": "spicy",
+          "icon": "🌶️"
+        },
+        {
+          "name": "w/ meat",
+          "icon": "🍖"
+        }
+      ],
+      "sizes": {
+        "small": {
+          "price": 649,
+          "size": "2 pcs"
+        },
+        "medium": {
+          "price": 799,
+          "size": "3 pcs"
+        },
+        "large": {
+          "price": 999,
+          "size": "4 pcs"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "calories",
+          "value": 1000
+        },
+        {
+          "name": "fat",
+          "value": 20
+        },
+        { "name": "sugar", "value": 20 }
+      ],
+      "nutritionInfo": "Values per slice."
+    },
+
+    {
+      "id": "67646537364343",
+      "name": "Tymbark Juice",
+      "image": "https://assets.kanapka.eu/images/drinkCheckoutApp.png",
+      "ingredients": ["tomato", "mozzarella", "basil", "salami"],
+      "properties": [
+        {
+          "name": "cold",
+          "icon": "❄️"
+        }
+      ],
+      "sizes": {
+        "small": {
+          "price": 500,
+          "size": "250ml"
+        },
+        "large": {
+          "price": 1100,
+          "size": "800ml"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "calories",
+          "value": "700cal"
+        },
+        { "name": "sugar", "value": "36g" }
+      ],
+      "nutritionInfo": "Values per 100ml."
     },
     {
       "id": "1232435235",
@@ -43,48 +174,30 @@
       ],
       "sizes": {
         "small": {
-          "price": 5.99,
+          "price": 599,
           "size": "20cm"
         },
         "medium": {
-          "price": 7.99,
+          "price": 799,
           "size": "30cm"
         },
         "large": {
-          "price": 9.99,
+          "price": 999,
           "size": "40cm"
         }
-      }
-    },
-    {
-      "id": "756785658556",
-      "name": "Pizza Salami",
-      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
-      "ingredients": ["tomato", "mozzarella", "basil", "salami"],
-      "properties": [
+      },
+      "nutrition": [
         {
-          "name": "spicy",
-          "icon": "🌶️"
+          "name": "calories",
+          "value": "220cal"
         },
         {
-          "name": "meat",
-          "icon": "🍖"
-        }
+          "name": "fat",
+          "value": "20g"
+        },
+        { "name": "sugar", "value": "20g" }
       ],
-      "sizes": {
-        "small": {
-          "price": 6.49,
-          "size": "2 pcs"
-        },
-        "medium": {
-          "price": 7.99,
-          "size": "3 pcs"
-        },
-        "large": {
-          "price": 9.99,
-          "size": "4 pcs"
-        }
-      }
+      "nutritionInfo": "Values per slice."
     },
     {
       "id": "2546756846452",
@@ -93,7 +206,7 @@
       "ingredients": ["tomato", "mozzarella", "basil", "salami"],
       "properties": [
         {
-          "name": "meat",
+          "name": "w/ meat",
           "icon": "🍖"
         },
         {
@@ -103,46 +216,29 @@
       ],
       "sizes": {
         "standard": {
-          "price": 8.99,
+          "price": 899,
           "size": "3 pcs"
         },
         "extra": {
-          "price": 11.99,
+          "price": 1199,
           "size": "4 pcs"
         }
-      }
-    },
-    {
-      "id": "576643475346",
-      "name": "Kebab",
-      "image": "https://assets.kanapka.eu/images/kebabCheckoutApp.png",
-      "ingredients": ["tomato", "mozzarella", "basil"],
-      "properties": [
+      },
+      "nutrition": [
         {
-          "name": "vegetarian",
-          "icon": "🥕"
+          "name": "calories",
+          "value": "2600cal"
         },
         {
-          "name": "meat",
-          "icon": "🍖"
-        }
+          "name": "salt",
+          "value": "20g"
+        },
+        { "name": "sugar", "value": "15g" }
       ],
-      "sizes": {
-        "no meat": {
-          "price": 4.99,
-          "size": "20cm"
-        },
-        "meat": {
-          "price": 6.99,
-          "size": "25cm"
-        },
-        "large meat": {
-          "price": 9.99,
-          "size": "40cm"
-        }
-      }
+      "nutritionInfo": "Values per slice."
     }
   ],
+
   "users": [
     {
       "name": "John Doe",

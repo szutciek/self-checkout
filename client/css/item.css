@@ -5,13 +5,12 @@
   width: 100%;
   z-index: 100;
 
-  /* min-height: 120px; */
-  max-height: 90vh;
+  min-height: 50px;
+  max-height: 100vh;
 
   overflow: hidden;
 
   box-shadow: 0 -10px 20px #00000028;
-  border-radius: 1rem;
 
   background-color: #ffffff;
 }
@@ -23,8 +22,10 @@
   width: 100%;
   height: 50px;
   justify-content: center;
+  z-index: 100;
 
-  background-color: #f4f4f4b2;
+  border-top: var(--whiteItemBorder);
+  background-color: #ffffffb2;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
 }
@@ -33,10 +34,10 @@
 }
 
 .itemPopup .move .grab {
-  width: 60px;
+  width: 70px;
   height: 5px;
-  border-radius: 50px;
-  background-color: #d3d3d3;
+  border-radius: 5px;
+  background-color: #c6c6c6;
 }
 
 .itemPopup .content {
@@ -51,46 +52,262 @@
   display: none;
 }
 
-.itemPopup .item {
-  height: max-content;
+.itemPopup .part {
+  padding: 2rem 1rem;
 }
-.itemPopup .item .desription {
-  padding: 1rem 1rem;
+.itemPopup .part:last-of-type {
+  margin-bottom: 150px;
+}
+.itemPopup .part .topBorder {
+  position: relative;
+  height: 1.25rem;
+  margin-bottom: 1rem;
+}
+.itemPopup .part .topBorder .border {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #919191;
+}
+.itemPopup .part h3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 400;
+  color: #454545;
+  background-color: white;
+  padding-right: 0.5rem;
+}
+
+.itemPopup .item {
+  border-top: none;
+  height: max-content;
+
+  padding-top: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.itemPopup .item .description {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
 .itemPopup .item img {
   width: 100%;
-  aspect-ratio: 1/1;
-  object-fit: contain;
+}
+
+.itemPopup .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .itemPopup .details h1 {
   font-size: 2rem;
   font-weight: 600;
   color: #181818;
 }
-.itemPopup .details .section {
-  padding-top: 1rem;
+
+.itemPopup .details .properties {
+  padding-top: 0;
 }
-.itemPopup .details .section p {
+.itemPopup .details .properties p {
   font-size: 0.8rem;
   font-weight: 400;
   color: #373737;
 }
-.itemPopup .details .section ul {
+.itemPopup .details .properties ul {
   list-style: none;
 }
-.itemPopup .details .section li {
+.itemPopup .details .properties li {
   display: inline-block;
-  margin-right: 0.5rem;
-  margin-top: 0.5rem;
+  margin-right: 1.5rem;
 
+  /* margin-top: 0.5rem;
   padding: 0.2rem 0.5rem;
   background-color: #e9e9e9;
-  border-radius: 2px;
+  border-radius: 2px; */
 
   font-size: 1rem;
   font-weight: 400;
   color: #373737;
+}
+
+.itemPopup .details .nutrition {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 1.5rem;
+}
+.itemPopup .details .nutrition ul {
+  list-style: none;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.25rem 0;
+}
+.itemPopup .details .nutrition li {
+  justify-content: space-between;
+}
+.itemPopup .details .nutrition li .name {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #3d3d3d;
+}
+.itemPopup .details .nutrition li .value {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #373737;
+}
+.itemPopup .details .nutrition .info {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #3d3d3d;
+}
+
+.itemPopup .ingredients .ingredientsBox {
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.itemPopup .ingredients .ingredientsBox::-webkit-scrollbar {
+  display: none;
+}
+.itemPopup .ingredients .scroller {
+  display: flex;
+  gap: 2rem;
+  width: fit-content;
+}
+.itemPopup .ingredients .scroller div {
+  width: 300px;
+}
+
+.itemPopup .ingredients .scroller .info {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #292929;
+}
+.itemPopup .ingredients .scroller .benefits p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  font-size: 1rem;
+  font-weight: 300;
+  color: #545454;
+}
+.itemPopup .ingredients .scroller .benefits a {
+  display: block;
+  margin-top: 0.5rem;
+
+  font-size: 1rem;
+  font-weight: 300;
+  color: #6871a7;
+}
+
+.itemPopup .sizeBox ul {
+  display: flex;
+  gap: 1rem;
+
+  list-style: none;
+}
+
+.itemPopup .sizeBox li {
+  padding: 0.5rem;
+  background-color: #f1f1f1;
+  border: var(--whiteItemBorder);
+  border-radius: 2px;
+
+  min-width: 150px;
+}
+.itemPopup .sizeBox li .name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #252525;
+}
+.itemPopup .sizeBox li .size {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #252525;
+}
+.itemPopup .sizeBox li .price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #181818;
+  text-align: right;
+  margin-top: 0.5rem;
+}
+.itemPopup .sizeBox li.active {
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+.itemPopup .sizeBox li.active .name {
+  color: #e4e4e4;
+}
+.itemPopup .sizeBox li.active .size {
+  color: #e4e4e4;
+}
+.itemPopup .sizeBox li.active .price {
+  color: #fff;
+}
+
+.itemPopup .floatingButton {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 1rem 3rem 1rem;
+  z-index: 99;
+
+  border-top: var(--whiteItemBorder);
+  background-color: #ffffffb2;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  justify-content: center;
+  transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.itemPopup .floatingButton .container {
+  gap: 1rem;
+}
+.itemPopup .floatingButton button {
+  padding: 0.7rem 0;
+
+  border: 2px solid var(--accent-color);
+  background-color: white;
+  border-radius: 4px;
+
+  font-size: 1rem;
+  transition: 0.2s;
+}
+.itemPopup .floatingButton .cancel {
+  flex: 1;
+
+  color: var(--accent-color);
+  font-weight: 500;
+}
+.itemPopup .floatingButton .confirm {
+  flex: 2;
+
+  background-color: var(--accent-color);
+
+  color: white;
+  font-weight: 600;
+}
+.itemPopup .floatingButton .confirm.locked {
+  pointer-events: none;
+
+  border: 2px solid #323843;
+  background-color: #323843;
+
+  color: #8e95a4;
 }

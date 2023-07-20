@@ -36,8 +36,13 @@ export default class Main extends Window {
     const item = e.target.closest(".item");
     const product = this.findMenuItemById(item.dataset.id);
 
-    this.controller.itemPopup.showItem(product, item);
-    this.handleImageZoom(item);
+    let zoom = true;
+    const image = item.querySelector("img");
+    const initialPos = image.getBoundingClientRect();
+    if (initialPos.top < 209) zoom = false;
+
+    this.controller.itemPopup.showItem(product, item, zoom);
+    this.handleImageZoom(item, initialPos);
     this.handleItemAnimation(item);
 
     // console.log(`${product.name} clicked`);
@@ -47,24 +52,29 @@ export default class Main extends Window {
     const animation = [
       {
         backgroundSize: "0% 0%",
+        transform: "scale(1)",
         offset: 0,
       },
       {
         backgroundSize: "250% 250%",
+        transform: "scale(0.95)",
         backgroundColor: "#fff",
         offset: 0.5,
       },
       {
         backgroundSize: "0% 0%",
-        backgroundColor: "#ececec",
+        backgroundColor: "#efefef",
+        transform: "scale(0.95)",
         offset: 0.5001,
       },
       {
-        backgroundColor: "#ececec",
+        backgroundColor: "#efefef",
+        transform: "scale(0.95)",
         offset: 0.6,
       },
       {
         backgroundColor: "#fff",
+        transform: "scale(1)",
         offset: 1,
       },
     ];
@@ -74,12 +84,14 @@ export default class Main extends Window {
     item.animate(animation, options);
   }
 
-  handleImageZoom(item) {
+  handleImageZoom(item, initialPos) {
     const image = item.querySelector("img");
     if (!image) return;
+    if (!initialPos) initialPos = image.getBoundingClientRect();
 
-    const initialPos = image.getBoundingClientRect();
     const finalPos = this.controller.itemPopup.imageZoomPosition;
+
+    if (initialPos.top < 209) return (this.noZoom = true);
 
     const imageZoom = image.cloneNode(false);
     image.style.opacity = 0;
@@ -99,18 +111,20 @@ export default class Main extends Window {
         top: `${initialPos.top}px`,
         left: `${initialPos.left}px`,
         width: `${initialPos.width}px`,
+        offset: 0,
       },
       {
         top: `${finalPos.top}px`,
         left: `${finalPos.left}px`,
         width: `${finalPos.width}px`,
+        offset: 1,
       },
     ];
     const options = {
       duration: zoomDuration,
       iterations: 1,
       fill: "forwards",
-      easing: "ease-in-out",
+      easing: "cubic-bezier(.33,1.24,.57,1)",
     };
 
     setTimeout(() => {
@@ -157,7 +171,7 @@ export default class Main extends Window {
           <p class="starting">${
             starting[0][0].toUpperCase() + starting[0].slice(1)
           } ${languages[this.controller.lang].items.starting}</p>
-          <p class="price">${starting[1]}PLN</p>
+          <p class="price">${starting[1] / 100}PLN</p>
         </div>
       `;
       menuArea.appendChild(el);

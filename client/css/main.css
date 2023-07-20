@@ -11,7 +11,7 @@
   z-index: 99;
 
   padding-bottom: 1rem;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: var(--whiteItemBorder);
   box-shadow: 0 10px 20px #00000018;
   background-color: white;
 
@@ -41,8 +41,10 @@
   margin-bottom: 0.5rem;
   list-style: none;
   padding: 0.25rem 0.75rem;
+
   background-color: #ededed;
   border-radius: 50px;
+  border: var(--whiteItemBorder);
 
   text-align: center;
   font-size: 15px;
@@ -54,6 +56,7 @@
   margin-bottom: 0;
 }
 .main .head .languages li.active {
+  border: none;
   background-color: #181818;
   color: #fff;
 }
@@ -83,9 +86,10 @@
   list-style: none;
   padding: 1rem 0.5rem 0.5rem 0.5rem;
   width: 100px;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   background-color: #f1f1f1;
   text-align: center;
+  border: var(--whiteItemBorder);
 }
 .main .filtersList li h2 {
   font-size: 1.5rem;
@@ -103,6 +107,7 @@
   overflow: hidden;
 }
 .main .filtersList li.active {
+  border: none;
   background-color: #181818;
   color: #fff;
 }
@@ -116,7 +121,7 @@
   padding: 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem;
+  gap: 1rem 2rem;
 
   height: calc(100vh - 206px);
   overflow-y: scroll;
@@ -132,8 +137,14 @@
   background-repeat: no-repeat;
   background-size: 0% 0%;
 
+  border: var(--whiteItemBorder);
+
   margin-top: 3rem;
   height: min-content;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .main .item:last-of-type {
   margin-bottom: calc(20vh + 1rem);
@@ -147,13 +158,13 @@
 }
 .main .item .name {
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #181818;
 }
 .main .item .properties {
-  font-size: 1rem;
+  font-size: 0.9rem;
 
-  border-bottom: 1px dashed #d8d8d8;
+  border-bottom: 1px dashed #b4b4b4;
   padding-bottom: 0.5rem;
 }
 .main .item .starting {
@@ -168,11 +179,4 @@
   font-size: 1rem;
   font-weight: 500;
   color: #181818;
-}
-
-.menuItemPreview {
-  -webkit-filter: drop-shadow(5px 5px 5px #0000004c);
-  filter: drop-shadow(5px 5px 5px #0000004c);
-  object-fit: contain;
-  aspect-ratio: 1;
 }
