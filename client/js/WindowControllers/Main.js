@@ -1,5 +1,11 @@
 import Window from "./Window.js";
 import languages from "../languages.js";
+import {
+  itemClickAnimation,
+  selectItemClickAnimation,
+  itemClickOptions,
+  selectItemClickOptions,
+} from "../animations.js";
 
 export default class Main extends Window {
   prepared = false;
@@ -39,48 +45,16 @@ export default class Main extends Window {
     let zoom = true;
     const image = item.querySelector("img");
     const initialPos = image.getBoundingClientRect();
-    if (initialPos.top < 209) zoom = false;
+    if (initialPos.top < 165) zoom = false;
 
     this.controller.itemPopup.showItem(product, item, zoom);
-    this.handleImageZoom(item, initialPos);
+    if (zoom) this.handleImageZoom(item, initialPos);
     this.handleItemAnimation(item);
-
-    // console.log(`${product.name} clicked`);
   }
 
   handleItemAnimation(item) {
-    const animation = [
-      {
-        backgroundSize: "0% 0%",
-        transform: "scale(1)",
-        offset: 0,
-      },
-      {
-        backgroundSize: "250% 250%",
-        transform: "scale(0.95)",
-        backgroundColor: "#fff",
-        offset: 0.5,
-      },
-      {
-        backgroundSize: "0% 0%",
-        backgroundColor: "#efefef",
-        transform: "scale(0.95)",
-        offset: 0.5001,
-      },
-      {
-        backgroundColor: "#efefef",
-        transform: "scale(0.95)",
-        offset: 0.6,
-      },
-      {
-        backgroundColor: "#fff",
-        transform: "scale(1)",
-        offset: 1,
-      },
-    ];
-    const options = {
-      duration: 400,
-    };
+    const animation = itemClickAnimation;
+    const options = itemClickOptions;
     item.animate(animation, options);
   }
 
@@ -90,8 +64,6 @@ export default class Main extends Window {
     if (!initialPos) initialPos = image.getBoundingClientRect();
 
     const finalPos = this.controller.itemPopup.imageZoomPosition;
-
-    if (initialPos.top < 209) return (this.noZoom = true);
 
     const imageZoom = image.cloneNode(false);
     image.style.opacity = 0;
@@ -156,6 +128,7 @@ export default class Main extends Window {
 
       const el = document.createElement("div");
       el.classList.add("item");
+      el.classList.add("itemClickAnimation");
       el.dataset.id = item.id;
       el.innerHTML = `
         <img
@@ -197,8 +170,8 @@ export default class Main extends Window {
       const filter = document.createElement("li");
       filter.dataset.filter = key;
       if (this.currentFilter === key) filter.classList.add("active");
+      filter.classList.add("itemClickAnimation");
       filter.innerHTML = `
-        <h2>${value.icon}</h2>
         <p>${value.title}</p>
       `;
       filter.addEventListener("click", this.handleFilterClick);
@@ -230,14 +203,19 @@ export default class Main extends Window {
   }
 
   handleFilterClick = (e) => {
-    const newFilter = e.target.closest("li").dataset.filter;
+    const filterElement = e.target.closest("li");
+    filterElement.animate(selectItemClickAnimation, selectItemClickOptions);
+    const newFilter = filterElement.dataset.filter;
     if (newFilter === this.currentFilter) return;
     e.target
       .closest("ul")
       .querySelectorAll("li")
       .forEach((filter) => {
         filter.classList.remove("active");
-        if (filter.dataset.filter === newFilter) filter.classList.add("active");
+        if (filter.dataset.filter === newFilter)
+          setTimeout(() => {
+            filter.classList.add("active");
+          }, selectItemClickOptions.duration - 20);
       });
     this.currentFilter = newFilter;
     this.insertHead();

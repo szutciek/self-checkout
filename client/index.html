@@ -27,8 +27,10 @@
             <div class="info"></div>
             <ul class="languages"></ul>
           </div>
-          <div class="filters maxWidth">
-            <ul class="filtersList"></ul>
+          <div class="filters maxWidth fadeOut">
+            <div class="scroller">
+              <ul class="filtersList"></ul>
+            </div>
           </div>
         </div>
         <div class="menu maxWidth">
@@ -42,13 +44,6 @@
           <div class="part item">
             <div class="description" id="itemPopupDescription"></div>
           </div>
-          <div class="part ingredients">
-            <div class="topBorder">
-              <h3>Ingredients</h3>
-              <div class="border"></div>
-            </div>
-            <div class="ingredientsBox" id="itemPopupIngredients"></div>
-          </div>
           <div class="part sizeMenu">
             <div class="topBorder">
               <h3>Size</h3>
@@ -56,13 +51,22 @@
             </div>
             <div class="sizeBox" id="itemPopupSizeMenu"></div>
           </div>
+          <div class="part ingredients lastPart">
+            <div class="topBorder">
+              <h3>Ingredients</h3>
+              <div class="border"></div>
+            </div>
+            <div class="ingredientsBox" id="itemPopupIngredients"></div>
+          </div>
 
           <div class="floatingButton">
             <div class="container flexVert maxWidth">
-              <button class="cancel cancelItem">&times; Close</button>
-              <button class="confirm confirmAddButton locked">
-                &check; Add to cart
+              <button class="cancel cancelItem itemClickAnimation">
+                &times; Close
               </button>
+              <button
+                class="confirm confirmAddButton itemClickAnimation locked"
+              ></button>
             </div>
           </div>
         </div>

@@ -1,3 +1,9 @@
+import {
+  accentItemClickAnimation,
+  accentItemClickOptions,
+  selectItemClickAnimation,
+  selectItemClickOptions,
+} from "../animations.js";
 import Popup from "./Popup.js";
 
 export default class ItemPopup extends Popup {
@@ -23,6 +29,9 @@ export default class ItemPopup extends Popup {
   };
   #animationDelay = 0;
   #currentClamp = 2;
+
+  allowSizeChange = true;
+  selectedSize = "";
 
   animation = [
     {
@@ -107,6 +116,9 @@ export default class ItemPopup extends Popup {
 
   handleTouchStart(e) {
     if (e.target.closest(".move")) this.handleStartMovement(e);
+    if (e.target.closest(".sizeOption")) this.handleSizeSelection(e);
+    if (e.target.closest(".confirmAddButton")) this.handleAddToCart();
+    if (e.target.closest(".cancelItem")) this.hide();
   }
 
   handleTouchMove(e) {
@@ -213,6 +225,8 @@ export default class ItemPopup extends Popup {
   }
 
   showItem(product, item, zooming = false) {
+    this.resetData();
+    this.checkIfCompleted();
     if (this.visible === true) {
       this.#animationDelay = 300;
       this.hide();
@@ -227,6 +241,12 @@ export default class ItemPopup extends Popup {
       this.show(zooming);
     }
     this.currentProduct = product;
+  }
+
+  resetData() {
+    this.currentProduct = {};
+    this.selectedSize = "";
+    this.currentClamp = 2;
   }
 
   insertContent(product, item) {
@@ -281,7 +301,7 @@ export default class ItemPopup extends Popup {
         ${Object.entries(product.sizes)
           .map(
             ([name, info]) => `
-          <li data-size="${name}">
+          <li class="itemClickAnimation sizeOption" data-size="${name}">
             <p class="name">${name[0].toUpperCase() + name.slice(1)}</p>
             <p class="size">${info.size}</p>
             <p class="price">${info.price / 100}PLN</p>
@@ -293,6 +313,25 @@ export default class ItemPopup extends Popup {
       `;
 
     return sizeMenu;
+  }
+
+  handleSizeSelection(e) {
+    if (this.allowSizeChange === false) return;
+    this.allowSizeChange = false;
+    this.selectedSize = e.target.closest(".sizeOption").dataset.size;
+    const sizeMenuItems = this.element.querySelectorAll(".sizeOption");
+    sizeMenuItems.forEach((item) => {
+      if (item.dataset.size === this.selectedSize) {
+        setTimeout(() => {
+          item.animate(selectItemClickAnimation, selectItemClickOptions);
+          item.classList.add("active");
+          this.allowSizeChange = true;
+        }, selectItemClickOptions.duration - 20);
+      } else {
+        item.classList.remove("active");
+      }
+    });
+    this.checkIfCompleted();
   }
 
   createDetails(product) {
@@ -323,11 +362,50 @@ export default class ItemPopup extends Popup {
     return details;
   }
 
+  checkIfCompleted() {
+    let completed = true;
+    if (!this.selectedSize) completed = false;
+
+    if (completed) {
+      this.unlockAddToCartButton();
+    } else {
+      this.lockAddToCartButton();
+    }
+  }
+
+  unlockAddToCartButton() {
+    const buttons = this.element.querySelectorAll(".confirmAddButton");
+    buttons.forEach((button) => {
+      button.innerHTML = `&check; Add ${this.selectedSize
+        .split(" ")
+        .map((word) => word[0].toUpperCase() + word.slice(1))
+        .join(" ")} ${this.currentProduct.name.split(" ")[0]} to cart`;
+      button.classList.remove("locked");
+    });
+  }
+  lockAddToCartButton() {
+    const buttons = this.element.querySelectorAll(".confirmAddButton");
+    buttons.forEach((button) => {
+      button.innerHTML = `&check; Add to cart`;
+      button.classList.add("locked");
+    });
+  }
+
+  handleAddToCart() {
+    const buttons = this.element.querySelectorAll(".confirmAddButton");
+    buttons.forEach((button) => {
+      button.animate(accentItemClickAnimation, accentItemClickOptions);
+      setTimeout(() => {
+        this.hide();
+      }, accentItemClickOptions.duration + 500);
+    });
+  }
+
   show(zooming) {
     if (this.visible || this.inTransition) return;
+    this.element.querySelector(".content").scrollTo(0, 0);
     this.inTransition = true;
     this.visible = true;
-    this.currentClamp = 2;
     this.elementHeight = window.innerHeight * this.defaultOpenMultiplier;
     this.resize();
     const staticImage = this.element.querySelector("img");

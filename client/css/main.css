@@ -83,8 +83,9 @@
   padding: 0 1rem;
 }
 .main .filtersList li {
+  color: #181818;
   list-style: none;
-  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  padding: 0.5rem;
   width: 100px;
   border-radius: 0.25rem;
   background-color: #f1f1f1;
@@ -98,8 +99,6 @@
 .main .filtersList li p {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #181818;
-  margin-top: 0.75rem;
 
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -116,14 +115,14 @@
 }
 
 .main .menu {
-  margin-top: 206px;
+  margin-top: 165px;
 
-  padding: 1rem;
+  padding: 2rem 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem 2rem;
+  gap: 2rem;
 
-  max-height: calc(100vh - 206px);
+  max-height: calc(100vh - 165px);
   overflow-y: scroll;
 }
 
@@ -131,11 +130,6 @@
   /* background-image: linear-gradient(rgba(255, 255, 255, 0), white); */
   background-color: white;
   box-shadow: 0 10px 20px #00000018;
-
-  background-image: radial-gradient(#ececec 50%, #ffffff 50%);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 0% 0%;
 
   border: var(--whiteItemBorder);
 

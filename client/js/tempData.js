@@ -11,6 +11,12 @@ export const ingredientInfo = {
     info: "Mozzarella (English: /ˌmɒtsəˈrɛlə/, Italian: [mottsaˈrɛlla]; Neapolitan: muzzarella [muttsaˈrɛllə]) is a southern Italian cheese traditionally made from Italian buffalo's milk by the pasta filata method. Fresh mozzarella is generally white but when seasoned it turns to a light yellow depending on the animal's diet.[1] Due to its high moisture content, it is traditionally served the day after it is made[2] but can be kept in brine for up to a week[3] or longer when sold in vacuum-sealed packages. Low-moisture mozzarella can be kept refrigerated for up to a month,[4] though some shredded low-moisture mozzarella is sold with a shelf life of up to six months.[5] Mozzarella is used for most types of pizza and several pasta dishes or served with sliced tomatoes and basil in Caprese salad.    ",
     learnUrl: "https://en.wikipedia.org/wiki/Mozzarella",
   },
+  cheese: {
+    name: "Cheese",
+    icon: "🧀",
+    info: "Fresh cheese is generally white but when seasoned it turns to a light yellow depending on the animal's diet.[1] Due to its high moisture content, it is traditionally served the day after it is made[2] but can be kept in brine for up to a week[3] or longer when sold in vacuum-sealed packages. Low-moisture mozzarella can be kept refrigerated for up to a month,[4] though some shredded low-moisture mozzarella is sold with a shelf life of up to six months.[5] Mozzarella is used for most types of pizza and several pasta dishes or served with sliced tomatoes and basil in Caprese salad.    ",
+    learnUrl: "https://en.wikipedia.org/wiki/Mozzarella",
+  },
   basil: {
     name: "Basil",
     icon: "🌿",
@@ -29,9 +35,9 @@ export const menu = `
   [
     {
       "id": "967857456345423",
-      "name": "Pierogi my G",
+      "name": "Pierogi with cheese",
       "image": "https://assets.kanapka.eu/images/pierogiCheckoutApp.png",
-      "ingredients": ["tomato", "mozzarella", "basil", "salami"],
+      "ingredients": ["cheese", "basil"],
       "properties": [
         {
           "name": "lactose",
@@ -97,7 +103,7 @@ export const menu = `
           "price": 699,
           "size": "25cm"
         },
-        "large meat": {
+        "meat XL": {
           "price": 999,
           "size": "40cm"
         }
@@ -119,7 +125,7 @@ export const menu = `
       "id": "756785658556",
       "name": "Pizza Salami",
       "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
-      "ingredients": ["tomato", "mozzarella", "basil", "salami"],
+      "ingredients": ["salami"],
       "properties": [
         {
           "name": "spicy",
@@ -157,10 +163,9 @@ export const menu = `
       ],
       "nutritionInfo": "Values per slice."
     },
-
     {
       "id": "67646537364343",
-      "name": "Tymbark Juice",
+      "name": "Apple Juice",
       "image": "https://assets.kanapka.eu/images/drinkCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil", "salami"],
       "properties": [
@@ -177,6 +182,32 @@ export const menu = `
         "large": {
           "price": 1100,
           "size": "800ml"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "calories",
+          "value": "700cal"
+        },
+        { "name": "sugar", "value": "36g" }
+      ],
+      "nutritionInfo": "Values per 100ml."
+    },
+    {
+      "id": "389343932898523",
+      "name": "Kaktus Ice Cream",
+      "image": "https://assets.kanapka.eu/images/icecreamCheckoutApp.png",
+      "ingredients": [],
+      "properties": [
+        {
+          "name": "cold",
+          "icon": "❄️"
+        }
+      ],
+      "sizes": {
+        "normal": {
+          "price": 500,
+          "size": "100ml"
         }
       },
       "nutrition": [
