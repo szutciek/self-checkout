@@ -27,3 +27,15 @@
 .loginPopup .content::-webkit-scrollbar {
   display: none;
 }
+
+.loginPopup .primaryLogin {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.loginPopup .primaryLogin .code canvas {
+  border-radius: 0.5rem;
+}

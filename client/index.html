@@ -74,7 +74,10 @@
 
       <div class="loginPopup hidden" id="loginPopupElement">
         <div class="content maxWidth">
-          <div class="qrCode"></div>
+          <div class="primaryLogin">
+            <div class="instructions"></div>
+            <div class="code"></div>
+          </div>
         </div>
       </div>
 
@@ -99,7 +102,7 @@
                 />
                 <div class="text">
                   <h2>Log in</h2>
-                  <!-- <p>Click</p> -->
+                  <p>Click</p>
                 </div>
               </div>
             </div>
@@ -122,5 +125,6 @@
     </div>
 
     <script defer type="module" src="js/script.js"></script>
+    <script defer src="js/qrcode.js"></script>
   </body>
 </html>
