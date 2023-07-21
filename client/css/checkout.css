@@ -77,7 +77,7 @@
 
 .checkoutPopup .head .account {
   gap: 0.5rem;
-  padding: 6px 3rem 6px 0.5rem;
+  padding: 6px 1rem 6px 0.5rem;
   background-color: #f1f1f1;
   border: var(--whiteItemBorder);
   border-radius: 0.25rem;
