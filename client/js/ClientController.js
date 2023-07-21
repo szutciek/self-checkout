@@ -20,6 +20,8 @@ export default class ClientController {
     this.loginPopup = new LoginPopup("loginPopupElement", this);
     this.checkoutPopup = new CheckoutPopup("checkoutPopupElement", this);
     this.lockWindow = new LockWindow("lockElement", this);
+    this.popups = [this.itemPopup, this.checkoutPopup, this.loginPopup];
+    this.windows = [...this.popups, this.mainWindow, this.lockWindow];
   }
 
   setup() {
@@ -60,7 +62,9 @@ export default class ClientController {
     });
   }
 
-  showLogin() {}
+  showLogin() {
+    this.loginPopup.show();
+  }
 
   cancelOrder() {
     console.log("Canceling Order");
@@ -68,11 +72,15 @@ export default class ClientController {
   }
 
   popupShown(elementId) {
-    this.checkoutPopup.hide();
+    if (elementId !== this.checkoutPopup.elementId) this.checkoutPopup.hide();
   }
 
   popupHidden(elementId) {
-    this.checkoutPopup.show();
+    let allHidden = true;
+    this.popups.forEach((p) => {
+      if (p.visible === true) allHidden = false;
+    });
+    if (allHidden === true) this.checkoutPopup.show();
   }
 
   updateMenu() {
@@ -86,6 +94,29 @@ export default class ClientController {
     }
   }
 
+  handleChangeLanguage() {
+    this.windows.forEach((w) => w.handleLanguageChange(this.lang));
+  }
+
+  handleClick(e) {
+    if (!e.target.closest("#mainElement"))
+      this.mainWindow.handleOutsideClick(e);
+    if (!e.target.closest("#itemPopupElement"))
+      this.itemPopup.handleOutsideClick(e);
+    if (!e.target.closest("#checkoutPopupElement"))
+      this.checkoutPopup.handleOutsideClick(e);
+    if (!e.target.closest("#loginPopupElement"))
+      this.loginPopup.handleOutsideClick(e);
+  }
+
+  addToCart(item) {
+    this.#cart.push(item);
+    this.checkoutPopup.cartUpdated();
+  }
+  get cart() {
+    return this.#cart;
+  }
+
   get lang() {
     return this.#lang;
   }
@@ -96,23 +127,5 @@ export default class ClientController {
       this.#lang = lang;
       this.handleChangeLanguage();
     }
-  }
-
-  handleChangeLanguage() {
-    this.mainWindow.handleLanguageChange(this.lang);
-    this.lockWindow.handleLanguageChange(this.lang);
-  }
-
-  handleClick(e) {
-    if (!e.target.closest(".main")) this.mainWindow.handleOutsideClick(e);
-    if (!e.target.closest(".itemPopup")) this.itemPopup.handleOutsideClick(e);
-  }
-
-  addToCart(item) {
-    this.#cart.push(item);
-    this.checkoutPopup.cartUpdated();
-  }
-  get cart() {
-    return this.#cart;
   }
 }

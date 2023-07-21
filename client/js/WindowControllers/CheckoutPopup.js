@@ -25,16 +25,20 @@ export default class CheckoutPopup extends Popup {
   handleTouchStart(e) {
     if (e.target.closest(".cancelOrder")) return this.controller.cancelOrder();
     if (e.target.closest(".logUserIn")) return this.loginClicked();
-    if (e.target.closest(".showSummary")) return this.showSummary();
+    if (e.target.closest(".showSummary")) return this.summaryButtonClick();
   }
 
   loginClicked() {
-    this.controller.showLogin();
     this.selectLogin();
+    this.controller.showLogin();
+    setTimeout(() => this.hide(), 200);
+  }
+
+  showSpecific() {
+    this.deselectLogin();
   }
 
   userChange() {
-    this.deselectLogin();
     this.checkIfCompleted();
   }
 
@@ -67,10 +71,43 @@ export default class CheckoutPopup extends Popup {
     button.style.pointerEvents = "auto";
   }
 
+  summaryButtonClick() {
+    this.showSummary();
+    this.hideBrief();
+  }
+
   showSummary() {
+    this.insertSummaryContent();
     this.currentClamp = 1;
+    this.element.querySelector(".summary").style.opacity = 1;
+    // this.element.querySelector(".summary").style.height = "auto";
     this.smoothResize();
-    this.deselectLogin();
+  }
+
+  hideSummary() {
+    this.currentClamp = 0;
+    this.element.querySelector(".summary").style.opacity = 0;
+    // this.element.querySelector(".summary").style.height = 0;
+    this.smoothResize();
+  }
+
+  showBrief() {
+    this.currentClamp = 0;
+    this.element.querySelector(".brief").style.maxHeight = "300px";
+    this.smoothResize();
+  }
+
+  hideBrief() {
+    this.currentClamp = 1;
+    this.element.querySelector(".brief").style.maxHeight = "0px";
+    this.smoothResize();
+  }
+
+  insertSummaryContent() {
+    const container = this.element.querySelector(".summary");
+    container.innerHTML = `${this.controller.cart
+      .map((prod) => `<p>${prod.name}</p>`)
+      .join("")}`;
   }
 
   cartUpdated() {
@@ -78,8 +115,11 @@ export default class CheckoutPopup extends Popup {
       (acc, cur) => acc + Number(cur.price),
       0
     );
-    this.element.querySelector(".total").innerHTML = `<h1>${
+    this.element.querySelector(".total .cartPrice").innerHTML = `${
       Math.round(total) / 100
-    }zł</h1>`;
+    }zł`;
+    this.element.querySelector(
+      ".total .itemCount"
+    ).innerHTML = `${this.controller.cart.length}`;
   }
 }

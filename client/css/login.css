@@ -1,0 +1,29 @@
+.loginPopup {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+
+  min-height: 50px;
+  max-height: 100vh;
+
+  overflow: hidden;
+
+  box-shadow: 0 -10px 20px #0000001a;
+
+  border-top: var(--whiteItemBorder);
+  background-color: #ffffff;
+}
+
+.loginPopup .content {
+  max-height: 100%;
+  overflow-y: scroll;
+  padding-top: 0;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.loginPopup .content::-webkit-scrollbar {
+  display: none;
+}

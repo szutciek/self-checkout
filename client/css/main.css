@@ -128,6 +128,7 @@
   /* background-image: linear-gradient(rgba(255, 255, 255, 0), white); */
   background-color: white;
   box-shadow: 0 10px 20px #00000018;
+  border-radius: 0.25rem;
 
   border: var(--whiteItemBorder);
 

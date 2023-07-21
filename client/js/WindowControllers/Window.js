@@ -19,6 +19,10 @@ export default class Window {
     this.element.classList.remove("hidden");
   }
 
+  handleLanguageChange() {}
+
+  handleOutsideClick() {}
+
   forceHide() {
     this.element.style.display = "none";
   }

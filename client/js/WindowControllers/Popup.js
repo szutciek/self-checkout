@@ -13,8 +13,8 @@ export default class Popup extends Window {
   previousTouch = 0;
   movementDirection = 0;
   moving = false;
-  visible = false;
-  inTransition = false;
+  #visible = false;
+  #inTransition = false;
   #openDelay = 0;
   #currentClamp = 2;
 
@@ -82,7 +82,7 @@ export default class Popup extends Window {
 
   handleStartMovement(e) {
     const target = e.target.closest(".move");
-    if (target && !this.inTransition && !this.moving) {
+    if (target && this.#inTransition === false && this.moving === false) {
       e.preventDefault();
       this.previousTouch = e.targetTouches[0].clientY;
       this.moving = true;
@@ -164,20 +164,19 @@ export default class Popup extends Window {
   smoothResize() {
     this.element.style.transition = "0.5s cubic-bezier(0.16, 1, 0.3, 1)";
     this.resize();
-    this.inTransition = true;
+    this.#inTransition = true;
     setTimeout(() => {
       this.element.style.transition = "0s";
-      this.inTransition = false;
-    }, 400);
+      this.#inTransition = false;
+    }, 300);
   }
 
-  show(useDelay) {
-    if (this.visible || this.inTransition) return;
-    this.inTransition = true;
-    this.visible = true;
+  show(useDelay = false) {
+    if (this.#visible === true || this.#inTransition === true) return;
+    this.#inTransition = true;
+    this.#visible = true;
     this.showBase(useDelay);
     this.showSpecific(useDelay);
-    this.controller.popupShown(this.elementId);
   }
 
   showSpecific() {}
@@ -191,39 +190,39 @@ export default class Popup extends Window {
       duration: this.duration,
       delay: this.delay,
     });
-    setTimeout(
-      () => {
-        // this.element.style.pointerEvents = "none";
-        // this.element.style.opacity = 0;
-        this.resize();
-        this.inTransition = false;
-      },
-      useDelay ? this.duration + this.delay : this.duration
-    );
+    let timeout = this.duration;
+    if (useDelay === true) timeout += this.delay;
+    setTimeout(() => {
+      // this.element.style.pointerEvents = "none";
+      // this.element.style.opacity = 0;
+      this.resize();
+      this.#inTransition = false;
+      this.controller.popupShown(this.elementId);
+    }, timeout);
   }
 
   hide() {
+    if (this.#visible === false || this.#inTransition === true) return;
+    this.#inTransition = true;
+    this.#visible = false;
     this.hideBase();
     this.hideSpecific();
-    this.controller.popupHidden(this.elementId);
   }
 
   hideSpecific() {}
 
   hideBase() {
-    if (!this.visible || this.inTransition) return;
-    this.inTransition = true;
-    this.visible = false;
     this.element.animate([...this.animation].reverse(), {
       ...this.options,
       delay: 0,
-      duration: 300,
+      duration: 350,
     });
     setTimeout(() => {
       this.element.style.pointerEvents = "none";
       this.element.style.opacity = 0;
-      this.inTransition = false;
-    }, 300);
+      this.#inTransition = false;
+      this.controller.popupHidden(this.elementId);
+    }, 350);
   }
 
   outsideChangeClamp(num) {
@@ -259,5 +258,12 @@ export default class Popup extends Window {
   }
   get animationDelay() {
     return this.delay + this.#openDelay;
+  }
+
+  get visible() {
+    return this.#visible;
+  }
+  get inTransition() {
+    return this.#inTransition;
   }
 }
