@@ -51,6 +51,7 @@ export const selectItemClickAnimation = [
   {
     backgroundImage: "none",
     backgroundSize: "0% 0%",
+    border: "1px solid transparent",
     backgroundColor: "#c0c0c0",
     transform: "scale(0.95)",
     offset: 0.50001,

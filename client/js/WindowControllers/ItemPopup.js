@@ -100,12 +100,14 @@ export default class ItemPopup extends Popup {
 
   createIngredients(product) {
     const ingredients = document.createElement("div");
-    ingredients.classList.add("scroller");
     ingredients.innerHTML = `
-        ${product.ingredients
-          .map(
-            (ingredient) =>
-              `<div>
+    <div class="fadeX">
+      <div class="scrollerFadeX">
+        <div class="scroller">
+          ${product.ingredients
+            .map(
+              (ingredient) =>
+                `<div>
                 <p class="info"><span>${ingredient.icon}</span>&nbsp;${ingredient.name}</p>
                 <div class="benefits">
                   <p>${ingredient.info}</p>
@@ -113,8 +115,11 @@ export default class ItemPopup extends Popup {
                 </div>
               </div>
               `
-          )
-          .join("")}
+            )
+            .join("")}
+            </div>
+          </div>
+      </div>
       `;
     return ingredients;
   }

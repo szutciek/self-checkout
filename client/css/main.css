@@ -79,8 +79,6 @@
   display: flex;
   gap: 1rem;
   width: max-content;
-
-  padding: 0 1rem;
 }
 .main .filtersList li {
   color: #181818;

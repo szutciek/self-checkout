@@ -50,7 +50,7 @@
 }
 
 .itemPopup .part {
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 1rem 1rem;
 }
 .itemPopup .part .topBorder {
   position: relative;
@@ -158,12 +158,12 @@
   color: #3d3d3d;
 }
 
-.itemPopup .ingredients {
-  padding-top: 1rem;
-}
 .itemPopup .ingredients .ingredientsBox {
   overflow-x: scroll;
   overflow-y: hidden;
+
+  /* to counter scrollerFadeX */
+  margin: 0 -1rem;
 
   -ms-overflow-style: none;
   scrollbar-width: none;

@@ -54,6 +54,36 @@ body {
   aspect-ratio: 1.5;
 }
 
+.fadeX {
+  position: relative;
+}
+.fadeX:before,
+.fadeX:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 1rem;
+}
+.fadeX:before {
+  left: 0;
+  background-image: linear-gradient(to left, transparent, #fff);
+}
+.fadeX:after {
+  right: 0;
+  background-image: linear-gradient(to right, transparent, #fff);
+}
+.scrollerFadeX {
+  padding: 0 1rem;
+  overflow-x: scroll;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollerFadeX::-webkit-scrollbar {
+  display: none;
+}
+
 @font-face {
   font-family: "Poppins";
   font-weight: 900;
