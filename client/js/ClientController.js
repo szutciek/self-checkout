@@ -14,6 +14,8 @@ export default class ClientController {
 
   #cart = [];
 
+  #stationId = null;
+
   constructor() {
     this.mainWindow = new MainWindow("mainElement", this);
     this.itemPopup = new ItemPopup("itemPopupElement", this);
@@ -22,6 +24,7 @@ export default class ClientController {
     this.lockWindow = new LockWindow("lockElement", this);
     this.popups = [this.itemPopup, this.checkoutPopup, this.loginPopup];
     this.windows = [...this.popups, this.mainWindow, this.lockWindow];
+    this.#stationId = crypto.randomUUID();
   }
 
   setup() {
@@ -127,5 +130,9 @@ export default class ClientController {
       this.#lang = lang;
       this.handleChangeLanguage();
     }
+  }
+
+  get stationId() {
+    return this.#stationId;
   }
 }

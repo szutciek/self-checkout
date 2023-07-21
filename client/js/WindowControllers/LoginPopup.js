@@ -32,7 +32,7 @@ export default class LoginPopup extends Popup {
       level: "H",
       padding: 16,
       size: width,
-      value: "/login",
+      value: `/authStation?stationId=${this.controller.stationId}`,
     });
     parent.appendChild(canvas);
   }
