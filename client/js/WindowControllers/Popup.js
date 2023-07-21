@@ -6,6 +6,7 @@ export default class Popup extends Window {
   delay = 200;
   clamps = ["px:150", "px:330", "vh:85", "vh:100"];
   defaultClamp = "px:150";
+  userDraggable = true;
 
   // Keep the same (require more changes)
   elementHeight = 0;
@@ -57,8 +58,10 @@ export default class Popup extends Window {
   };
 
   handleParentTouchStart(e) {
-    if (e.target.closest(".move")) this.handleStartMovement(e);
     this.handleTouchStart(e);
+
+    if (this.userDraggable === false) return;
+    if (e.target.closest(".move")) this.handleStartMovement(e);
   }
 
   handleTouchStart() {}

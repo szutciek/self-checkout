@@ -1,4 +1,5 @@
 import Window from "./Window.js";
+
 import languages from "../languages.js";
 import {
   itemClickAnimation,
@@ -105,6 +106,7 @@ export default class Main extends Window {
 
       setTimeout(() => {
         document.body.removeChild(imageZoom);
+        image.style.transition = "opacity 0.5s";
         image.style.opacity = 1;
       }, zoomDuration);
     }, zoomDelay);
@@ -145,7 +147,7 @@ export default class Main extends Window {
           <p class="starting">${
             starting[0][0].toUpperCase() + starting[0].slice(1)
           } ${languages[this.controller.lang].items.starting}</p>
-          <p class="price">${starting[1] / 100}PLN</p>
+          <p class="price">${starting[1] / 100}zł</p>
         </div>
       `;
       menuArea.appendChild(el);

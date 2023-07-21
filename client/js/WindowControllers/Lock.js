@@ -51,8 +51,25 @@ export default class Lock extends Window {
 
   show() {
     this.insertContent(this.controller.lang);
+
     this.element.style.pointerEvents = "auto";
     this.element.style.opacity = 1;
+
+    const animation = [
+      {
+        transform: "translateY(100%)",
+      },
+      {
+        transform: "translateY(0%)",
+      },
+    ];
+    const options = {
+      duration: this.duration,
+      iterations: 1,
+      fill: "forwards",
+      easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+    };
+    this.element.animate(animation, options);
   }
 
   insertContent(lang = this.controller.lang) {

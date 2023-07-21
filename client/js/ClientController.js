@@ -25,7 +25,7 @@ export default class ClientController {
   setup() {
     return new Promise(async (res, rej) => {
       try {
-        this.lockWindow.show();
+        // this.lockWindow.show();
         await this.getMenuItems();
         this.updateMenu();
         this.mainWindow.show();
@@ -58,6 +58,13 @@ export default class ClientController {
         (ingredient) => ingredientInfo[ingredient]
       );
     });
+  }
+
+  showLogin() {}
+
+  cancelOrder() {
+    console.log("Canceling Order");
+    // this.lockWindow.show();
   }
 
   popupShown(elementId) {

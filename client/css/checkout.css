@@ -10,37 +10,16 @@
 
   overflow: hidden;
 
-  box-shadow: 0 -10px 20px #00000028;
-
-  background-color: #ffffff;
-}
-
-.checkoutPopup .move {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  justify-content: center;
-  z-index: 100;
+  box-shadow: 0 -10px 20px #0000001a;
 
   border-top: var(--whiteItemBorder);
-  background-color: #ffffffb2;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-}
-
-.checkoutPopup .move .grab {
-  width: 70px;
-  height: 5px;
-  border-radius: 5px;
-  background-color: #c6c6c6;
+  background-color: #ffffff;
 }
 
 .checkoutPopup .content {
   max-height: 100%;
   overflow-y: scroll;
-  padding-top: 50px;
+  padding-top: 1rem;
 
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -49,11 +28,96 @@
   display: none;
 }
 
-.checkoutPopup .content .head {
+.checkoutPopup .head {
+  padding: 0 1rem;
   justify-content: space-between;
 }
-.checkoutPopup .content .head h1 {
+.checkoutPopup .head h1 {
   font-size: 2rem;
   font-weight: 600;
   color: #181818;
+}
+
+.checkoutPopup .head .account {
+  gap: 0.5rem;
+  padding: 6px 12px 6px 8px;
+  background-color: #f1f1f1;
+  border: var(--whiteItemBorder);
+  border-radius: 0.25rem;
+
+  color: #181818;
+}
+.checkoutPopup .head .account.active {
+  color: #fff;
+  background-color: #181818;
+  border: 1px solid #181818;
+}
+.checkoutPopup .head .account.active img {
+  filter: invert(1);
+}
+.checkoutPopup .head .account img {
+  height: 30px;
+  aspect-ratio: 1;
+}
+.checkoutPopup .head .account h2 {
+  font-size: 0.9rem;
+  line-height: 1;
+  font-weight: 500;
+}
+.checkoutPopup .head .account p {
+  font-size: 0.8rem;
+  line-height: 1;
+  font-weight: 300;
+  margin-top: 0.25rem;
+}
+
+.checkoutPopup .head .total {
+  gap: 1rem;
+}
+
+.checkoutPopup .action {
+  width: 100%;
+  padding: 1rem 1rem 3rem 1rem;
+
+  background-color: #ffffffb2;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  justify-content: center;
+  transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.checkoutPopup .action .container {
+  gap: 1rem;
+}
+.checkoutPopup .action button {
+  padding: 0.7rem 0;
+
+  border: 2px solid var(--accent-color);
+  background-color: white;
+  border-radius: 4px;
+
+  font-size: 1rem;
+  transition: 0.2s;
+}
+.checkoutPopup .action .cancel {
+  flex: 1;
+
+  color: var(--accent-color);
+  font-weight: 500;
+}
+.checkoutPopup .action .confirm {
+  flex: 2;
+
+  background-color: var(--accent-color);
+
+  color: white;
+  font-weight: 600;
+}
+.checkoutPopup .action .confirm.locked {
+  pointer-events: none;
+
+  border: 2px solid #323843;
+  background-color: #323843;
+
+  color: #8e95a4;
 }

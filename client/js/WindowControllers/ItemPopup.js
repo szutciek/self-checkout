@@ -1,14 +1,15 @@
+import Popup from "./Popup.js";
+
 import {
   accentItemClickAnimation,
   accentItemClickOptions,
   selectItemClickAnimation,
   selectItemClickOptions,
 } from "../animations.js";
-import Popup from "./Popup.js";
 
 export default class ItemPopup extends Popup {
   // Customizable variables
-  clamps = ["px:150", "px:330", "vh:85", "vh:100"];
+  clamps = ["px:180", "px:330", "vh:85", "vh:100"];
   defaultClamp = "vh:80";
 
   currentProduct = {};
@@ -58,6 +59,9 @@ export default class ItemPopup extends Popup {
   handleOutsideClick(e) {
     if (this.inTransition) return;
     if (e.target.closest(".item")?.dataset.id !== this.currentProduct.id) {
+      // hide if user clicks outside again
+      if (this.currentClamp === 0) return this.hide();
+      // or move to bottom if first time
       this.currentClamp = 0;
       this.smoothResize();
     }
@@ -134,7 +138,7 @@ export default class ItemPopup extends Popup {
           <li class="itemClickAnimation sizeOption" data-size="${name}">
             <p class="name">${name[0].toUpperCase() + name.slice(1)}</p>
             <p class="size">${info.size}</p>
-            <p class="price">${info.price / 100}PLN</p>
+            <p class="price">${info.price / 100}zł</p>
           </li>
         `
           )
@@ -225,8 +229,8 @@ export default class ItemPopup extends Popup {
     this.controller.addToCart({
       id: this.currentProduct.id,
       name: this.currentProduct.name,
+      price: this.currentProduct.sizes[this.selectedSize].price,
       size: {
-        ...this.currentProduct.sizes[this.selectedSize],
         name: this.selectedSize,
       },
     });
@@ -261,6 +265,7 @@ export default class ItemPopup extends Popup {
   showSpecific(useDelay) {
     this.element.querySelector(".content").scrollTo(0, 0);
     const staticImage = this.element.querySelector("img");
+    staticImage.style.transition = "0s";
     if (useDelay) staticImage.style.opacity = 0;
     setTimeout(
       () => {

@@ -62,9 +62,7 @@
 
           <div class="floatingButton">
             <div class="container flexVert maxWidth">
-              <button class="cancel cancelItem itemClickAnimation">
-                &times; Close
-              </button>
+              <button class="cancel cancelItem">&times; Close</button>
               <button
                 class="confirm confirmAddButton itemClickAnimation locked"
               ></button>
@@ -76,14 +74,31 @@
       <div class="loginPopup hidden" id="loginPopupElement"></div>
 
       <div class="checkoutPopup hidden" id="checkoutPopupElement">
-        <div class="move flexVert"><div class="grab"></div></div>
         <div class="content maxWidth">
           <div class="head flexVert">
-            <div class="cart">
-              <h1>Your cart is empty</h1>
+            <div class="total flexVert">
+              <img src="" alt="" />
+              <h1>0.00zł</h1>
             </div>
-            <div class="account">
-              <h1>Not logged in</h1>
+            <div class="account logUserIn itemClickAnimation flexVert">
+              <img
+                src="https://assets.kanapka.eu/images/user.png"
+                alt="User Profile"
+              />
+              <div class="text">
+                <h2>Log in</h2>
+                <!-- <p>Click</p> -->
+              </div>
+            </div>
+          </div>
+          <div class="action">
+            <div class="container flexVert maxWidth">
+              <button class="cancel cancelOrder">
+                &times;&nbsp; Cancel Order
+              </button>
+              <button class="confirm showSummary itemClickAnimation">
+                Show Summary &nbsp;&darr;
+              </button>
             </div>
           </div>
         </div>
