@@ -2,7 +2,7 @@ import Popup from "./Popup.js";
 
 export default class CheckoutPopup extends Popup {
   // Customizable variables
-  clamps = ["px:150", "px:330", "vh:85"];
+  clamps = ["px:150", "vh:100"];
   defaultClamp = "px:150";
 
   constructor(elementId, controller) {

@@ -1,5 +1,4 @@
 export default class Window {
-  #visible = false;
   element = undefined;
 
   constructor(elementId) {

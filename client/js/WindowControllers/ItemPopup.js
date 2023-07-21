@@ -147,8 +147,8 @@ export default class ItemPopup extends Popup {
     const sizeMenuItems = this.element.querySelectorAll(".sizeOption");
     sizeMenuItems.forEach((item) => {
       if (item.dataset.size === this.selectedSize) {
+        item.animate(selectItemClickAnimation, selectItemClickOptions);
         setTimeout(() => {
-          item.animate(selectItemClickAnimation, selectItemClickOptions);
           item.classList.add("active");
           this.allowSizeChange = true;
         }, selectItemClickOptions.duration - 20);

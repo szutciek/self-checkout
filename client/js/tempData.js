@@ -29,6 +29,12 @@ export const ingredientInfo = {
     info: "The quality of salami is dependent on the quality of the raw materials and the level of technology used in its production.[24] The aroma and taste of salami are developed by enzymatic and non-enzymatic reactions.[24] The characteristic fermented meat flavour is believed to be developed by a combination of endogenous enzymatic activities and the lactic acid produced by the starter culture.[24] Lactic acid bacteria develop the tangy flavor of salami through the fermentation of carbohydrates and produces an appealing red color to the meat after fermentation, while coagulase-negative cocci can catabolize amino acids and fatty acids to produce volatile compounds.[22] The flavour itself consists of odour properties, which comes from volatile substances, and taste and tactile properties, which comes from non-volatile substances that are a result of enhancers and synergists.",
     learnUrl: "https://en.wikipedia.org/wiki/Salami",
   },
+  cactus: {
+    name: "Cactus",
+    icon: "🌵",
+    info: "A cactus (pl cacti, cactuses, or less commonly, cactus)[3] is a member of the plant family Cactaceae (/kæˈkteɪsiaɪ, -siːiː/),[a] a family comprising about 127 genera with some 1750 known species of the order Caryophyllales.[4] The word cactus derives, through Latin, from the Ancient Greek word κάκτος (káktos), a name originally used by Theophrastus for a spiny plant whose identity is now not certain.[5] Cacti occur in a wide range of shapes and sizes. They are native to the Americas, ranging from Patagonia in the south to parts of western Canada in the north, with the exception of Rhipsalis baccifera, which is also found in Africa and Sri Lanka. Cacti are adapted to live in very dry environments, including the Atacama Desert, one of the driest places on Earth. Because of this, cacti show many adaptations to conserve water. For example, almost all cacti are succulents, meaning they have thickened, fleshy parts adapted to store water. Unlike many other succulents, the stem is the only part of most cacti where this vital process takes place. Most species of cacti have lost true leaves, retaining only spines, which are highly modified leaves. As well as defending against herbivores, spines help prevent water loss by reducing air flow close to the cactus and providing some shade. In the absence of true leaves, cacti's enlarged stems carry out photosynthesis.",
+    learnUrl: "https://en.wikipedia.org/wiki/Cactus",
+  },
 };
 
 export const menu = `
@@ -197,7 +203,7 @@ export const menu = `
       "id": "389343932898523",
       "name": "Kaktus Ice Cream",
       "image": "https://assets.kanapka.eu/images/icecreamCheckoutApp.png",
-      "ingredients": [],
+      "ingredients": ["cactus"],
       "properties": [
         {
           "name": "cold",
