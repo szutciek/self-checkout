@@ -31,11 +31,36 @@
 .loginPopup .primaryLogin {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  width: 100%;
+  padding: 2rem 1rem;
   gap: 1rem;
-  padding: 1rem;
+}
+
+.loginPopup .primaryLogin .code {
+  overflow: hidden;
+  padding: 0 2rem;
+}
+
+.loginPopup .primaryLogin .code .codeBackground {
+  background-color: #f1f1f1;
+  text-align: center;
+  padding: 2rem;
+}
+.loginPopup .primaryLogin .code canvas {
   width: 100%;
 }
 
-.loginPopup .primaryLogin .code canvas {
-  border-radius: 0.5rem;
+.loginPopup .primaryLogin .instructions h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #181818;
+}
+.loginPopup .primaryLogin .instructions ul {
+  list-style: none;
+}
+.loginPopup .primaryLogin .instructions li {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #333333;
+  margin-top: 0.5rem;
 }
