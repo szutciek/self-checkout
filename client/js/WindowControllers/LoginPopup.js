@@ -1,3 +1,5 @@
+import config from "./config.js";
+
 import Popup from "./Popup.js";
 
 export default class LoginPopup extends Popup {
@@ -32,7 +34,7 @@ export default class LoginPopup extends Popup {
       level: "H",
       padding: 16,
       size: width,
-      value: `/authStation?stationId=${this.controller.stationId}`,
+      value: `${config.baseUrl}/authStation?stationId=${this.controller.stationId}`,
     });
     parent.appendChild(canvas);
   }
