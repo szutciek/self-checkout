@@ -4,7 +4,8 @@ export default class Window {
 
   constructor(elementId) {
     try {
-      if (!elementId) throw new Error("ElementId not defined.");
+      this.elementId = elementId;
+      if (!this.elementId) throw new Error("ElementId not defined.");
       this.element = document.getElementById(elementId);
       if (!this.element) throw new Error("Element not found.");
       this.handleCreationGeneral();

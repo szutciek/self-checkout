@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/lock.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/item.css" />
+    <link rel="stylesheet" href="css/checkout.css" />
   </head>
   <body>
     <div class="app">
@@ -74,7 +75,19 @@
 
       <div class="loginPopup hidden" id="loginPopupElement"></div>
 
-      <div class="checkoutPopup hidden" id="checkoutPopupElement"></div>
+      <div class="checkoutPopup hidden" id="checkoutPopupElement">
+        <div class="move flexVert"><div class="grab"></div></div>
+        <div class="content maxWidth">
+          <div class="head flexVert">
+            <div class="cart">
+              <h1>Your cart is empty</h1>
+            </div>
+            <div class="account">
+              <h1>Not logged in</h1>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script defer type="module" src="js/script.js"></script>

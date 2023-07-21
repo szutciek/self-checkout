@@ -12,6 +12,8 @@ export default class ClientController {
 
   #lang = "en";
 
+  #cart = [];
+
   constructor() {
     this.mainWindow = new MainWindow("mainElement", this);
     this.itemPopup = new ItemPopup("itemPopupElement", this);
@@ -27,6 +29,7 @@ export default class ClientController {
         await this.getMenuItems();
         this.updateMenu();
         this.mainWindow.show();
+        this.checkoutPopup.show();
 
         res();
       } catch (err) {
@@ -57,6 +60,14 @@ export default class ClientController {
     });
   }
 
+  popupShown(elementId) {
+    this.checkoutPopup.hide();
+  }
+
+  popupHidden(elementId) {
+    this.checkoutPopup.show();
+  }
+
   updateMenu() {
     this.mainWindow.updateMenu(this.menu);
   }
@@ -81,7 +92,6 @@ export default class ClientController {
   }
 
   handleChangeLanguage() {
-    console.log("Language changed to", this.lang);
     this.mainWindow.handleLanguageChange(this.lang);
     this.lockWindow.handleLanguageChange(this.lang);
   }
@@ -89,5 +99,13 @@ export default class ClientController {
   handleClick(e) {
     if (!e.target.closest(".main")) this.mainWindow.handleOutsideClick(e);
     if (!e.target.closest(".itemPopup")) this.itemPopup.handleOutsideClick(e);
+  }
+
+  addToCart(item) {
+    this.#cart.push(item);
+    this.checkoutPopup.cartUpdated();
+  }
+  get cart() {
+    return this.#cart;
   }
 }

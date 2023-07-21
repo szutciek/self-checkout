@@ -11,6 +11,7 @@ export default class Main extends Window {
   prepared = false;
   duration = 800;
 
+  allowFilterChange = true;
   currentFilter = "popular";
 
   constructor(elementId, controller) {
@@ -75,8 +76,8 @@ export default class Main extends Window {
     imageZoom.style.zIndex = 1000;
     document.body.appendChild(imageZoom);
 
-    const zoomDuration = this.controller.itemPopup.zoomDuration;
-    const zoomDelay = this.controller.itemPopup.zoomDelay;
+    const zoomDuration = this.controller.itemPopup.animationDuration;
+    const zoomDelay = this.controller.itemPopup.animationDelay;
 
     const animation = [
       {
@@ -203,10 +204,12 @@ export default class Main extends Window {
   }
 
   handleFilterClick = (e) => {
+    if (this.allowFilterChange === false) return;
     const filterElement = e.target.closest("li");
-    filterElement.animate(selectItemClickAnimation, selectItemClickOptions);
     const newFilter = filterElement.dataset.filter;
     if (newFilter === this.currentFilter) return;
+    this.allowFilterChange = false;
+    filterElement.animate(selectItemClickAnimation, selectItemClickOptions);
     e.target
       .closest("ul")
       .querySelectorAll("li")
@@ -215,6 +218,7 @@ export default class Main extends Window {
         if (filter.dataset.filter === newFilter)
           setTimeout(() => {
             filter.classList.add("active");
+            this.allowFilterChange = true;
           }, selectItemClickOptions.duration - 20);
       });
     this.currentFilter = newFilter;
