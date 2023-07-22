@@ -12,15 +12,18 @@ const ws = new WebSocket(config.wsUrl);
 
 ws.addEventListener("open", () => {
   console.log("Connection to server open");
+  document.body.style.backgroundColor = "green";
 });
 
-const usernameInput = document.querySelector("#usernameInput");
+const usernameInput = document.getElementById("usernameInput");
 
 const authorizeButton = document.querySelector("#authorizeStation");
 authorizeButton.addEventListener("click", () => {
-  if (!stationId) return;
+  document.body.style.backgroundColor = "yellow";
 
-  if (usernameInput.value.length > 3) user.name = usernameInput.value;
+  if (!stationId) return;
+  if (usernameInput.value?.length > 3) user.name = usernameInput.value;
+  document.body.style.backgroundColor = "red";
 
   ws.send(JSON.stringify({ type: "authorizeStation", stationId, user }));
 });
