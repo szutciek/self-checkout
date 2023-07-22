@@ -76,8 +76,11 @@ export default class ClientController {
   }
 
   cancelOrder() {
-    this.lockWindow.show();
     this.#step = 0;
+    this.#lang = "en";
+    this.#user = {};
+    this.#cart = [];
+    this.lockWindow.show();
   }
 
   popupShown(elementId) {
