@@ -14,8 +14,13 @@ ws.addEventListener("open", () => {
   console.log("Connection to server open");
 });
 
+const usernameInput = document.querySelector("#username");
+
 const authorizeButton = document.querySelector("#authorizeStation");
 authorizeButton.addEventListener("click", () => {
   if (!stationId) return;
+
+  if (usernameInput.value.length > 3) user.name = usernameInput.value;
+
   ws.send(JSON.stringify({ type: "authorizeStation", stationId, user }));
 });
