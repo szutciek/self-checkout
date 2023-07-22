@@ -6,6 +6,7 @@ export default class LoginPopup extends Popup {
   // Customizable variables
   clamps = ["px:387", "vh:100"];
   defaultClamp = "px:387";
+  delay = 200;
   userDraggable = false;
 
   constructor(elementId, controller) {

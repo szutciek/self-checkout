@@ -3,10 +3,10 @@ import Window from "./Window.js";
 export default class Popup extends Window {
   // Customizable variables (these are defaults)
   duration = 600;
-  delay = 200;
+  delay = 0;
   clamps = ["px:150", "px:330", "vh:85", "vh:100"];
   defaultClamp = "px:150";
-  hideDuration = 500;
+  hideDuration = 400;
 
   userDraggable = true;
 
@@ -265,6 +265,11 @@ export default class Popup extends Window {
   get visible() {
     return this.#visible;
   }
+  set visible(value) {
+    console.warn(`Don't set visible directly, use show() and hide() instead!`);
+    this.#visible = value;
+  }
+
   get inTransition() {
     return this.#inTransition;
   }

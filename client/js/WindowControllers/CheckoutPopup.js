@@ -10,6 +10,8 @@ export default class CheckoutPopup extends Popup {
   // Customizable variables
   clamps = ["px:180", "vh:100"];
   defaultClamp = "px:180";
+  duration = 500;
+  delay = 0;
   userDraggable = false;
 
   constructor(elementId, controller) {

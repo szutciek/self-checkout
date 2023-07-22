@@ -12,7 +12,9 @@ export default class ItemPopup extends Popup {
   // Customizable variables
   clamps = ["px:180", "px:330", "vh:85", "vh:100"];
   defaultClamp = "vh:80";
-  hideDuration = 600;
+  duration = 600;
+  delay = 200;
+  hideDuration = 500;
 
   currentProduct = {};
   #imageZoomPosition = {
@@ -264,15 +266,19 @@ export default class ItemPopup extends Popup {
     });
   }
 
+  // lot of visilbe changes so that checkout window doesn't open (checks if all hidden)
   showItem(product, item, zooming = false) {
     this.resetData();
     this.checkIfCompleted();
     if (this.visible === true) {
-      this.openDelay = 400;
+      this.openDelay = this.hideDuration;
       this.hide();
+      this.visible = true;
       setTimeout(() => {
         this.insertContent(product, item);
+        this.visible = false;
         this.show(zooming);
+        this.visible = true;
         this.openDelay = 0;
       }, this.openDelay);
     } else {
