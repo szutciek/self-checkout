@@ -32,7 +32,7 @@ export default class LoginPopup extends Popup {
 
   insertContent() {
     const parent = this.element.querySelector(".codeBackground");
-    parent.innerHTML = "";
+    parent.innerHTML = `<a href="${config.baseUrl}/authorize?stationId=${this.controller.stationId}" target="_blank">Link</a>`;
     const canvas = document.createElement("canvas");
     new QRious({
       element: canvas,
@@ -43,7 +43,6 @@ export default class LoginPopup extends Popup {
       size: 500,
       value: `${config.baseUrl}/authorize?stationId=${this.controller.stationId}`,
     });
-    // parent.appendChild(canvas);
-    parent.innerHTML = `<a href="${config.baseUrl}/authorize?stationId=${this.controller.stationId}" target="_blank">Link</a>`;
+    parent.appendChild(canvas);
   }
 }
