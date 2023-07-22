@@ -5,12 +5,14 @@ import {
   accentItemClickOptions,
   selectItemClickAnimation,
   selectItemClickOptions,
+  attentionAnimation,
 } from "../animations.js";
 
 export default class ItemPopup extends Popup {
   // Customizable variables
   clamps = ["px:180", "px:330", "vh:85", "vh:100"];
   defaultClamp = "vh:80";
+  hideDuration = 600;
 
   currentProduct = {};
   #imageZoomPosition = {
@@ -232,19 +234,8 @@ export default class ItemPopup extends Popup {
 
   attractAttentionSize() {
     const sizeMenuItems = this.element.querySelectorAll(".sizeOption");
-    const animation = [
-      {
-        transform: "scale(1)",
-      },
-      {
-        transform: "scale(1.1)",
-      },
-      {
-        transform: "scale(1)",
-      },
-    ];
     sizeMenuItems.forEach((item, index) => {
-      item.animate(animation, {
+      item.animate(attentionAnimation, {
         delay: index * 100,
         duration: 500,
         easing: "ease-in-out",
@@ -269,7 +260,7 @@ export default class ItemPopup extends Popup {
       button.animate(accentItemClickAnimation, accentItemClickOptions);
       setTimeout(() => {
         this.hide();
-      }, accentItemClickOptions.duration + 500);
+      }, accentItemClickOptions.duration);
     });
   }
 

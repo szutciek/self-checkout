@@ -146,8 +146,6 @@
   font-weight: 600;
 }
 .checkoutPopup .action .confirm.locked {
-  pointer-events: none;
-
   border: 2px solid #323843;
   background-color: #323843;
 

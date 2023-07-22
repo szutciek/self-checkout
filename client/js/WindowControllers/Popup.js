@@ -6,6 +6,8 @@ export default class Popup extends Window {
   delay = 200;
   clamps = ["px:150", "px:330", "vh:85", "vh:100"];
   defaultClamp = "px:150";
+  hideDuration = 500;
+
   userDraggable = true;
 
   // Keep the same (require more changes)
@@ -94,8 +96,8 @@ export default class Popup extends Window {
     e.preventDefault();
     const touch = e.targetTouches[0];
     this.movementDirection = -Math.sign(touch.clientY - this.previousTouch);
-    if (touch.clientY - this.previousTouch > 25) this.movementDirection = -2;
-    if (touch.clientY - this.previousTouch < -25) this.movementDirection = 2;
+    if (touch.clientY - this.previousTouch > 50) this.movementDirection = -2;
+    if (touch.clientY - this.previousTouch < -50) this.movementDirection = 2;
     this.resize(touch.clientY - this.previousTouch);
     this.previousTouch = e.targetTouches[0].clientY;
   }
@@ -215,14 +217,14 @@ export default class Popup extends Window {
     this.element.animate([...this.animation].reverse(), {
       ...this.options,
       delay: 0,
-      duration: 350,
+      duration: this.hideDuration,
     });
     setTimeout(() => {
       this.element.style.pointerEvents = "none";
       this.element.style.opacity = 0;
       this.#inTransition = false;
       this.controller.popupHidden(this.elementId);
-    }, 350);
+    }, this.hideDuration);
   }
 
   outsideChangeClamp(num) {

@@ -3,6 +3,7 @@ import Popup from "./Popup.js";
 import {
   selectItemClickAnimation,
   selectItemClickOptions,
+  attentionAnimation,
 } from "../animations.js";
 
 export default class CheckoutPopup extends Popup {
@@ -45,13 +46,24 @@ export default class CheckoutPopup extends Popup {
 
   checkIfCompleted() {
     let completed = true;
-    if (!this.controller.user) completed = false;
+    if (!this.controller.user) {
+      completed = false;
+      this.attractAttentionLogin();
+    }
 
     if (completed === true) {
       this.unlockCheckoutButton();
     } else {
       this.lockCheckoutButton();
     }
+  }
+
+  attractAttentionLogin() {
+    const button = this.element.querySelector(".logUserIn");
+    button.animate(attentionAnimation, {
+      duration: 500,
+      easing: "ease-in-out",
+    });
   }
 
   unlockCheckoutButton() {
@@ -79,6 +91,9 @@ export default class CheckoutPopup extends Popup {
   }
 
   summaryButtonClick() {
+    const ready = this.checkIfCompleted();
+    if (!ready) return;
+
     this.showSummary();
     this.hideBrief();
   }

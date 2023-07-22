@@ -104,3 +104,14 @@ export const itemClickAnimation = [
 export const itemClickOptions = {
   duration: 400,
 };
+export const attentionAnimation = [
+  {
+    transform: "scale(1)",
+  },
+  {
+    transform: "scale(1.1)",
+  },
+  {
+    transform: "scale(1)",
+  },
+];
