@@ -4,8 +4,8 @@ import Popup from "./Popup.js";
 
 export default class LoginPopup extends Popup {
   // Customizable variables
-  clamps = ["px:382.5"];
-  defaultClamp = "px:382.5";
+  clamps = ["px:365", "vh:100"];
+  defaultClamp = "px:365";
   userDraggable = false;
 
   constructor(elementId, controller) {
@@ -19,6 +19,14 @@ export default class LoginPopup extends Popup {
 
   showSpecific() {
     this.insertContent();
+  }
+
+  handleTouchStart(e) {
+    return;
+    if (e.target.closest(".useAccountData")) {
+      this.currentClamp = 1;
+      this.smoothResize();
+    }
   }
 
   insertContent() {

@@ -76,12 +76,17 @@
         <div class="content maxWidth">
           <div class="primaryLogin">
             <div class="instructions">
-              <h2>How to login using QR code?</h2>
-              <ul>
-                <li>1. Scan the code.</li>
-                <li>2. Sign into your account in your phones browser.</li>
-                <li>3. Authorize this station to charge your account.</li>
-              </ul>
+              <div>
+                <h2>How to log in using this QR Code? &rarr;</h2>
+                <ul>
+                  <li>1. Scan the code with your phone.</li>
+                  <li>2. Log into your account.</li>
+                  <li>3. Click the "Authorize Station" button.</li>
+                </ul>
+              </div>
+              <button class="secondaryButton useAccountData">
+                Use account details to log in
+              </button>
             </div>
             <div class="code">
               <div class="codeBackground"></div>
@@ -120,7 +125,7 @@
                 <button class="cancel cancelOrder">
                   &times;&nbsp; Cancel Order
                 </button>
-                <button class="confirm showSummary itemClickAnimation">
+                <button class="confirm showSummary itemClickAnimation locked">
                   Show Summary &nbsp;&darr;
                 </button>
               </div>

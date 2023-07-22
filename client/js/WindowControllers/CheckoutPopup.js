@@ -38,7 +38,7 @@ export default class CheckoutPopup extends Popup {
     this.deselectLogin();
   }
 
-  userChange() {
+  handleUserChange(user) {
     this.checkIfCompleted();
   }
 
@@ -46,15 +46,21 @@ export default class CheckoutPopup extends Popup {
     let completed = true;
     if (!this.controller.user) completed = false;
 
-    if (completed) {
+    if (completed === true) {
       this.unlockCheckoutButton();
     } else {
       this.lockCheckoutButton();
     }
   }
 
-  unlockCheckoutButton() {}
-  lockCheckoutButton() {}
+  unlockCheckoutButton() {
+    const button = this.element.querySelector(".showSummary");
+    button.classList.remove("locked");
+  }
+  lockCheckoutButton() {
+    const button = this.element.querySelector(".showSummary");
+    button.classList.add("locked");
+  }
 
   selectLogin() {
     const button = this.element.querySelector(".logUserIn");

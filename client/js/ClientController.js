@@ -9,11 +9,9 @@ import LockWindow from "./WindowControllers/Lock.js";
 
 export default class ClientController {
   #step = 0;
-
   #lang = "en";
-
+  #user = {};
   #cart = [];
-
   #stationId = null;
 
   constructor() {
@@ -30,7 +28,7 @@ export default class ClientController {
   setup() {
     return new Promise(async (res, rej) => {
       try {
-        // this.lockWindow.show();
+        this.lockWindow.show();
         await this.getMenuItems();
         this.updateMenu();
         this.mainWindow.show();
@@ -67,11 +65,19 @@ export default class ClientController {
 
   showLogin() {
     this.loginPopup.show();
+
+    // temporary solution
+    setTimeout(() => {
+      this.user = {
+        name: "John Doe",
+      };
+      this.loginPopup.hide();
+    }, 2.5 * 1000);
   }
 
   cancelOrder() {
-    console.log("Canceling Order");
-    // this.lockWindow.show();
+    this.lockWindow.show();
+    this.#step = 0;
   }
 
   popupShown(elementId) {
@@ -134,5 +140,13 @@ export default class ClientController {
 
   get stationId() {
     return this.#stationId;
+  }
+
+  set user(value) {
+    this.#user = value;
+    this.windows.forEach((w) => w.handleUserChange(this.#user));
+  }
+  get user() {
+    return this.#user;
   }
 }

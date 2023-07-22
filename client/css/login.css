@@ -30,19 +30,19 @@
 
 .loginPopup .primaryLogin {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 2fr;
   width: 100%;
   padding: 2rem 1rem;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .loginPopup .primaryLogin .code {
   overflow: hidden;
-  padding: 0 2rem;
 }
 
 .loginPopup .primaryLogin .code .codeBackground {
   background-color: #f1f1f1;
+  border-radius: 0.25rem;
   text-align: center;
   padding: 2rem;
 }
@@ -50,10 +50,19 @@
   width: 100%;
 }
 
+.loginPopup .primaryLogin .instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.loginPopup .primaryLogin .instructions button {
+  width: fit-content;
+}
 .loginPopup .primaryLogin .instructions h2 {
   font-size: 1.5rem;
   font-weight: 600;
   color: #181818;
+  margin-bottom: 0.75rem;
 }
 .loginPopup .primaryLogin .instructions ul {
   list-style: none;

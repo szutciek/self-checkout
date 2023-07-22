@@ -88,6 +88,20 @@ body {
   padding-top: 1rem !important;
 }
 
+.secondaryButton {
+  padding: 0.7rem 2rem;
+
+  border: 2px solid var(--accent-color);
+  background-color: white;
+  border-radius: 4px;
+
+  font-size: 1rem;
+  color: var(--accent-color);
+  font-weight: 500;
+
+  transition: 0.2s;
+}
+
 @font-face {
   font-family: "Poppins";
   font-weight: 900;

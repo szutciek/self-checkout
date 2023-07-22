@@ -21,6 +21,8 @@ export default class Window {
 
   handleLanguageChange() {}
 
+  handleUserChange() {}
+
   handleOutsideClick() {}
 
   forceHide() {
