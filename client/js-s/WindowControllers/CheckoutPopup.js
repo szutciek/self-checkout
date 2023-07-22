@@ -44,6 +44,9 @@ export default class CheckoutPopup extends Popup {
 
   handleUserChange(user) {
     this.checkIfCompleted();
+    this.insertUserContent();
+    this.selectLogin();
+    setTimeout(() => this.deselectLogin(), 1000);
   }
 
   checkIfCompleted() {

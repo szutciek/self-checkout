@@ -99,6 +99,7 @@ export default class ClientController {
     const message = JSON.parse(e.data);
     if (message.type === "userAuthorized") {
       this.user = message.user;
+      this.loginPopup.hide();
     }
   };
 
@@ -112,14 +113,6 @@ export default class ClientController {
 
   showLogin() {
     this.loginPopup.show();
-
-    // temporary solution
-    setTimeout(() => {
-      this.user = {
-        name: "John Doe",
-      };
-      this.loginPopup.hide();
-    }, 2.5 * 1000);
   }
 
   cancelOrder() {
