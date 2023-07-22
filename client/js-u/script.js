@@ -14,7 +14,7 @@ ws.addEventListener("open", () => {
   console.log("Connection to server open");
 });
 
-const usernameInput = document.querySelector("#username");
+const usernameInput = document.querySelector("#usernameInput");
 
 const authorizeButton = document.querySelector("#authorizeStation");
 authorizeButton.addEventListener("click", () => {
