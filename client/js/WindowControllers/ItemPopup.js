@@ -29,6 +29,7 @@ export default class ItemPopup extends Popup {
   }
 
   handleCreation() {
+    window.addEventListener("resize", () => this.calculateImageZoomPosition());
     this.calculateImageZoomPosition();
   }
 
@@ -198,13 +199,17 @@ export default class ItemPopup extends Popup {
 
   checkIfCompleted() {
     let completed = true;
-    if (!this.selectedSize) completed = false;
+    if (!this.selectedSize) {
+      completed = false;
+      this.attractAttentionSize();
+    }
 
     if (completed) {
       this.unlockAddToCartButton();
     } else {
       this.lockAddToCartButton();
     }
+    return completed;
   }
 
   unlockAddToCartButton() {
@@ -225,7 +230,32 @@ export default class ItemPopup extends Popup {
     });
   }
 
+  attractAttentionSize() {
+    const sizeMenuItems = this.element.querySelectorAll(".sizeOption");
+    const animation = [
+      {
+        transform: "scale(1)",
+      },
+      {
+        transform: "scale(1.1)",
+      },
+      {
+        transform: "scale(1)",
+      },
+    ];
+    sizeMenuItems.forEach((item, index) => {
+      item.animate(animation, {
+        delay: index * 100,
+        duration: 500,
+        easing: "ease-in-out",
+      });
+    });
+  }
+
   handleAddToCart() {
+    const ready = this.checkIfCompleted();
+    if (!ready) return;
+
     this.controller.addToCart({
       id: this.currentProduct.id,
       name: this.currentProduct.name,

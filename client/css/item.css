@@ -310,8 +310,6 @@
   font-weight: 600;
 }
 .itemPopup .floatingButton .confirm.locked {
-  pointer-events: none;
-
   border: 2px solid #323843;
   background-color: #323843;
 
