@@ -142,6 +142,7 @@ export default class CheckoutPopup extends Popup {
 
   insertUserContent() {
     const loginText = this.element.querySelector(".loginText");
+    console.log(this.controller.user);
     if (this.controller.user != null) {
       loginText.innerText = this.controller.user.name;
     } else {
