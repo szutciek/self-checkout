@@ -1,9 +1,10 @@
 import { WebSocketServer } from "ws";
 
+import config from "./config.js";
 import SocketSender from "./models/SocketSender.js";
 import stations from "./state/stations.js";
 
-const wss = new WebSocketServer({ port: 3001 });
+const wss = new WebSocketServer({ port: config.websocketPort });
 const socketSender = new SocketSender(wss);
 
 wss.addListener("connection", (ws) => {

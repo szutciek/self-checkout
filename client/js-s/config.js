@@ -1,5 +1,5 @@
 export default {
-  baseUrl: "http://localhost:3000",
-  apiBaseUrl: "http://localhost:3000/api",
-  wsUrl: "ws://localhost:3001",
+  baseUrl: "http://localhost:4000",
+  apiBaseUrl: "http://localhost:4000/api",
+  wsUrl: "ws://localhost:4001",
 };

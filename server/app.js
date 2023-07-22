@@ -1,6 +1,7 @@
 import Express from "express";
 import * as url from "url";
 
+import config from "./config.js";
 import "./socket.js";
 import apiRouter from "./routers/api.js";
 
@@ -24,7 +25,7 @@ app.get("/authorize", (_, res) => {
 
 app.use(Express.static(__root + "client"));
 
-app.listen(3000, (err) => {
+app.listen(config.appPort, (err) => {
   if (err) return console.log(err);
-  console.log("Server running on port 3000");
+  console.log(`Server running on port ${config.appPort}`);
 });
