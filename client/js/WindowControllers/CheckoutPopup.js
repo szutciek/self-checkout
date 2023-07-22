@@ -35,6 +35,7 @@ export default class CheckoutPopup extends Popup {
   }
 
   showSpecific() {
+    this.insertContent();
     this.deselectLogin();
   }
 
@@ -109,6 +110,25 @@ export default class CheckoutPopup extends Popup {
     this.smoothResize();
   }
 
+  insertContent() {
+    this.insertSummaryContent();
+    this.insertCartContent();
+    this.insertUserContent();
+  }
+
+  cartUpdated() {
+    this.insertContent();
+  }
+
+  insertUserContent() {
+    const loginText = this.element.querySelector(".loginText");
+    if (this.controller.user != null) {
+      loginText.innerText = this.controller.user.name;
+    } else {
+      loginText.innerText = "Click to log in";
+    }
+  }
+
   insertSummaryContent() {
     const container = this.element.querySelector(".summary");
     container.innerHTML = `${this.controller.cart
@@ -116,7 +136,7 @@ export default class CheckoutPopup extends Popup {
       .join("")}`;
   }
 
-  cartUpdated() {
+  insertCartContent() {
     const total = this.controller.cart.reduce(
       (acc, cur) => acc + Number(cur.price),
       0

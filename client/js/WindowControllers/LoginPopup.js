@@ -4,8 +4,8 @@ import Popup from "./Popup.js";
 
 export default class LoginPopup extends Popup {
   // Customizable variables
-  clamps = ["px:365", "vh:100"];
-  defaultClamp = "px:365";
+  clamps = ["px:387", "vh:100"];
+  defaultClamp = "px:387";
   userDraggable = false;
 
   constructor(elementId, controller) {

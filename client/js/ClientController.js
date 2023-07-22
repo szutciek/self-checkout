@@ -10,7 +10,7 @@ import LockWindow from "./WindowControllers/Lock.js";
 export default class ClientController {
   #step = 0;
   #lang = "en";
-  #user = {};
+  #user = null;
   #cart = [];
   #stationId = null;
 
@@ -76,9 +76,10 @@ export default class ClientController {
   }
 
   cancelOrder() {
+    this.popups.forEach((p) => p.hide());
     this.#step = 0;
     this.#lang = "en";
-    this.#user = {};
+    this.#user = null;
     this.#cart = [];
     this.lockWindow.show();
   }
