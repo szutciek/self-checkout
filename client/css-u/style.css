@@ -12,10 +12,15 @@
 }
 
 body {
-  background-color: #f4f4f4ff;
+  background-color: #f1f1f1;
 
+  height: 100vh;
   width: 100vw;
   overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   user-select: none;
   -webkit-user-drag: none;
@@ -23,13 +28,17 @@ body {
 }
 
 .maxWidth {
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
 }
 
 .flexVert {
   display: flex;
   align-items: center;
+}
+
+.hidden {
+  display: none !important;
 }
 
 @font-face {

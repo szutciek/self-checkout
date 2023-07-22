@@ -1,32 +1,69 @@
-.app {
-  height: 100vh;
+.center {
+  width: 100%;
+
+  background-color: #fff;
+  border: var(--whiteItemBorder);
+  border-radius: 0.25rem;
+
+  overflow: hidden;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 100% 100%;
+  transition: 0.3s ease-in-out;
+}
+
+.screen {
+  padding: 2rem;
+}
+
+.screen h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #181818;
+}
+.screen .instructions {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #535353;
+
+  margin-bottom: 2rem;
+}
+
+#loginButton {
+  margin-top: 2rem;
+}
+
+.authorizeScreen {
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.authorizeScreen .switchAccount {
+  background-color: #f1f1f1;
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.25rem;
+  border: none;
+  margin-top: 1rem;
+
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #181818;
+}
+
+.authorizeScreen .currentUser {
   gap: 1rem;
 }
-
-.top {
-  padding: 2rem 1rem;
-  justify-content: center;
-  width: 100%;
+.authorizeScreen img {
+  width: 40px;
+  aspect-ratio: 1;
 }
-
-.input {
-  width: 100%;
-}
-.input label {
-  font-size: 1rem;
-}
-.input input {
-  width: 100%;
-  padding: 0.4rem;
-  font-size: 1rem;
-}
-
-.bottom {
-  height: min-content;
-  padding: 2rem 1rem;
-  width: 100%;
+.authorizeScreen p {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #181818;
 }
 
 .primaryButton {

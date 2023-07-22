@@ -7,20 +7,58 @@
 
     <link rel="stylesheet" href="css-u/style.css" />
     <link rel="stylesheet" href="css-u/login.css" />
+    <link rel="stylesheet" href="css-u/fancyInput.css" />
   </head>
   <body>
-    <div class="app flexVert maxWidth">
-      <div class="top flexVert">
-        <div class="input">
-          <label>Username</label>
-          <input type="text" id="usernameInput" />
-        </div>
-      </div>
+    <div class="center maxWidth">
+      <div class="container">
+        <div class="loginScreen screen">
+          <h1>Log in</h1>
+          <p class="instructions">Enter your cafeteria account credentials.</p>
+          <div class="fancyInput" data-field="name">
+            <div class="inputArea">
+              <p id="placeholder">Name</p>
+              <input type="text" />
+            </div>
+            <div class="errorArea hidden">
+              <!-- prettier-ignore -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M248,64C146.39,64,64,146.39,64,248s82.39,184,184,184,184-82.39,184-184S349.61,64,248,64Z" style="fill:none;stroke:#FFF;stroke-miterlimit:10;stroke-width:32px"/><polyline points="220 220 252 220 252 336" style="fill:none;stroke:#FFF;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="208" y1="340" x2="296" y2="340" style="fill:none;stroke:#FFF;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"/><path style="fill:#FFF" d="M248,130a26,26,0,1,0,26,26A26,26,0,0,0,248,130Z"/></svg>
+              <h6 id="error"></h6>
+            </div>
+          </div>
+          <div class="fancyInput" data-field="password">
+            <div class="inputArea">
+              <p id="placeholder">Password</p>
+              <input type="password" />
+            </div>
+            <div class="errorArea hidden">
+              <!-- prettier-ignore -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M248,64C146.39,64,64,146.39,64,248s82.39,184,184,184,184-82.39,184-184S349.61,64,248,64Z" style="fill:none;stroke:#FFF;stroke-miterlimit:10;stroke-width:32px"/><polyline points="220 220 252 220 252 336" style="fill:none;stroke:#FFF;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="208" y1="340" x2="296" y2="340" style="fill:none;stroke:#FFF;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"/><path style="fill:#FFF" d="M248,130a26,26,0,1,0,26,26A26,26,0,0,0,248,130Z"/></svg>
+              <h6 id="error"></h6>
+            </div>
+          </div>
 
-      <div class="bottom">
-        <button class="primaryButton" id="authorizeStation">
-          Authorize Station
-        </button>
+          <button class="primaryButton" id="loginButton">Log In</button>
+        </div>
+
+        <div class="authorizeScreen screen">
+          <div class="top">
+            <div class="currentUser flexVert">
+              <img
+                src="https://assets.kanapka.eu/images/user.png"
+                alt="User Profile"
+              />
+              <p id="usernameDisplay">Maciej Szuter</p>
+            </div>
+            <button class="switchAccount" id="switchAccountButton">
+              &larr;&nbsp; switch account
+            </button>
+          </div>
+
+          <button class="primaryButton" id="authorizeStation">
+            Authorize Station
+          </button>
+        </div>
       </div>
     </div>
 
