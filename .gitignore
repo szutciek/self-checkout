@@ -1,5 +1,4 @@
 node_modules
-client/js-s/config.js
-client/js-u/config.js
+**/config.js
 client/node_modules
 server/node_modules
