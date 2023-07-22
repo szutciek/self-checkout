@@ -13,7 +13,7 @@ export default class ItemPopup extends Popup {
   clamps = ["px:180", "px:330", "vh:85", "vh:100"];
   defaultClamp = "vh:80";
   duration = 600;
-  delay = 200;
+  delay = 150;
   hideDuration = 500;
 
   currentProduct = {};

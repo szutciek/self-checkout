@@ -41,8 +41,9 @@ export default class LoginPopup extends Popup {
       foregroundAlpha: 1,
       level: "H",
       size: 500,
-      value: `${config.baseUrl}/authStation?stationId=${this.controller.stationId}`,
+      value: `${config.baseUrl}/authorize?stationId=${this.controller.stationId}`,
     });
     parent.appendChild(canvas);
+    parent.innerHTML = `<a href="${config.baseUrl}/authorize?stationId=${this.controller.stationId}" target="_blank">link</a>`;
   }
 }

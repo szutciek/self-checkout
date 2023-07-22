@@ -47,7 +47,7 @@ export default class Main extends Window {
     let zoom = true;
     const image = item.querySelector("img");
     const initialPos = image.getBoundingClientRect();
-    if (initialPos.top < 165) zoom = false;
+    if (initialPos.top < 166) zoom = false;
 
     this.controller.itemPopup.showItem(product, item, zoom);
     if (zoom) this.handleImageZoom(item, initialPos);
@@ -74,7 +74,7 @@ export default class Main extends Window {
     imageZoom.style.top = `${initialPos.top}px`;
     imageZoom.style.left = `${initialPos.left}px`;
     imageZoom.style.width = `${initialPos.width}px`;
-    imageZoom.style.zIndex = 1000;
+    imageZoom.style.zIndex = 0;
     document.body.appendChild(imageZoom);
 
     const zoomDuration = this.controller.itemPopup.animationDuration;
@@ -102,6 +102,7 @@ export default class Main extends Window {
     };
 
     setTimeout(() => {
+      imageZoom.style.zIndex = 1000;
       imageZoom.animate(animation, options);
 
       setTimeout(() => {

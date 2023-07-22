@@ -12,7 +12,9 @@ export default class ClientController {
   #lang = "en";
   #user = null;
   #cart = [];
+
   #stationId = null;
+  #ws = undefined;
 
   constructor() {
     this.mainWindow = new MainWindow("mainElement", this);
@@ -22,13 +24,16 @@ export default class ClientController {
     this.lockWindow = new LockWindow("lockElement", this);
     this.popups = [this.itemPopup, this.checkoutPopup, this.loginPopup];
     this.windows = [...this.popups, this.mainWindow, this.lockWindow];
-    this.#stationId = crypto.randomUUID();
   }
 
   setup() {
     return new Promise(async (res, rej) => {
       try {
-        this.lockWindow.show();
+        // this.lockWindow.show();
+        this.connectSocket();
+        this.addSocketListeners();
+        this.#stationId = await this.getStationId();
+        console.log(`Station assigned id ${this.#stationId}`);
         await this.getMenuItems();
         this.updateMenu();
         this.mainWindow.show();
@@ -54,6 +59,48 @@ export default class ClientController {
       console.warn(err.message);
     }
   }
+
+  connectSocket() {
+    return new Promise(async (res, rej) => {
+      try {
+        this.#ws = new WebSocket(config.wsUrl);
+        this.#ws.onopen = () => {
+          this.#ws.send(JSON.stringify({ type: "registerstation" }));
+          res();
+        };
+      } catch (err) {
+        rej(err);
+      }
+    });
+  }
+
+  getStationId() {
+    return new Promise(async (res, rej) => {
+      try {
+        const awaitId = (e) => {
+          const message = JSON.parse(e.data);
+          if (message.type === "stationid") {
+            this.#ws.removeEventListener("message", awaitId);
+            res(message.id);
+          }
+        };
+        this.#ws.addEventListener("message", awaitId);
+      } catch (err) {
+        rej(err);
+      }
+    });
+  }
+
+  addSocketListeners() {
+    this.#ws.addEventListener("message", this.handleWSMessage);
+  }
+
+  handleWSMessage = (e) => {
+    const message = JSON.parse(e.data);
+    if (message.type === "userAuthorized") {
+      this.user = message.user;
+    }
+  };
 
   replaceIngredientsData(menu) {
     menu.forEach((item) => {
