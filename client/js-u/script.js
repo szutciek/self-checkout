@@ -114,6 +114,7 @@ const handleLogin = () => {
   } else {
     user.name = "Anonymous";
   }
+  saveUser(user);
 
   switchPages();
 };
@@ -143,3 +144,18 @@ switchAccountButton.addEventListener("click", handleSwitchAccount);
 
 const authorizeButton = document.querySelector("#authorizeStation");
 authorizeButton.addEventListener("click", handleAuthorize);
+
+const loadUser = () => {
+  return JSON.parse(window.localStorage.getItem("user"));
+};
+
+const saveUser = (data) => {
+  window.localStorage.setItem("user", JSON.stringify(data));
+};
+
+const loaded = loadUser();
+if (loaded.name) {
+  loggedIn = true;
+  user.name = loaded.name;
+  switchPages();
+}
