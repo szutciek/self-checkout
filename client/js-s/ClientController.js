@@ -1,5 +1,4 @@
 import config from "./config.js";
-import { ingredientInfo, menu as tempMenuString } from "./tempData.js";
 
 import MainWindow from "./WindowControllers/Main.js";
 import ItemPopup from "./WindowControllers/ItemPopup.js";
@@ -13,8 +12,11 @@ export default class ClientController {
   #user = null;
   #cart = [];
 
+  #menu = [];
+
   #stationId = null;
   #ws = undefined;
+  #supportedLanguages = ["en", "pl"];
 
   constructor() {
     this.mainWindow = new MainWindow("mainElement", this);
@@ -34,6 +36,7 @@ export default class ClientController {
         this.addSocketListeners();
         this.#stationId = await this.getStationId();
         console.log(`Station assigned id ${this.#stationId}`);
+        await this.getIngredientInfo();
         await this.getMenuItems();
         this.updateMenu();
         this.mainWindow.show();
@@ -46,17 +49,30 @@ export default class ClientController {
     });
   }
 
-  async getMenuItems() {
+  async getIngredientInfo() {
     try {
-      // const res = await fetch(`${config.apiBaseUrl}/menu`);
-      // if (!res.ok) throw new Error("Failed to get menu items");
-      // const data = await res.json();
-      const data = JSON.parse(tempMenuString);
-      if (!data) throw new Error("Failed to parse menu items");
-      this.replaceIngredientsData(data);
-      this.menu = data;
+      const res = await fetch(`${config.apiBaseUrl}/ingredients`);
+      if (!res.ok) throw new Error("Failed to get ingredient info");
+      const data = await res.json();
+      if (!data) throw new Error("Failed to parse ingredient info");
+      this.ingredients = data.ingredients;
     } catch (err) {
       console.warn(err.message);
+    }
+  }
+
+  async getMenuItems() {
+    try {
+      const res = await fetch(`${config.apiBaseUrl}/menu`);
+      if (!res.ok) throw new Error("Failed to get menu items");
+      const data = await res.json();
+      if (!data) throw new Error("Failed to parse menu items");
+      this.#menu = data.menu;
+      this.#supportedLanguages.forEach((lang) => {
+        this.replaceIngredientsData(this.#menu[lang], lang);
+      });
+    } catch (err) {
+      console.warn(err);
     }
   }
 
@@ -103,10 +119,10 @@ export default class ClientController {
     }
   };
 
-  replaceIngredientsData(menu) {
+  replaceIngredientsData(menu, language) {
     menu.forEach((item) => {
       item.ingredients = item.ingredients.map(
-        (ingredient) => ingredientInfo[ingredient]
+        (ingredient) => this.ingredients[language][ingredient]
       );
     });
   }
@@ -137,7 +153,8 @@ export default class ClientController {
   }
 
   updateMenu() {
-    this.mainWindow.updateMenu(this.menu);
+    const currentMenu = this.#menu[this.#lang];
+    this.mainWindow.updateMenu(currentMenu);
   }
 
   startOrder() {
@@ -148,6 +165,7 @@ export default class ClientController {
   }
 
   handleChangeLanguage() {
+    this.updateMenu();
     this.windows.forEach((w) => w.handleLanguageChange(this.lang));
   }
 
@@ -192,5 +210,9 @@ export default class ClientController {
   }
   get user() {
     return this.#user;
+  }
+
+  get menu() {
+    return this.#menu;
   }
 }

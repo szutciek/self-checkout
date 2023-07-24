@@ -1,5 +1,6 @@
 import Popup from "./Popup.js";
 
+import languages from "../languages.js";
 import {
   selectItemClickAnimation,
   selectItemClickOptions,
@@ -61,6 +62,8 @@ export default class CheckoutPopup extends Popup {
     } else {
       this.lockCheckoutButton();
     }
+
+    return completed;
   }
 
   attractAttentionLogin() {
@@ -107,14 +110,15 @@ export default class CheckoutPopup extends Popup {
     this.insertSummaryContent();
     this.currentClamp = 1;
     this.element.querySelector(".summary").style.opacity = 1;
-    // this.element.querySelector(".summary").style.height = "auto";
+    this.element.querySelector(".summary").style.height = "auto";
+    console.log(this.currentClamp);
     this.smoothResize();
   }
 
   hideSummary() {
     this.currentClamp = 0;
     this.element.querySelector(".summary").style.opacity = 0;
-    // this.element.querySelector(".summary").style.height = 0;
+    this.element.querySelector(".summary").style.height = 0;
     this.smoothResize();
   }
 
@@ -134,19 +138,26 @@ export default class CheckoutPopup extends Popup {
     this.insertSummaryContent();
     this.insertCartContent();
     this.insertUserContent();
+    this.insertButtonContent();
   }
 
   cartUpdated() {
     this.insertContent();
   }
 
+  insertButtonContent() {
+    const showSummary = this.element.querySelector(".showSummary");
+    const cancelOrder = this.element.querySelector(".cancelOrder");
+    showSummary.innerHTML = languages[this.controller.lang].ui.showSummary;
+    cancelOrder.innerHTML = languages[this.controller.lang].ui.cancelOrder;
+  }
+
   insertUserContent() {
     const loginText = this.element.querySelector(".loginText");
-    console.log(this.controller.user);
     if (this.controller.user != null) {
       loginText.innerText = this.controller.user.name;
     } else {
-      loginText.innerText = "Click to log in";
+      loginText.innerText = languages[this.controller.lang].ui.clickToLogin;
     }
   }
 
@@ -168,5 +179,9 @@ export default class CheckoutPopup extends Popup {
     this.element.querySelector(
       ".total .itemCount"
     ).innerHTML = `${this.controller.cart.length}`;
+  }
+
+  handleLanguageChange(lang) {
+    this.insertContent();
   }
 }

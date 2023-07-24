@@ -1,19 +1,16 @@
 import Express from "express";
-import * as url from "url";
 
 import config from "./config.js";
 import "./socket.js";
 import apiRouter from "./routers/api.js";
 
-const __root = url.fileURLToPath(new URL("../", import.meta.url));
+const __root = config.root();
 
 const app = Express();
 
 app.get("/", (_, res) => {
   res.send();
 });
-
-app.use("/api", apiRouter);
 
 app.get("/station-client", (_, res) => {
   res.sendFile(__root + "client/station.html");
@@ -22,6 +19,9 @@ app.get("/station-client", (_, res) => {
 app.get("/authorize", (_, res) => {
   res.sendFile(__root + "client/user.html");
 });
+
+app.use(Express.json());
+app.use("/api", apiRouter);
 
 app.use(Express.static(__root + "client"));
 

@@ -1,6 +1,7 @@
-import config from "../config.js";
-
 import Popup from "./Popup.js";
+
+import config from "../config.js";
+import languages from "../languages.js";
 
 export default class LoginPopup extends Popup {
   // Customizable variables
@@ -30,10 +31,20 @@ export default class LoginPopup extends Popup {
     }
   }
 
+  insertUIContent() {
+    const useAccountData = this.element.querySelector(".useAccountData");
+    const instructionsCode = this.element.querySelector(".instructionsCode");
+    useAccountData.innerText =
+      languages[this.controller.lang].ui.useAccountData;
+    instructionsCode.innerHTML =
+      languages[this.controller.lang].ui.instructionsCode;
+  }
+
   insertContent() {
+    this.insertUIContent();
     const parent = this.element.querySelector(".codeBackground");
-    // parent.innerHTML = "";
-    parent.innerHTML = `<a href="${config.baseUrl}/authorize?stationId=${this.controller.stationId}" target="_blank">Link</a>`;
+    parent.innerHTML = "";
+    // parent.innerHTML = `<a href="${config.baseUrl}/authorize?stationId=${this.controller.stationId}" target="_blank">Link</a>`;
     const canvas = document.createElement("canvas");
     new QRious({
       element: canvas,

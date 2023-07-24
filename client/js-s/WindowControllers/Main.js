@@ -126,8 +126,8 @@ export default class Main extends Window {
     menuArea.innerHTML = "";
     menu.forEach((item) => {
       let starting = ["", Infinity];
-      Object.entries(item.sizes).forEach(([size, details]) => {
-        if (details.price < starting[1]) starting = [size, details.price];
+      Object.values(item.sizes).forEach((size) => {
+        if (size.price < starting[1]) starting = [size.name, size.price];
       });
 
       const el = document.createElement("div");
@@ -145,9 +145,9 @@ export default class Main extends Window {
           <p class="properties">${item.properties
             .map((p) => p.icon)
             .join(" ")}</p>
-          <p class="starting">${
-            starting[0][0].toUpperCase() + starting[0].slice(1)
-          } ${languages[this.controller.lang].items.starting}</p>
+          <p class="starting">${starting[0]} ${
+        languages[this.controller.lang].items.starting
+      }</p>
           <p class="price">${starting[1] / 100}zł</p>
         </div>
       `;

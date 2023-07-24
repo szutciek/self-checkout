@@ -19,6 +19,7 @@ export default class Popup extends Window {
   #inTransition = false;
   #openDelay = 0;
   #currentClamp = 2;
+  #reopening = false;
 
   animation = [
     {
@@ -263,7 +264,7 @@ export default class Popup extends Window {
   }
 
   get visible() {
-    return this.#visible;
+    return this.#visible || this.#reopening;
   }
   set visible(value) {
     console.warn(`Don't set visible directly, use show() and hide() instead!`);
@@ -272,5 +273,12 @@ export default class Popup extends Window {
 
   get inTransition() {
     return this.#inTransition;
+  }
+
+  get reopening() {
+    return this.#reopening;
+  }
+  set reopening(value) {
+    this.#reopening = value;
   }
 }

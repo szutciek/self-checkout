@@ -1,5 +1,6 @@
 import Popup from "./Popup.js";
 
+import languages from "../languages.js";
 import {
   accentItemClickAnimation,
   accentItemClickOptions,
@@ -11,6 +12,7 @@ import {
 export default class ItemPopup extends Popup {
   // Customizable variables
   clamps = ["px:180", "px:330", "vh:85", "vh:100"];
+  // defaultClamp = "px:1000";
   defaultClamp = "vh:80";
   duration = 600;
   delay = 150;
@@ -117,10 +119,14 @@ export default class ItemPopup extends Popup {
             .map(
               (ingredient) =>
                 `<div>
-                <p class="info"><span>${ingredient.icon}</span>&nbsp;${ingredient.name}</p>
+                <p class="info"><span>${ingredient.icon}</span>&nbsp;${
+                  ingredient.name
+                }</p>
                 <div class="benefits">
                   <p>${ingredient.info}</p>
-                  <a href="${ingredient.learnUrl}" target="_blank">Learn more &rarr;</a>
+                  <a href="${ingredient.learnUrl}" target="_blank">${
+                  languages[this.controller.lang].ui.learnMore
+                }</a>
                 </div>
               </div>
               `
@@ -139,11 +145,11 @@ export default class ItemPopup extends Popup {
       <ul>
         ${Object.entries(product.sizes)
           .map(
-            ([name, info]) => `
+            ([name, size]) => `
           <li class="itemClickAnimation sizeOption" data-size="${name}">
-            <p class="name">${name[0].toUpperCase() + name.slice(1)}</p>
-            <p class="size">${info.size}</p>
-            <p class="price">${info.price / 100}zł</p>
+            <p class="name">${size.name}</p>
+            <p class="size">${size.size}</p>
+            <p class="price">${size.price / 100}zł</p>
           </li>
         `
           )
@@ -218,18 +224,19 @@ export default class ItemPopup extends Popup {
 
   unlockAddToCartButton() {
     const buttons = this.element.querySelectorAll(".confirmAddButton");
+    const sizeNameLang = this.currentProduct.sizes[this.selectedSize].name;
+    const text = languages[this.controller.lang].ui.addItemToCartSpecific;
     buttons.forEach((button) => {
-      button.innerHTML = `&check; Add ${this.selectedSize
-        .split(" ")
-        .map((word) => word[0].toUpperCase() + word.slice(1))
-        .join(" ")} ${this.currentProduct.name.split(" ")[0]} to cart`;
+      button.innerHTML = `${text[0]} ${sizeNameLang} ${
+        this.currentProduct.name.split(" ")[0]
+      } ${text[1]}`;
       button.classList.remove("locked");
     });
   }
   lockAddToCartButton() {
     const buttons = this.element.querySelectorAll(".confirmAddButton");
     buttons.forEach((button) => {
-      button.innerHTML = `&check; Add to cart`;
+      button.innerHTML = languages[this.controller.lang].ui.confirmAddToCart;
       button.classList.add("locked");
     });
   }
@@ -255,6 +262,7 @@ export default class ItemPopup extends Popup {
       price: this.currentProduct.sizes[this.selectedSize].price,
       size: {
         name: this.selectedSize,
+        size: this.currentProduct.sizes[this.selectedSize].size,
       },
     });
     const buttons = this.element.querySelectorAll(".confirmAddButton");
@@ -271,14 +279,12 @@ export default class ItemPopup extends Popup {
     this.resetData();
     this.checkIfCompleted();
     if (this.visible === true) {
+      this.reopening = true;
       this.openDelay = this.hideDuration;
       this.hide();
-      this.visible = true;
       setTimeout(() => {
         this.insertContent(product, item);
-        this.visible = false;
         this.show(zooming);
-        this.visible = true;
         this.openDelay = 0;
       }, this.openDelay);
     } else {
@@ -289,17 +295,37 @@ export default class ItemPopup extends Popup {
     this.currentProduct = product;
   }
 
+  insertUIContent() {
+    const selectSize = this.element.querySelector("#selectSizeText");
+    const ingredients = this.element.querySelector("#ingredients");
+    selectSize.innerText = languages[this.controller.lang].ui.selectSize;
+    ingredients.innerText = languages[this.controller.lang].ui.ingredients;
+
+    const confirmAddButton = this.element.querySelector(".confirmAddButton");
+    const cancelItem = this.element.querySelector(".cancelItem");
+    confirmAddButton.innerHTML =
+      languages[this.controller.lang].ui.confirmAddToCart;
+    cancelItem.innerHTML = languages[this.controller.lang].ui.cancelItem;
+  }
+
   showSpecific(useDelay) {
     this.element.querySelector(".content").scrollTo(0, 0);
+    this.insertUIContent();
     const staticImage = this.element.querySelector("img");
     staticImage.style.transition = "0s";
     if (useDelay) staticImage.style.opacity = 0;
     setTimeout(
       () => {
         staticImage.style.opacity = 1;
+        this.reopening = false;
       },
       useDelay ? this.duration + this.delay : this.duration
     );
+  }
+
+  handleLanguageChange() {
+    this.hide();
+    this.insertUIContent();
   }
 
   toggleFloatingButton() {
