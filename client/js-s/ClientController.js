@@ -44,6 +44,7 @@ export default class ClientController {
 
         res();
       } catch (err) {
+        document.body.innerText = "Failed to setup client";
         rej(err);
       }
     });

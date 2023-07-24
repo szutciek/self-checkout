@@ -23,8 +23,7 @@ export default class LoginPopup extends Popup {
     this.insertContent();
   }
 
-  handleTouchStart(e) {
-    return;
+  handleClick(e) {
     if (e.target.closest(".useAccountData")) {
       this.currentClamp = 1;
       this.smoothResize();

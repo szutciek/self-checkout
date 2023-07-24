@@ -33,7 +33,6 @@ export default class Main extends Window {
 
   handleClick = (e) => {
     if (e.target.closest(".menu")) this.handleMenuClick(e);
-
     this.controller.handleClick(e);
   };
 

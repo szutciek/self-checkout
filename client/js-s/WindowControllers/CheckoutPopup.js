@@ -26,7 +26,7 @@ export default class CheckoutPopup extends Popup {
     this.smoothResize();
   }
 
-  handleTouchStart(e) {
+  handleClick(e) {
     if (e.target.closest(".cancelOrder")) return this.controller.cancelOrder();
     if (e.target.closest(".logUserIn")) return this.loginClicked();
     if (e.target.closest(".showSummary")) return this.summaryButtonClick();

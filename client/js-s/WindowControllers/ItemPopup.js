@@ -74,10 +74,10 @@ export default class ItemPopup extends Popup {
     }
   }
 
-  handleTouchStart(e) {
-    if (e.target.closest(".sizeOption")) this.handleSizeSelection(e);
-    if (e.target.closest(".confirmAddButton")) this.handleAddToCart();
-    if (e.target.closest(".cancelItem")) this.hide();
+  handleClick(e) {
+    if (e.target.closest(".sizeOption")) return this.handleSizeSelection(e);
+    if (e.target.closest(".confirmAddButton")) return this.handleAddToCart();
+    if (e.target.closest(".cancelItem")) return this.hide();
   }
 
   resetData() {

@@ -51,6 +51,7 @@ export default class Popup extends Window {
     this.element.addEventListener("touchmove", this.handleTouch);
     this.element.addEventListener("touchend", this.handleTouch);
     this.element.addEventListener("touchcancel", this.handleTouch);
+    this.element.addEventListener("click", this.handleParentClick);
   }
 
   handleTouch = (e) => {
@@ -58,6 +59,10 @@ export default class Popup extends Window {
     if (e.type === "touchmove") this.handleParentTouchMove(e);
     if (e.type === "touchend") this.handleParentTouchEnd(e);
     if (e.type === "touchcancel") this.handleParentTouchEnd(e);
+  };
+
+  handleParentClick = (e) => {
+    this.handleClick(e);
   };
 
   handleParentTouchStart(e) {
