@@ -1,0 +1,75 @@
+.loginPopup {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+
+  min-height: 50px;
+  max-height: 100vh;
+
+  overflow: hidden;
+
+  box-shadow: 0 -10px 20px #0000001a;
+
+  border-top: var(--whiteItemBorder);
+  background-color: #ffffff;
+}
+
+.loginPopup .content {
+  max-height: 100%;
+  overflow-y: scroll;
+  padding-top: 0;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.loginPopup .content::-webkit-scrollbar {
+  display: none;
+}
+
+.loginPopup .primaryLogin {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  width: 100%;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.loginPopup .primaryLogin .code {
+  overflow: hidden;
+}
+
+.loginPopup .primaryLogin .code .codeBackground {
+  background-color: var(--background-color);
+  border-radius: 0.25rem;
+  text-align: center;
+  padding: 2rem;
+}
+.loginPopup .primaryLogin .code canvas {
+  width: 100%;
+}
+
+.loginPopup .primaryLogin .instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.loginPopup .primaryLogin .instructions button {
+  width: fit-content;
+}
+.loginPopup .primaryLogin .instructions h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dark-black-color);
+  margin-bottom: 0.75rem;
+}
+.loginPopup .primaryLogin .instructions ul {
+  list-style: none;
+}
+.loginPopup .primaryLogin .instructions li {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #333333;
+  margin-top: 0.5rem;
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Self-Checkout System Station</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/lock.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/item.css" />
+    <link rel="stylesheet" href="css/checkout.css" />
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="lock fullScreenPosition" id="lockElement">
+        <div class="visual">
+          <img src="https://assets.kanapka.eu/images/ceo.webp" />
+        </div>
+        <div class="start">
+          <button class="startOrderButton">Touch to start</button>
+        </div>
+      </div>
+
+      <div class="main fullScreenPosition hidden" id="mainElement">
+        <div class="topOver">
+          <div class="head maxWidth">
+            <div class="info"></div>
+            <ul class="languages"></ul>
+          </div>
+          <div class="filters maxWidth fadeX">
+            <div class="scrollerFadeX">
+              <ul class="filtersList"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="menu maxWidth">
+          <div class="item"></div>
+        </div>
+      </div>
+
+      <div class="itemPopup hidden" id="itemPopupElement">
+        <div class="move flexVert"><div class="grab"></div></div>
+        <div class="content maxWidth">
+          <div class="part item">
+            <div class="description" id="itemPopupDescription"></div>
+          </div>
+          <div class="part sizeMenu">
+            <div class="topBorder">
+              <h3 id="selectSizeText">Select size</h3>
+              <div class="border"></div>
+            </div>
+            <div class="sizeBox" id="itemPopupSizeMenu"></div>
+          </div>
+          <div class="part ingredients lastPart">
+            <div class="topBorder">
+              <h3 id="ingredients">Ingredients</h3>
+              <div class="border"></div>
+            </div>
+            <div class="ingredientsBox" id="itemPopupIngredients"></div>
+          </div>
+
+          <div class="floatingButton">
+            <div class="container flexVert maxWidth">
+              <button class="cancel cancelItem">&times; Close</button>
+              <button
+                class="confirm confirmAddButton itemClickAnimation locked"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="loginPopup hidden" id="loginPopupElement">
+        <div class="content maxWidth">
+          <div class="primaryLogin">
+            <div class="instructions">
+              <div class="instructionsCode">
+                <h2>How to log in using this QR Code?</h2>
+                <ul>
+                  <li>1. Scan the code with your phone.</li>
+                  <li>2. Log into your account.</li>
+                  <li>3. Click the "Authorize Station" button.</li>
+                </ul>
+              </div>
+              <button class="secondaryButton useAccountData">
+                Use account details to log in
+              </button>
+            </div>
+            <div class="code">
+              <div class="codeBackground"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkoutPopup hidden" id="checkoutPopupElement">
+        <div class="content maxWidth">
+          <div class="brief section">
+            <div class="head flexVert">
+              <div class="total flexVert">
+                <!-- prettier-ignore -->
+                <div class="itemsContainer">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#181818" viewBox="0 0 483.10 483.10" xml:space="preserve" stroke="#181818" stroke-width="0.05">
+                    <g><g><path d="M434.55,418.7l-27.8-313.3c-0.5-6.2-5.7-10.9-12-10.9h-58.6c-0.1-52.1-42.5-94.5-94.6-94.5s-94.5,42.4-94.6,94.5h-58.6 c-6.2,0-11.4,4.7-12,10.9l-27.8,313.3c0,0.4,0,0.7,0,1.1c0,34.9,32.1,63.3,71.5,63.3h243c39.4,0,71.5-28.4,71.5-63.3 C434.55,419.4,434.55,419.1,434.55,418.7z M241.55,24c38.9,0,70.5,31.6,70.6,70.5h-141.2C171.05,55.6,202.65,24,241.55,24z M363.05,459h-243c-26,0-47.2-17.3-47.5-38.8l26.8-301.7h47.6v42.1c0,6.6,5.4,12,12,12s12-5.4,12-12v-42.1h141.2v42.1 c0,6.6,5.4,12,12,12s12-5.4,12-12v-42.1h47.6l26.8,301.8C410.25,441.7,389.05,459,363.05,459z"/></g></g>
+                  </svg>
+                  <p class="itemCount">0</p>
+                </div>
+                <h1 class="cartPrice">0.00zł</h1>
+              </div>
+              <div class="account logUserIn itemClickAnimation flexVert">
+                <img
+                  src="https://assets.kanapka.eu/images/user.png"
+                  alt="User Profile"
+                />
+                <div class="text">
+                  <h2 class="loginText">Click to log in</h2>
+                </div>
+              </div>
+            </div>
+            <div class="action section">
+              <div class="container flexVert maxWidth">
+                <button class="cancel cancelOrder">
+                  &times;&nbsp; Cancel Order
+                </button>
+                <button class="confirm showSummary itemClickAnimation locked">
+                  Show Summary &nbsp;&darr;
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="summary">
+            <h1>Summary</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script defer type="module" src="js/script.js"></script>
+    <script defer src="js/qrcode.js"></script>
+  </body>
+</html>
