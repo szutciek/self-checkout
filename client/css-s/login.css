@@ -41,7 +41,7 @@
 }
 
 .loginPopup .primaryLogin .code .codeBackground {
-  background-color: #f1f1f1;
+  background-color: var(--background-color);
   border-radius: 0.25rem;
   text-align: center;
   padding: 2rem;
@@ -61,7 +61,7 @@
 .loginPopup .primaryLogin .instructions h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #181818;
+  color: var(--dark-black-color);
   margin-bottom: 0.75rem;
 }
 .loginPopup .primaryLogin .instructions ul {

@@ -152,6 +152,11 @@ export default class ClientController {
     if (allHidden === true) this.checkoutPopup.show();
   }
 
+  getProductById(id) {
+    const prod = this.#menu[this.#lang].find((p) => p.id === id);
+    return prod || {};
+  }
+
   updateMenu() {
     const currentMenu = this.#menu[this.#lang];
     this.mainWindow.updateMenu(currentMenu);

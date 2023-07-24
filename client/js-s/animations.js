@@ -111,7 +111,7 @@ export const attentionAnimation = [
   {
     transform: "scale(1.1)",
     border: "1px solid #d66",
-    backgroundColor: "#d66",
+    // backgroundColor: "#d66",
   },
   {
     transform: "scale(1)",

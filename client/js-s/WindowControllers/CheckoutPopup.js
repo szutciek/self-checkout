@@ -111,7 +111,6 @@ export default class CheckoutPopup extends Popup {
     this.currentClamp = 1;
     this.element.querySelector(".summary").style.opacity = 1;
     this.element.querySelector(".summary").style.height = "auto";
-    console.log(this.currentClamp);
     this.smoothResize();
   }
 
@@ -164,7 +163,10 @@ export default class CheckoutPopup extends Popup {
   insertSummaryContent() {
     const container = this.element.querySelector(".summary");
     container.innerHTML = `${this.controller.cart
-      .map((prod) => `<p>${prod.name}</p>`)
+      .map((prod) => {
+        const prodLang = this.controller.getProductById(prod.id);
+        return `<p>${prodLang.name}</p>`;
+      })
       .join("")}`;
   }
 

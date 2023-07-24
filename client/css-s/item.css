@@ -101,7 +101,7 @@
 .itemPopup .details h1 {
   font-size: 2rem;
   font-weight: 600;
-  color: #181818;
+  color: var(--dark-black-color);
 }
 
 .itemPopup .details .properties {
@@ -213,7 +213,7 @@
 
 .itemPopup .sizeBox li {
   padding: 0.5rem;
-  background-color: #f1f1f1;
+  background-color: var(--background-color);
   border: var(--whiteItemBorder);
   border-radius: 2px;
 
@@ -235,14 +235,14 @@
 .itemPopup .sizeBox li .price {
   font-size: 1rem;
   font-weight: 600;
-  color: #181818;
+  color: var(--dark-black-color);
   text-align: right;
   margin-top: 0.5rem;
 }
 .itemPopup .sizeBox li.active {
   position: relative;
-  background-color: #181818;
-  border: 1px solid #181818;
+  background-color: var(--dark-black-color);
+  border: 1px solid var(--dark-black-color);
 }
 .itemPopup .sizeBox li.active:after {
   content: "\2713";

@@ -11,9 +11,8 @@ import {
 
 export default class ItemPopup extends Popup {
   // Customizable variables
-  clamps = ["px:180", "px:330", "vh:85", "vh:100"];
-  // defaultClamp = "px:1000";
-  defaultClamp = "vh:80";
+  clamps = ["px:180", "px:330", "px:900", "vh:100"];
+  defaultClamp = "px:900";
   duration = 600;
   delay = 150;
   hideDuration = 500;
@@ -42,10 +41,11 @@ export default class ItemPopup extends Popup {
   calculateImageZoomPosition() {
     // change value if css is adjusted in any way
     const imageToPopupEdgeY = 50;
+    const translated = this.translateChangeElementHeight(this.defaultClamp);
 
     const predictedPositionY =
       window.innerHeight -
-      this.translateChangeElementHeight(this.defaultClamp) +
+      (translated > window.innerHeight ? window.innerHeight : translated) +
       imageToPopupEdgeY;
 
     // change value if css is adjusted in any way
@@ -258,12 +258,8 @@ export default class ItemPopup extends Popup {
 
     this.controller.addToCart({
       id: this.currentProduct.id,
-      name: this.currentProduct.name,
       price: this.currentProduct.sizes[this.selectedSize].price,
-      size: {
-        name: this.selectedSize,
-        size: this.currentProduct.sizes[this.selectedSize].size,
-      },
+      size: this.selectedSize,
     });
     const buttons = this.element.querySelectorAll(".confirmAddButton");
     buttons.forEach((button) => {

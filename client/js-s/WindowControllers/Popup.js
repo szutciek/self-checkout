@@ -185,7 +185,7 @@ export default class Popup extends Window {
   showSpecific() {}
 
   showBase(useDelay) {
-    this.currentClamp = 2;
+    this.currentClamp = this.clamps.indexOf(this.defaultClamp);
     this.elementHeight = this.translateChangeElementHeight(this.defaultClamp);
     this.resize();
     this.element.animate(this.animation, {
@@ -239,10 +239,9 @@ export default class Popup extends Window {
     return this.#currentClamp;
   }
   set currentClamp(value) {
+    const translated = this.translateChangeElementHeight(this.clamps[value]);
     this.#currentClamp = value;
-    this.elementHeight = this.translateChangeElementHeight(
-      this.clamps[this.currentClamp]
-    );
+    this.elementHeight = translated;
     this.clampChangeFunction();
   }
 
