@@ -13,7 +13,7 @@ class SocketSender {
     try {
       ws.send(JSON.stringify(message));
     } catch (err) {
-      console.log("Count not send message to client");
+      console.log("Counldn't send message to client");
     }
   }
 }
