@@ -11,10 +11,11 @@ export default class ClientController {
   #lang = "en";
   #user = null;
   #cart = [];
+  #allowUnlock = false;
 
   #menu = [];
 
-  #stationId = null;
+  #sessionId = null;
   #ws = undefined;
   #supportedLanguages = ["en", "pl"];
 
@@ -32,19 +33,39 @@ export default class ClientController {
     return new Promise(async (res, rej) => {
       try {
         // this.lockWindow.show();
-        this.connectSocket();
+        await this.connectSocket();
         this.addSocketListeners();
-        this.#stationId = await this.getStationId();
-        console.log(`Station assigned id ${this.#stationId}`);
+        this.#sessionId = await this.getSessionId();
+        console.log(`Station assigned id ${this.#sessionId}`);
         await this.getIngredientInfo();
         await this.getMenuItems();
         this.updateMenu();
         this.mainWindow.show();
         this.checkoutPopup.show();
+        this.#allowUnlock = true;
 
         res();
       } catch (err) {
         document.body.innerText = "Failed to setup client";
+        rej(err);
+      }
+    });
+  }
+
+  restartStation() {
+    return new Promise(async (res, rej) => {
+      try {
+        this.#allowUnlock = false;
+        this.#sessionId = await this.getSessionId();
+        console.log(`Station assigned id ${this.#sessionId}`);
+        this.#step = 0;
+        this.#lang = "en";
+        this.#user = null;
+        this.#cart = [];
+        this.#allowUnlock = true;
+
+        res();
+      } catch (err) {
         rej(err);
       }
     });
@@ -91,17 +112,17 @@ export default class ClientController {
     });
   }
 
-  getStationId() {
+  getSessionId() {
     return new Promise(async (res, rej) => {
       try {
         const awaitId = (e) => {
           const message = JSON.parse(e.data);
-          if (message.type === "stationid") {
-            this.#ws.removeEventListener("message", awaitId);
-            res(message.id);
-          }
+          if (message.type !== "sessionId") return;
+          this.#ws.removeEventListener("message", awaitId);
+          res(message.id);
         };
         this.#ws.addEventListener("message", awaitId);
+        this.#ws.send(JSON.stringify({ type: "assignSessionId" }));
       } catch (err) {
         rej(err);
       }
@@ -134,11 +155,8 @@ export default class ClientController {
 
   cancelOrder() {
     this.popups.forEach((p) => p.hide());
-    this.#step = 0;
-    this.#lang = "en";
-    this.#user = null;
-    this.#cart = [];
     this.lockWindow.show();
+    this.restartStation();
   }
 
   popupShown(elementId) {
@@ -206,8 +224,8 @@ export default class ClientController {
     }
   }
 
-  get stationId() {
-    return this.#stationId;
+  get sessionId() {
+    return this.#sessionId;
   }
 
   set user(value) {
@@ -220,5 +238,9 @@ export default class ClientController {
 
   get menu() {
     return this.#menu;
+  }
+
+  get allowUnlock() {
+    return this.#allowUnlock;
   }
 }

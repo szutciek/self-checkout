@@ -43,7 +43,7 @@ export default class LoginPopup extends Popup {
     this.insertUIContent();
     const parent = this.element.querySelector(".codeBackground");
     // parent.innerHTML = "";
-    parent.innerHTML = `<a href="${config.baseUrl}/authorize?stationId=${this.controller.stationId}" target="_blank">Link</a>`;
+    parent.innerHTML = `<a href="${config.baseUrl}/authorize?stationId=${this.controller.sessionId}" target="_blank">temp. link</a>`;
     const canvas = document.createElement("canvas");
     new QRious({
       element: canvas,
@@ -52,7 +52,7 @@ export default class LoginPopup extends Popup {
       foregroundAlpha: 1,
       level: "H",
       size: 500,
-      value: `${config.baseUrl}/authorize?stationId=${this.controller.stationId}`,
+      value: `${config.baseUrl}/authorize?stationId=${this.controller.sessionId}`,
     });
     parent.appendChild(canvas);
   }

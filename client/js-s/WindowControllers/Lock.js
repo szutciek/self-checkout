@@ -22,6 +22,7 @@ export default class Lock extends Window {
   }
 
   handleClick = (e) => {
+    if (!this.controller.allowUnlock) return;
     if (e.target.classList.contains("startOrderButton"))
       this.controller.startOrder();
   };

@@ -19,6 +19,10 @@ class Stations {
     return this.#stations.find((station) => station.id === id);
   }
 
+  getStationBySessionId(id) {
+    return this.#stations.find((station) => station.sessionId === id);
+  }
+
   get activeStations() {
     return this.#stations;
   }

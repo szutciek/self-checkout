@@ -67,6 +67,7 @@ export default class Main extends Window {
     const finalPos = this.controller.itemPopup.imageZoomPosition;
 
     const imageZoom = image.cloneNode(false);
+    image.style.transition = "opacity 0s";
     image.style.opacity = 0;
     imageZoom.classList.add("menuItemPreview");
     imageZoom.style.position = "absolute";
@@ -121,9 +122,16 @@ export default class Main extends Window {
     this.currentMenu = menu;
     this.prepared = true;
 
+    const filteredMenu = menu.filter((item) =>
+      item.types.includes(this.currentFilter)
+    );
+    this.displayMenu(filteredMenu);
+  }
+
+  displayMenu(filteredMenu = []) {
     const menuArea = this.element.querySelector(".menu");
     menuArea.innerHTML = "";
-    menu.forEach((item) => {
+    filteredMenu.forEach((item) => {
       let starting = ["", Infinity];
       Object.values(item.sizes).forEach((size) => {
         if (size.price < starting[1]) starting = [size.name, size.price];
@@ -225,6 +233,10 @@ export default class Main extends Window {
       });
     this.currentFilter = newFilter;
     this.insertHead();
+    const filteredMenu = this.currentMenu.filter((item) =>
+      item.types.includes(this.currentFilter)
+    );
+    this.displayMenu(filteredMenu);
   };
 
   handleLanguageClick = (e) => {

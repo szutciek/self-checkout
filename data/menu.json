@@ -5,6 +5,7 @@
       "name": "Pierogi with cheese",
       "image": "https://assets.kanapka.eu/images/pierogiCheckoutApp.png",
       "ingredients": ["cheese", "basil"],
+      "types": ["popular", "meals"],
       "properties": [
         {
           "name": "lactose",
@@ -54,6 +55,7 @@
       "name": "Kebab",
       "image": "https://assets.kanapka.eu/images/kebabCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
+      "types": ["popular", "meals"],
       "properties": [
         {
           "name": "vegetarian",
@@ -99,6 +101,7 @@
       "name": "Pizza Salami",
       "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
       "ingredients": ["salami"],
+      "types": ["popular", "meals"],
       "properties": [
         {
           "name": "spicy",
@@ -144,6 +147,7 @@
       "name": "Apple Juice",
       "image": "https://assets.kanapka.eu/images/drinkCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil", "salami"],
+      "types": ["popular", "drinks"],
       "properties": [
         {
           "name": "cold",
@@ -176,6 +180,7 @@
       "name": "Kaktus Ice Cream",
       "image": "https://assets.kanapka.eu/images/icecreamCheckoutApp.png",
       "ingredients": ["cactus"],
+      "types": ["popular", "sweets"],
       "properties": [
         {
           "name": "cold",
@@ -203,6 +208,7 @@
       "name": "Pizza Margherita",
       "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp2.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
+      "types": ["meals"],
       "properties": [
         {
           "name": "vegetarian",
@@ -244,6 +250,7 @@
       "name": "Pizza Siciliana",
       "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp3.png",
       "ingredients": ["tomato", "mozzarella", "basil", "salami"],
+      "types": ["popular", "meals"],
       "properties": [
         {
           "name": "w/ meat",
@@ -286,6 +293,7 @@
       "name": "Pierogi z serem",
       "image": "https://assets.kanapka.eu/images/pierogiCheckoutApp.png",
       "ingredients": ["cheese", "basil"],
+      "types": ["popular", "meals"],
       "properties": [
         {
           "name": "laktoza",
@@ -335,6 +343,7 @@
       "name": "Kebab",
       "image": "https://assets.kanapka.eu/images/kebabCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
+      "types": ["popular", "meals"],
       "properties": [
         {
           "name": "vegetarieńskie",
@@ -380,6 +389,7 @@
       "name": "Pizza Salami",
       "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
       "ingredients": ["salami"],
+      "types": ["popular", "meals"],
       "properties": [
         {
           "name": "ostre",
@@ -425,6 +435,7 @@
       "name": "Kaktus",
       "image": "https://assets.kanapka.eu/images/icecreamCheckoutApp.png",
       "ingredients": ["cactus"],
+      "types": ["popular", "sweets"],
       "properties": [
         {
           "name": "zimne",
