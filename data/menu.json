@@ -2,7 +2,7 @@
   "en": [
     {
       "id": "967857456345423",
-      "name": "Pierogi with cheese",
+      "name": "Dumplings with cheese",
       "image": "https://assets.kanapka.eu/images/pierogiCheckoutApp.png",
       "ingredients": ["cheese", "basil"],
       "types": ["popular", "meals"],
@@ -97,52 +97,6 @@
       "nutritionInfo": "Values per kebab."
     },
     {
-      "id": "756785658556",
-      "name": "Pizza Salami",
-      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
-      "ingredients": ["salami"],
-      "types": ["popular", "meals"],
-      "properties": [
-        {
-          "name": "spicy",
-          "icon": "🌶️"
-        },
-        {
-          "name": "w/ meat",
-          "icon": "🍖"
-        }
-      ],
-      "sizes": {
-        "small": {
-          "name": "Small",
-          "price": 649,
-          "size": "2 pcs"
-        },
-        "medium": {
-          "name": "Medium",
-          "price": 799,
-          "size": "3 pcs"
-        },
-        "large": {
-          "name": "Large",
-          "price": 999,
-          "size": "4 pcs"
-        }
-      },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": 1000
-        },
-        {
-          "name": "fat",
-          "value": 20
-        },
-        { "name": "sugar", "value": 20 }
-      ],
-      "nutritionInfo": "Values per slice."
-    },
-    {
       "id": "67646537364343",
       "name": "Apple Juice",
       "image": "https://assets.kanapka.eu/images/drinkCheckoutApp.png",
@@ -190,7 +144,7 @@
       "sizes": {
         "normal": {
           "name": "Normal",
-          "price": 500,
+          "price": 249,
           "size": "100ml"
         }
       },
@@ -202,6 +156,186 @@
         { "name": "sugar", "value": "36g" }
       ],
       "nutritionInfo": "Values per 100ml."
+    },
+    {
+      "id": "65685465375",
+      "name": "M&M's",
+      "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp.png",
+      "ingredients": ["sugar"],
+      "types": ["popular", "sweets"],
+      "properties": [
+        {
+          "name": "sweet",
+          "icon": "🍬"
+        }
+      ],
+      "sizes": {
+        "smallNuts": {
+          "name": "Small Nuts",
+          "price": 499,
+          "size": "70g"
+        },
+        "largeNuts": {
+          "name": "Large Nuts",
+          "price": 1099,
+          "size": "250g"
+        },
+        "smallChocolate": {
+          "name": "Small Chocolate",
+          "price": 499,
+          "size": "70g"
+        },
+        "largeChocolate": {
+          "name": "Large Chocolate",
+          "price": 1099,
+          "size": "250g"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "calories",
+          "value": "700cal"
+        },
+        { "name": "sugar", "value": "52g" }
+      ],
+      "nutritionInfo": "Values per 100g."
+    },
+    {
+      "id": "7745754884",
+      "name": "Zozole Sticks",
+      "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp2.png",
+      "ingredients": ["sugar"],
+      "types": ["popular", "sweets"],
+      "properties": [
+        {
+          "name": "sweet",
+          "icon": "🍬"
+        }
+      ],
+      "sizes": {
+        "normal": {
+          "name": "Normal",
+          "price": 399,
+          "size": "100g"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "calories",
+          "value": "700cal"
+        },
+        { "name": "sugar", "value": "57g" }
+      ],
+      "nutritionInfo": "Values per 100g."
+    },
+    {
+      "id": "375875485474",
+      "name": "Brownie",
+      "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp3.png",
+      "ingredients": ["sugar"],
+      "types": ["desserts"],
+      "properties": [
+        {
+          "name": "sweet",
+          "icon": "🍬"
+        }
+      ],
+      "sizes": {
+        "small": {
+          "name": "Small",
+          "price": 399,
+          "size": "1 piece"
+        },
+        "large": {
+          "name": "Large",
+          "price": 799,
+          "size": "2 pieces"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "calories",
+          "value": "700cal"
+        },
+        { "name": "sugar", "value": "34g" }
+      ],
+      "nutritionInfo": "Values per piece."
+    },
+    {
+      "id": "65745745735",
+      "name": "Coffee",
+      "image": "https://assets.kanapka.eu/images/hotdrinkCheckoutApp.png",
+      "ingredients": [],
+      "types": ["popular", "hotdrinks"],
+      "properties": [],
+      "sizes": {
+        "black": {
+          "name": "Black",
+          "price": 399,
+          "size": "150ml"
+        },
+        "espresso": {
+          "name": "Espresso",
+          "price": 399,
+          "size": "150ml"
+        },
+        "latte": {
+          "name": "Latte",
+          "price": 399,
+          "size": "150ml"
+        },
+        "cappuccino": {
+          "name": "Cappuccino",
+          "price": 449,
+          "size": "150ml"
+        },
+        "mocha": {
+          "name": "Mocha",
+          "price": 449,
+          "size": "150ml"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "calories",
+          "value": "700cal"
+        },
+        { "name": "sugar", "value": "17g" }
+      ],
+      "nutritionInfo": "Values per coffee."
+    },
+    {
+      "id": "754568847547",
+      "name": "Salad Mix",
+      "image": "https://assets.kanapka.eu/images/saladCheckoutApp.png",
+      "ingredients": [],
+      "types": ["popular", "salads"],
+      "properties": [
+        {
+          "name": "vegetarian",
+          "icon": "🥕"
+        }
+      ],
+      "sizes": {
+        "small": {
+          "name": "Small",
+          "price": 399,
+          "size": "150g"
+        },
+        "large": {
+          "name": "Large",
+          "price": 799,
+          "size": "300g"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "calories",
+          "value": "700cal"
+        },
+        { "name": "sugar", "value": "4g" }
+      ],
+      "nutritionInfo": "Values per 100g."
     },
     {
       "id": "1232435235",
@@ -246,11 +380,57 @@
       "nutritionInfo": "Values per slice."
     },
     {
+      "id": "756785658556",
+      "name": "Pizza Salami",
+      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
+      "ingredients": ["salami"],
+      "types": ["meals"],
+      "properties": [
+        {
+          "name": "spicy",
+          "icon": "🌶️"
+        },
+        {
+          "name": "w/ meat",
+          "icon": "🍖"
+        }
+      ],
+      "sizes": {
+        "small": {
+          "name": "Small",
+          "price": 649,
+          "size": "2 pcs"
+        },
+        "medium": {
+          "name": "Medium",
+          "price": 799,
+          "size": "3 pcs"
+        },
+        "large": {
+          "name": "Large",
+          "price": 999,
+          "size": "4 pcs"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "calories",
+          "value": 1000
+        },
+        {
+          "name": "fat",
+          "value": 20
+        },
+        { "name": "sugar", "value": 20 }
+      ],
+      "nutritionInfo": "Values per slice."
+    },
+    {
       "id": "2546756846452",
       "name": "Pizza Siciliana",
       "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp3.png",
       "ingredients": ["tomato", "mozzarella", "basil", "salami"],
-      "types": ["popular", "meals"],
+      "types": ["meals"],
       "properties": [
         {
           "name": "w/ meat",
@@ -287,176 +467,5 @@
       "nutritionInfo": "Values per slice."
     }
   ],
-  "pl": [
-    {
-      "id": "967857456345423",
-      "name": "Pierogi z serem",
-      "image": "https://assets.kanapka.eu/images/pierogiCheckoutApp.png",
-      "ingredients": ["cheese", "basil"],
-      "types": ["popular", "meals"],
-      "properties": [
-        {
-          "name": "laktoza",
-          "icon": "🥛"
-        },
-        {
-          "name": "mięso",
-          "icon": "🍖"
-        }
-      ],
-      "sizes": {
-        "small": {
-          "name": "Mała porcja",
-          "price": 1000,
-          "size": "2 sztuki"
-        },
-        "medium": {
-          "name": "Średnia porcja",
-          "price": 7000,
-          "size": "5 sztuk"
-        },
-        "large": {
-          "name": "Duża porcja",
-          "price": 10000,
-          "size": "8 sztuk"
-        }
-      },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "400cal"
-        },
-        {
-          "name": "tłuszcz",
-          "value": "40g"
-        },
-        {
-          "name": "sól",
-          "value": "7g"
-        },
-        { "name": "cukier", "value": "10g" }
-      ],
-      "nutritionInfo": "Wartości na sztukę."
-    },
-    {
-      "id": "576643475346",
-      "name": "Kebab",
-      "image": "https://assets.kanapka.eu/images/kebabCheckoutApp.png",
-      "ingredients": ["tomato", "mozzarella", "basil"],
-      "types": ["popular", "meals"],
-      "properties": [
-        {
-          "name": "vegetarieńskie",
-          "icon": "🥕"
-        },
-        {
-          "name": "mięso",
-          "icon": "🍖"
-        }
-      ],
-      "sizes": {
-        "no meat": {
-          "name": "Bez Mięsa",
-          "price": 499,
-          "size": "20cm"
-        },
-        "meat": {
-          "name": "Mięsny",
-          "price": 699,
-          "size": "25cm"
-        },
-        "meat XL": {
-          "name": "Mięsny XL",
-          "price": 999,
-          "size": "40cm"
-        }
-      },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "1700cal"
-        },
-        {
-          "name": "tłuszcz",
-          "value": "260g"
-        },
-        { "name": "cukier", "value": "23g" }
-      ],
-      "nutritionInfo": "Wartości na kebaba."
-    },
-    {
-      "id": "756785658556",
-      "name": "Pizza Salami",
-      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
-      "ingredients": ["salami"],
-      "types": ["popular", "meals"],
-      "properties": [
-        {
-          "name": "ostre",
-          "icon": "🌶️"
-        },
-        {
-          "name": "mieso",
-          "icon": "🍖"
-        }
-      ],
-      "sizes": {
-        "small": {
-          "name": "Mała",
-          "price": 649,
-          "size": "2 kawałki"
-        },
-        "medium": {
-          "name": "Średnia",
-          "price": 799,
-          "size": "3 kawałki"
-        },
-        "large": {
-          "name": "Duża",
-          "price": 999,
-          "size": "4 kawałki"
-        }
-      },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": 1000
-        },
-        {
-          "name": "tłuszcz",
-          "value": 20
-        },
-        { "name": "cukier", "value": 20 }
-      ],
-      "nutritionInfo": "Wartości na kawałek."
-    },
-    {
-      "id": "389343932898523",
-      "name": "Kaktus",
-      "image": "https://assets.kanapka.eu/images/icecreamCheckoutApp.png",
-      "ingredients": ["cactus"],
-      "types": ["popular", "sweets"],
-      "properties": [
-        {
-          "name": "zimne",
-          "icon": "❄️"
-        }
-      ],
-      "sizes": {
-        "normal": {
-          "name": "Normalny",
-          "price": 500,
-          "size": "100ml"
-        }
-      },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "700cal"
-        },
-        { "name": "cukier", "value": "36g" }
-      ],
-      "nutritionInfo": "Wartości na 100ml."
-    }
-  ]
+  "pl": []
 }

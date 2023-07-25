@@ -64,6 +64,10 @@ body {
 .fadeX {
   position: relative;
 }
+.fadeBox {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
 .fadeX:before,
 .fadeX:after {
   content: "";

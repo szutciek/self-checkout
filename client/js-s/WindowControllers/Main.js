@@ -129,7 +129,7 @@ export default class Main extends Window {
   }
 
   displayMenu(filteredMenu = []) {
-    const menuArea = this.element.querySelector(".menu");
+    const menuArea = this.element.querySelector(".gridMenu");
     menuArea.innerHTML = "";
     filteredMenu.forEach((item) => {
       let starting = ["", Infinity];

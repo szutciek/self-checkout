@@ -105,7 +105,7 @@ export default class ItemPopup extends Popup {
     if (!sizeMenuParent) return;
     sizeMenuParent.innerHTML = "";
     const sizeMenu = this.createSizeMenu(product);
-    sizeMenuParent.insertAdjacentElement("afterbegin", sizeMenu);
+    sizeMenuParent.innerHTML = sizeMenu;
 
     const ingredientsParent = this.element.querySelector(
       "#itemPopupIngredients"
@@ -113,19 +113,15 @@ export default class ItemPopup extends Popup {
     if (!ingredientsParent) return;
     ingredientsParent.innerHTML = "";
     const ingredients = this.createIngredients(product);
-    ingredientsParent.insertAdjacentElement("afterbegin", ingredients);
+    ingredientsParent.innerHTML = ingredients;
   }
 
   createIngredients(product) {
-    const ingredients = document.createElement("div");
-    ingredients.innerHTML = `
-    <div class="fadeX">
-      <div class="scrollerFadeX">
-        <div class="scroller">
+    const ingredientsString = `
           ${product.ingredients
             .map(
               (ingredient) =>
-                `<div>
+                `<li>
                 <p class="info"><span>${ingredient.icon}</span>&nbsp;${
                   ingredient.name
                 }</p>
@@ -135,36 +131,28 @@ export default class ItemPopup extends Popup {
                     ingredient.learnUrl
                   }">${languages[this.controller.lang].ui.learnMore}</button>
                 </div>
-              </div>
+              </li>
               `
             )
             .join("")}
-            </div>
-          </div>
-      </div>
       `;
-    return ingredients;
+    return ingredientsString;
   }
 
   createSizeMenu(product) {
-    const sizeMenu = document.createElement("div");
-    sizeMenu.innerHTML = `
-      <ul>
-        ${Object.entries(product.sizes)
-          .map(
-            ([name, size]) => `
-          <li class="itemClickAnimation sizeOption" data-size="${name}">
-            <p class="name">${size.name}</p>
-            <p class="size">${size.size}</p>
-            <p class="price">${size.price / 100}zł</p>
-          </li>
-        `
-          )
-          .join("")}
-      </ul>
-      `;
+    const sizeMenuString = Object.entries(product.sizes)
+      .map(
+        ([name, size]) => `
+    <li class="itemClickAnimation sizeOption" data-size="${name}">
+      <p class="name">${size.name}</p>
+      <p class="size">${size.size}</p>
+      <p class="price">${size.price / 100}zł</p>
+    </li>
+  `
+      )
+      .join("");
 
-    return sizeMenu;
+    return sizeMenuString;
   }
 
   handleSizeSelection(e) {
