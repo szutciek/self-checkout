@@ -19,6 +19,9 @@ wss.addListener("connection", (ws) => {
       console.log(err.message);
     }
   });
+  ws.on("close", () => {
+    if (ws.stationId) stations.removeStationById(ws.stationId);
+  });
 });
 
 const registerStation = (ws) => {

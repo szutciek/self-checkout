@@ -23,6 +23,10 @@ class Stations {
     return this.#stations.find((station) => station.sessionId === id);
   }
 
+  removeStationById(id) {
+    this.#stations = this.#stations.filter((station) => station.id !== id);
+  }
+
   get activeStations() {
     return this.#stations;
   }
