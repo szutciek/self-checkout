@@ -10,7 +10,11 @@ class SocketSender {
   broadcast(message) {}
 
   sendJSON(ws, message) {
-    ws.send(JSON.stringify(message));
+    try {
+      ws.send(JSON.stringify(message));
+    } catch (err) {
+      console.log("Count not send message to client");
+    }
   }
 }
 

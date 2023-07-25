@@ -66,6 +66,19 @@
   color: #181818;
 }
 
+.authorizeScreen .authorizeError,
+.authorizeScreen .authorizeSuccess {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+.authorizeScreen .authorizeError {
+  color: #ff0000;
+}
+.authorizeScreen .authorizeSuccess {
+  color: #00ff00;
+}
+
 .primaryButton {
   width: 100%;
   padding: 0.7rem 2rem;

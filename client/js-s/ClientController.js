@@ -204,6 +204,10 @@ export default class ClientController {
       this.loginPopup.handleOutsideClick(e);
   }
 
+  redirectUser(target) {
+    this.#ws.send(JSON.stringify({ type: "redirectUser", target }));
+  }
+
   addToCart(item) {
     this.#cart.push(item);
     this.checkoutPopup.cartUpdated();

@@ -66,7 +66,7 @@ export default {
       confirmAddToCart: "&check; Add to cart",
       addItemToCartSpecific: ["&check; Add", "to cart"],
       cancelItem: "&times; Close",
-      learnMore: "Learn more &rarr;",
+      learnMore: "Read more on device &rarr;",
 
       instructionsCode: `<h2>How to log in using this QR Code?</h2><ul><li>1. Scan the code with your phone.</li><li>2. Log into your account.</li><li>3. Click the "Authorize Station" button.</li></ul>`,
       useAccountData: "Use account details to log in",
@@ -127,7 +127,7 @@ export default {
       confirmAddToCart: "&check; Dodaj do koszyka",
       addItemToCartSpecific: ["&check; Dodaj", "do koszyka"],
       cancelItem: "&times; Zamknij",
-      learnMore: "Dowiedz się więcej &rarr;",
+      learnMore: "Dowiedz się więcej na urządz. &rarr;",
 
       instructionsCode: `<h2>Jak się zalogować przy użyciu Kodu QR?</h2><ul><li>1. Zaskanuj kod telefonem.</li><li>2. Zaloguj się do swojego konta.</li><li>3. Kliknij przycisk "Authorize Station".</li></ul>`,
       useAccountData: "Użyj danych konta do zalogowania się",

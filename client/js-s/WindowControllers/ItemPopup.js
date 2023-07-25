@@ -78,11 +78,18 @@ export default class ItemPopup extends Popup {
     if (e.target.closest(".sizeOption")) return this.handleSizeSelection(e);
     if (e.target.closest(".confirmAddButton")) return this.handleAddToCart();
     if (e.target.closest(".cancelItem")) return this.hide();
+    if (e.target.closest(".redirectUser")) return this.redirectUser(e);
   }
 
   resetData() {
     this.currentProduct = {};
     this.selectedSize = "";
+  }
+
+  redirectUser(e) {
+    const url = e.target.closest(".redirectUser").dataset.url;
+    if (!url) return;
+    this.controller.redirectUser(url);
   }
 
   insertContent(product, item) {
@@ -124,9 +131,9 @@ export default class ItemPopup extends Popup {
                 }</p>
                 <div class="benefits">
                   <p>${ingredient.info}</p>
-                  <a href="${ingredient.learnUrl}" target="_blank">${
-                  languages[this.controller.lang].ui.learnMore
-                }</a>
+                  <button class="redirectUser" data-url="${
+                    ingredient.learnUrl
+                  }">${languages[this.controller.lang].ui.learnMore}</button>
                 </div>
               </div>
               `

@@ -11,9 +11,10 @@ wss.addListener("connection", (ws) => {
   ws.on("message", (message) => {
     try {
       const json = JSON.parse(message.toString());
-      if (json.type === "registerstation") registerStation(ws);
-      if (json.type === "assignSessionId") assignSessionId(ws);
-      if (json.type === "authorizeStation") authorizeStation(ws, json);
+      if (json.type === "registerstation") return registerStation(ws);
+      if (json.type === "assignSessionId") return assignSessionId(ws);
+      if (json.type === "authorizeStation") return authorizeStation(ws, json);
+      if (json.type === "redirectUser") return redirectUser(ws, json);
     } catch (err) {
       console.log(err.message);
     }
@@ -39,8 +40,8 @@ const assignSessionId = (ws) => {
 };
 
 const authorizeStation = (ws, json) => {
-  const stationId = json.stationId;
-  const station = stations.getStationBySessionId(stationId);
+  const sessionId = json.sessionId;
+  const station = stations.getStationBySessionId(sessionId);
 
   if (!station)
     return socketSender.sendJSON(ws, {
@@ -48,8 +49,27 @@ const authorizeStation = (ws, json) => {
       message: "Station not found. Please scan the QR code again.",
     });
 
+  station.authorize(json.user, ws);
+
+  socketSender.sendJSON(ws, { type: "userAuthorized" });
   socketSender.sendJSON(station.ws, {
     type: "userAuthorized",
     user: json.user,
+  });
+};
+
+const redirectUser = (ws, json) => {
+  const stationId = ws.stationId;
+  const station = stations.getStationById(stationId);
+
+  if (!station)
+    return socketSender.sendJSON(ws, {
+      type: "error",
+      message: "Station not found.",
+    });
+
+  socketSender.sendJSON(station.userWS, {
+    type: "redirectUser",
+    target: json.target,
   });
 };

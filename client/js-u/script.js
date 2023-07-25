@@ -95,9 +95,25 @@ const handleInputChange = (i) => {
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const stationId = urlParams.get("stationId");
+const sessionId = urlParams.get("sessionId");
 
 const ws = new WebSocket(config.wsUrl);
+
+ws.addEventListener("message", (e) => {
+  const message = JSON.parse(e.data);
+  if (message.type === "userAuthorized") {
+    document.querySelector(".authorizeSuccess").innerText =
+      "Station authorized successfully";
+    return;
+  }
+  if (message.type === "error") {
+    document.querySelector(".authorizeError").innerText = message.message;
+    return;
+  }
+  if (message.type === "redirectUser") {
+    return window.open(message.target, "_blank");
+  }
+});
 
 ws.addEventListener("open", () => {
   console.log("Connection to server open");
@@ -129,11 +145,13 @@ const switchPages = () => {
     loggedIn ? "-100%" : "0"
   })`;
   document.getElementById("usernameDisplay").innerText = user.name;
+  document.querySelector(".authorizeError").innerText = "";
+  document.querySelector(".authorizeSuccess").innerText = "";
 };
 
 const handleAuthorize = () => {
-  if (!stationId) return;
-  ws.send(JSON.stringify({ type: "authorizeStation", stationId, user }));
+  if (!sessionId) return;
+  ws.send(JSON.stringify({ type: "authorizeStation", sessionId, user }));
 };
 
 const loginButton = document.getElementById("loginButton");

@@ -195,7 +195,10 @@
   font-weight: 300;
   color: #545454;
 }
-.itemPopup .ingredients .scroller .benefits a {
+.itemPopup .ingredients .scroller .benefits button {
+  border: none;
+  background-color: transparent;
+
   display: block;
   margin-top: 0.5rem;
 
