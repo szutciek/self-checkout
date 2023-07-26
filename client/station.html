@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css-s/item.css" />
     <link rel="stylesheet" href="css-s/checkout.css" />
     <link rel="stylesheet" href="css-s/login.css" />
+    <link rel="stylesheet" href="css-s/server.css" />
   </head>
   <body>
     <div class="app">
@@ -131,24 +132,56 @@
               </div>
             </div>
           </div>
-          <div class="summary section hidden">
-            <div class="head">
-              <h1>Summary</h1>
-              <p>
-                Edit the list of products you have selected and complete the
-                process.
-              </p>
+          <div class="summary section noScrollBar hidden">
+            <div class="head summaryHead">
+              <h1></h1>
+              <p></p>
             </div>
-
-            <div class="items"></div>
+            <div id="itemList" class="items"></div>
           </div>
 
           <div class="floatingButton lastAction">
+            <div class="total maxWidth">
+              <div class="filler"></div>
+              <div class="texts">
+                <p></p>
+                <h1 class="cartPrice"></h1>
+              </div>
+            </div>
             <div class="container flexVert maxWidth">
-              <button class="cancel backToMenu">&times; Back to menu</button>
-              <button class="confirm confirmCheckout itemClickAnimation">
-                &check;&nbsp; Confirm & Charge Account
-              </button>
+              <button class="cancel backToMenu"></button>
+              <button
+                class="confirm confirmCheckout itemClickAnimation"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="serverPopup hidden" id="serverPopupElement">
+        <div class="content maxWidth">
+          <div class="center">
+            <div class="success flexVert hidden">
+              <div class="icon flexVert">
+                <p>&check;</p>
+              </div>
+            </div>
+            <div class="loading flexVert hidden">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div class="error flexVert hidden">
+              <div class="icon flexVert">
+                <p>&times;</p>
+              </div>
+            </div>
+            <div id="message"></div>
+          </div>
+
+          <div class="floatingButton">
+            <div class="container flexVert maxWidth">
+              <button class="cancel closePopup itemClickAnimation"></button>
             </div>
           </div>
         </div>

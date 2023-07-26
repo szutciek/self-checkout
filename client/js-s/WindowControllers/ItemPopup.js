@@ -92,11 +92,21 @@ export default class ItemPopup extends Popup {
     this.controller.redirectUser(url);
   }
 
-  insertContent(product, item) {
+  insertContent(product, item = undefined) {
     const detailsParent = this.element.querySelector("#itemPopupDescription");
     if (!detailsParent) return;
     detailsParent.innerHTML = "";
-    const image = item.querySelector("img").cloneNode(false);
+    let image = undefined;
+    if (item) {
+      image = item.querySelector("img").cloneNode(false);
+    } else {
+      image = document.createElement("img");
+      image.src = product.image;
+      image.alt = product.name;
+      image.style.width = "100%";
+      image.classList.add("menuItemPreview");
+    }
+
     const details = this.createDetails(product);
     detailsParent.insertAdjacentElement("afterbegin", image);
     detailsParent.insertAdjacentElement("beforeend", details);
@@ -251,9 +261,8 @@ export default class ItemPopup extends Popup {
     const ready = this.checkIfCompleted();
     if (!ready) return;
 
-    this.controller.addToCart({
+    this.controller.cart.addItem({
       id: this.currentProduct.id,
-      price: this.currentProduct.sizes[this.selectedSize].price,
       size: this.selectedSize,
     });
     const buttons = this.element.querySelectorAll(".confirmAddButton");
@@ -265,8 +274,7 @@ export default class ItemPopup extends Popup {
     });
   }
 
-  // lot of visilbe changes so that checkout window doesn't open (checks if all hidden)
-  showItem(product, item, zooming = false) {
+  showItem(product, item = undefined, zooming = false) {
     this.resetData();
     this.checkIfCompleted();
     if (this.visible === true) {
@@ -275,13 +283,13 @@ export default class ItemPopup extends Popup {
       this.hide();
       setTimeout(() => {
         this.insertContent(product, item);
-        this.show(zooming);
+        this.show(item && zooming);
         this.openDelay = 0;
       }, this.openDelay);
     } else {
       this.openDelay = 0;
       this.insertContent(product, item);
-      this.show(zooming);
+      this.show(item && zooming);
     }
     this.currentProduct = product;
   }

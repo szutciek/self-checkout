@@ -27,7 +27,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .fullScreenPosition {
@@ -161,6 +161,14 @@ body {
   background-color: #323843;
 
   color: #8e95a4;
+}
+
+.noScrollBar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.noScrollBar::-webkit-scrollbar {
+  display: none;
 }
 
 @font-face {

@@ -1,7 +1,10 @@
 import config from "./config.js";
 
+import Menu from "./Menu.js";
+import Cart from "./Cart.js";
 import MainWindow from "./WindowControllers/Main.js";
 import ItemPopup from "./WindowControllers/ItemPopup.js";
+import ServerPopup from "./WindowControllers/ServerPopup.js";
 import LoginPopup from "./WindowControllers/LoginPopup.js";
 import CheckoutPopup from "./WindowControllers/CheckoutPopup.js";
 import LockWindow from "./WindowControllers/Lock.js";
@@ -10,10 +13,10 @@ export default class ClientController {
   #step = 0;
   #lang = "en";
   #user = null;
-  #cart = [];
   #allowUnlock = false;
 
-  #menu = [];
+  #menu = undefined;
+  #cart = undefined;
 
   #sessionId = null;
   #ws = undefined;
@@ -22,10 +25,16 @@ export default class ClientController {
   constructor() {
     this.mainWindow = new MainWindow("mainElement", this);
     this.itemPopup = new ItemPopup("itemPopupElement", this);
+    this.serverPopup = new ServerPopup("serverPopupElement", this);
     this.loginPopup = new LoginPopup("loginPopupElement", this);
     this.checkoutPopup = new CheckoutPopup("checkoutPopupElement", this);
     this.lockWindow = new LockWindow("lockElement", this);
-    this.popups = [this.itemPopup, this.checkoutPopup, this.loginPopup];
+    this.popups = [
+      this.itemPopup,
+      this.checkoutPopup,
+      this.loginPopup,
+      this.serverPopup,
+    ];
     this.windows = [...this.popups, this.mainWindow, this.lockWindow];
   }
 
@@ -36,10 +45,11 @@ export default class ClientController {
         await this.connectSocket();
         this.addSocketListeners();
         this.#sessionId = await this.getSessionId();
-        console.log(`Station assigned id ${this.#sessionId}`);
-        await this.getIngredientInfo();
-        await this.getMenuItems();
-        this.updateMenu();
+        const ingredients = await this.getIngredientInfo();
+        const menu = await this.getMenuItems();
+        this.#cart = new Cart(this);
+        this.#menu = new Menu(menu, ingredients, this);
+        this.handleChangeLanguage();
         this.mainWindow.show();
         this.checkoutPopup.show();
         this.#allowUnlock = true;
@@ -57,11 +67,10 @@ export default class ClientController {
       try {
         this.#allowUnlock = false;
         this.#sessionId = await this.getSessionId();
-        console.log(`Station assigned id ${this.#sessionId}`);
+        this.#cart = new Cart(this);
         this.#step = 0;
         this.#lang = "en";
         this.#user = null;
-        this.#cart = [];
         this.#allowUnlock = true;
 
         res();
@@ -77,7 +86,7 @@ export default class ClientController {
       if (!res.ok) throw new Error("Failed to get ingredient info");
       const data = await res.json();
       if (!data) throw new Error("Failed to parse ingredient info");
-      this.ingredients = data.ingredients;
+      return data.ingredients;
     } catch (err) {
       console.warn(err.message);
     }
@@ -89,10 +98,8 @@ export default class ClientController {
       if (!res.ok) throw new Error("Failed to get menu items");
       const data = await res.json();
       if (!data) throw new Error("Failed to parse menu items");
-      this.#menu = data.menu;
-      this.#supportedLanguages.forEach((lang) => {
-        this.replaceIngredientsData(this.#menu[lang], lang);
-      });
+      const menu = data.menu;
+      return menu;
     } catch (err) {
       console.warn(err);
     }
@@ -141,16 +148,14 @@ export default class ClientController {
     }
   };
 
-  replaceIngredientsData(menu, language) {
-    menu.forEach((item) => {
-      item.ingredients = item.ingredients.map(
-        (ingredient) => this.ingredients[language][ingredient]
-      );
-    });
+  showLogin() {
+    if (this.allowPopup === false) return;
+    this.loginPopup.show();
   }
 
-  showLogin() {
-    this.loginPopup.show();
+  showItem(product, item, zooming) {
+    if (this.allowPopup === false) return;
+    this.itemPopup.showItem(product, item, zooming);
   }
 
   cancelOrder() {
@@ -164,6 +169,7 @@ export default class ClientController {
   }
 
   popupHidden(elementId) {
+    if (this.allowPopup === false) return;
     let allHidden = true;
     this.popups.forEach((p) => {
       if (p.visible === true) allHidden = false;
@@ -171,14 +177,12 @@ export default class ClientController {
     if (allHidden === true) this.checkoutPopup.show();
   }
 
-  getProductById(id) {
-    const prod = this.#menu[this.#lang].find((p) => p.id === id);
-    return prod || {};
+  getProductById(id, returnDifferentLanguage) {
+    this.menu.getProductById(id, returnDifferentLanguage);
   }
 
   updateMenu() {
-    const currentMenu = this.#menu[this.#lang];
-    this.mainWindow.updateMenu(currentMenu);
+    this.mainWindow.updateMenu(this.#menu.currentMenu);
   }
 
   startOrder() {
@@ -186,6 +190,43 @@ export default class ClientController {
       this.#step = 1;
       this.lockWindow.hide();
     }
+  }
+
+  cartUpdated() {
+    this.checkoutPopup.updateCart();
+  }
+
+  confirmOrder() {
+    return new Promise(async (res, rej) => {
+      try {
+        const cartData = this.cart.checkoutData;
+        await this.awaitOrderConfirmation(cartData);
+        this.serverPopup.showSuccess("Order accepted. Thank you!");
+      } catch (err) {
+        this.serverPopup.showError(err);
+      }
+    });
+  }
+
+  awaitOrderConfirmation(cart) {
+    return new Promise(async (res, rej) => {
+      const awaitOrder = (e) => {
+        const message = JSON.parse(e.data);
+        if (message.type === "orderAccepted") {
+          res();
+        }
+        if (message.type === "orderWarning") {
+          rej("Server returned warning!");
+        }
+        if (message.type === "orderFailure") {
+          rej(message.message);
+        }
+        this.#ws.removeEventListener("message", awaitOrder);
+      };
+      this.#ws.addEventListener("message", awaitOrder);
+      this.serverPopup.showLoading("Processing your order");
+      this.#ws.send(JSON.stringify({ type: "order", cart }));
+    });
   }
 
   handleChangeLanguage() {
@@ -202,16 +243,29 @@ export default class ClientController {
       this.checkoutPopup.handleOutsideClick(e);
     if (!e.target.closest("#loginPopupElement"))
       this.loginPopup.handleOutsideClick(e);
+    if (!e.target.closest("#serverPopupElement"))
+      this.serverPopup.handleOutsideClick(e);
   }
 
   redirectUser(target) {
     this.#ws.send(JSON.stringify({ type: "redirectUser", target }));
   }
 
-  addToCart(item) {
-    this.#cart.push(item);
-    this.checkoutPopup.cartUpdated();
+  fillProductInfo(product) {
+    const full = this.getProductById(product.id, true);
+    if (!full)
+      return {
+        name: "Product Not Found",
+        size: { name: "", size: "" },
+        price: 0,
+      };
+    if (product.size) {
+      full.size = full.sizes[product.size];
+      full.price = full.size.price;
+    }
+    return full;
   }
+
   get cart() {
     return this.#cart;
   }
@@ -246,5 +300,13 @@ export default class ClientController {
 
   get allowUnlock() {
     return this.#allowUnlock;
+  }
+
+  get supportedLanguages() {
+    return this.#supportedLanguages;
+  }
+
+  get allowPopup() {
+    return this.serverPopup.visible === false;
   }
 }

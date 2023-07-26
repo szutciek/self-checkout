@@ -65,6 +65,8 @@ export default class Popup extends Window {
     this.handleClick(e);
   };
 
+  handleClick() {}
+
   handleParentTouchStart(e) {
     this.handleTouchStart(e);
 
@@ -201,8 +203,6 @@ export default class Popup extends Window {
     let timeout = this.duration;
     if (useDelay === true) timeout += this.delay;
     setTimeout(() => {
-      // this.element.style.pointerEvents = "none";
-      // this.element.style.opacity = 0;
       this.resize();
       this.#inTransition = false;
       this.controller.popupShown(this.elementId);
@@ -212,12 +212,12 @@ export default class Popup extends Window {
   hide() {
     if (this.#visible === false || this.#inTransition === true) return;
     this.#inTransition = true;
-    this.#visible = false;
-    this.hideBase();
-    this.hideSpecific();
+    if (typeof this.hideSpecific === "function") {
+      this.hideSpecific().then(() => this.hideBase());
+    } else {
+      this.hideBase();
+    }
   }
-
-  hideSpecific() {}
 
   hideBase() {
     this.element.animate([...this.animation].reverse(), {
@@ -229,6 +229,7 @@ export default class Popup extends Window {
       this.element.style.pointerEvents = "none";
       this.element.style.opacity = 0;
       this.#inTransition = false;
+      this.#visible = false;
       this.controller.popupHidden(this.elementId);
     }, this.hideDuration);
   }

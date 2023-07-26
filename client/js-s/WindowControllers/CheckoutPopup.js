@@ -2,6 +2,10 @@ import Popup from "./Popup.js";
 
 import languages from "../languages.js";
 import {
+  itemClickAnimationWide,
+  itemClickOptions,
+  accentItemClickAnimation,
+  accentItemClickOptions,
   selectItemClickAnimation,
   selectItemClickOptions,
   attentionAnimation,
@@ -14,6 +18,8 @@ export default class CheckoutPopup extends Popup {
   duration = 300;
   delay = 0;
   userDraggable = false;
+
+  closeSummaryDuration = 300;
 
   constructor(elementId, controller) {
     super(elementId);
@@ -31,6 +37,9 @@ export default class CheckoutPopup extends Popup {
     if (e.target.closest(".logUserIn")) return this.loginClicked();
     if (e.target.closest(".showSummary")) return this.summaryButtonClick();
     if (e.target.closest(".backToMenu")) return this.backToMenuButtonClick();
+    if (e.target.closest(".confirmCheckout"))
+      return this.confirmCheckoutButtonClick();
+    if (e.target.closest(".item")) return this.handleItemClick(e);
   }
 
   loginClicked() {
@@ -42,6 +51,9 @@ export default class CheckoutPopup extends Popup {
   showSpecific() {
     this.insertContent();
     this.deselectLogin();
+    this.checkIfCompleted(false);
+    this.showBrief();
+    this.hideSummary();
   }
 
   handleUserChange(user) {
@@ -51,11 +63,11 @@ export default class CheckoutPopup extends Popup {
     setTimeout(() => this.deselectLogin(), 1000);
   }
 
-  checkIfCompleted() {
+  checkIfCompleted(alert = true) {
     let completed = true;
     if (!this.controller.user) {
       completed = false;
-      this.attractAttentionLogin();
+      if (alert === true) this.attractAttentionLogin();
     }
 
     if (completed === true) {
@@ -103,8 +115,21 @@ export default class CheckoutPopup extends Popup {
     const ready = this.checkIfCompleted();
     // if (!ready) return;
 
-    this.showSummary();
-    this.hideBrief();
+    const button = this.element.querySelector(".showSummary");
+    button.animate(accentItemClickAnimation, accentItemClickOptions);
+    setTimeout(() => {
+      this.showSummary();
+      this.hideBrief();
+    }, accentItemClickOptions.duration - 50);
+  }
+
+  confirmCheckoutButtonClick() {
+    const button = this.element.querySelector(".confirmCheckout");
+    button.animate(accentItemClickAnimation, accentItemClickOptions);
+    setTimeout(() => {
+      this.controller.confirmOrder();
+      this.hide();
+    }, accentItemClickOptions.duration - 50);
   }
 
   backToMenuButtonClick() {
@@ -113,7 +138,6 @@ export default class CheckoutPopup extends Popup {
   }
 
   showSummary() {
-    this.insertSummaryContent();
     this.currentClamp = 1;
     const sumEl = this.element.querySelector(".summary");
     sumEl.classList.remove("hidden");
@@ -153,6 +177,20 @@ export default class CheckoutPopup extends Popup {
     this.smoothResize();
   }
 
+  hideSpecific() {
+    return new Promise((res) => {
+      if (this.currentClamp === 1) {
+        this.hideSummary();
+        this.showBrief();
+        setTimeout(() => {
+          res();
+        }, this.closeSummaryDuration);
+      } else {
+        res();
+      }
+    });
+  }
+
   hideBrief() {
     this.currentClamp = 1;
     const brEl = this.element.querySelector(".brief");
@@ -162,13 +200,16 @@ export default class CheckoutPopup extends Popup {
   }
 
   insertContent() {
-    this.insertSummaryContent();
     this.insertCartContent();
     this.insertUserContent();
     this.insertButtonContent();
+
+    this.insertSummaryContent();
+    this.insertSummaryTitleContent();
+    this.insertSummaryButtonsContent();
   }
 
-  cartUpdated() {
+  updateCart() {
     this.insertContent();
   }
 
@@ -189,30 +230,97 @@ export default class CheckoutPopup extends Popup {
   }
 
   insertSummaryContent() {
-    const container = this.element.querySelector(".summary");
+    const container = this.element.querySelector("#itemList");
+    let itemString = languages[this.controller.lang].ui.itemsList;
+    itemString += this.controller.cart.items
+      .map((item) => {
+        return `
+        <div class="item itemClickAnimation" data-id="${
+          item.product.id
+        }" data-size="${item.size}">
+          <div class="preview">
+            <img
+              src="${item.product.image}"
+              alt="${item.product.name}"
+            />
+          </div>
+          <div class="info">
+            <h2>${item.product.name}</h2>
+            <p class="price">${item.price / 100}zł</p>
+            <p class="size"><span>${item.product.sizes[item.size].name}</span>${
+          item.product.sizes[item.size].size
+        }</p>
+          </div>
+          <div class="quantity">
+            <div class="adjust flexVert"><button class="add">&plus;</button><h2>${
+              item.quantity
+            }x</h2><button class="subtract">&minus;</button></div>
+            <button class="delete">&times;</button>
+          </div>
+        </div>
+        `;
+      })
+      .join("");
+    container.innerHTML = itemString;
+  }
 
-    // container.innerHTML = `${this.controller.cart
-    //   .map((prod) => {
-    //     const prodLang = this.controller.getProductById(prod.id);
-    //     return `<p>${prodLang.name}</p>`;
-    //   })
-    //   .join("")}`;
+  insertSummaryTitleContent() {
+    const title = this.element.querySelector(".summaryHead h1");
+    const second = this.element.querySelector(".summaryHead p");
+    const total = this.element.querySelector(".total .texts p");
+    title.innerText = languages[this.controller.lang].ui.summary.title;
+    second.innerText = languages[this.controller.lang].ui.summary.second;
+    total.innerText = languages[this.controller.lang].ui.summary.total;
+  }
+
+  insertSummaryButtonsContent() {
+    const confirm = this.element.querySelector(".confirmCheckout");
+    const back = this.element.querySelector(".backToMenu");
+    confirm.innerHTML = languages[this.controller.lang].ui.completeOrder;
+    back.innerHTML = languages[this.controller.lang].ui.backToMenu;
   }
 
   insertCartContent() {
-    const total = this.controller.cart.reduce(
-      (acc, cur) => acc + Number(cur.price),
-      0
-    );
-    this.element.querySelector(".total .cartPrice").innerHTML = `${
-      Math.round(total) / 100
-    }zł`;
+    const total = this.controller.cart.total;
+    this.element
+      .querySelectorAll(".cartPrice")
+      .forEach((el) => (el.innerHTML = `${Math.round(total) / 100}zł`));
     this.element.querySelector(
       ".total .itemCount"
-    ).innerHTML = `${this.controller.cart.length}`;
+    ).innerHTML = `${this.controller.cart.numberOfItems}`;
   }
 
   handleLanguageChange(lang) {
     this.insertContent();
   }
+
+  handleItemClick = (e) => {
+    if (e.target.closest(".info")) {
+      const el = e.target.closest(".item");
+      el.animate(itemClickAnimationWide, itemClickOptions);
+      setTimeout(() => {
+        this.hide();
+        setTimeout(() => {
+          this.controller.showItem(
+            this.controller.menu.getProductById(
+              e.target.closest(".item").dataset.id
+            )
+          );
+        }, this.closeSummaryDuration + 100);
+      }, itemClickOptions.duration + 100);
+
+      return;
+    }
+    const id = e.target.closest(".item").dataset.id;
+    const size = e.target.closest(".item").dataset.size;
+    if (e.target.closest(".add")) {
+      return this.controller.cart.incrementItemQuantity(id, size);
+    }
+    if (e.target.closest(".subtract")) {
+      return this.controller.cart.reduceItemQuantity(id, size);
+    }
+    if (e.target.closest(".delete")) {
+      return this.controller.cart.removeItem(id, size);
+    }
+  };
 }

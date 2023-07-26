@@ -15,6 +15,8 @@ wss.addListener("connection", (ws) => {
       if (json.type === "assignSessionId") return assignSessionId(ws);
       if (json.type === "authorizeStation") return authorizeStation(ws, json);
       if (json.type === "redirectUser") return redirectUser(ws, json);
+
+      if (json.type === "order") return handleOrder(ws, json);
     } catch (err) {
       console.log(err.message);
     }
@@ -74,5 +76,26 @@ const redirectUser = (ws, json) => {
   socketSender.sendJSON(station.userWS, {
     type: "redirectUser",
     target: json.target,
+  });
+};
+
+const handleOrder = (ws, json) => {
+  return new Promise(async (res, rej) => {
+    try {
+      if (!ws.stationId) throw new Error("Station not found");
+      await wait(5000);
+      throw new Error("Ordering isn't currently allowed. Try again later.");
+    } catch (err) {
+      console.log(err.message);
+      socketSender.sendJSON(ws, { type: "orderFailure", message: err.message });
+    }
+  });
+};
+
+const wait = (ms) => {
+  return new Promise((res) => {
+    setTimeout(() => {
+      res();
+    }, ms);
   });
 };

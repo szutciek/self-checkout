@@ -4,7 +4,7 @@
   display: grid;
   grid-template-rows: 1fr auto;
 
-  z-index: 100;
+  z-index: 101;
 }
 
 .visual {

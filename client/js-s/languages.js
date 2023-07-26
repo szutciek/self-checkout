@@ -59,7 +59,7 @@ export default {
       clickToLogin: "Click to login",
 
       cancelOrder: "&times;&nbsp; Cancel Order",
-      showSummary: "Show Summary &nbsp;&darr;",
+      showSummary: "Show Summary &nbsp;&uarr;",
 
       selectSize: "Select size",
       ingredients: "Ingredients",
@@ -70,6 +70,20 @@ export default {
 
       instructionsCode: `<h2>How to log in using this QR Code?</h2><ul><li>1. Scan the code with your phone.</li><li>2. Log into your account.</li><li>3. Click the "Authorize Station" button.</li></ul>`,
       useAccountData: "Use account details to log in",
+
+      itemsList:
+        '<div class="item labels"><p>ITEM</p><div></div><p>QUANTITY</p></div>',
+      backToMenu: "&times; Back to menu",
+      completeOrder: "&check;&nbsp; Confirm & Charge Account",
+
+      summary: {
+        title: "Summary",
+        second:
+          "Edit the list of products you have selected and complete the process.",
+        total: "TOTAL",
+      },
+
+      closeServerMessage: "Close",
     },
   },
   pl: {
@@ -120,7 +134,7 @@ export default {
       clickToLogin: "Kliknij, aby się zalogować",
 
       cancelOrder: "&times;&nbsp; Anuluj zamówienie",
-      showSummary: "Pokaż podsumowanie &nbsp;&darr;",
+      showSummary: "Pokaż podsumowanie &nbsp;&uarr;",
 
       selectSize: "Wybierz rozmiar",
       ingredients: "Składniki",
@@ -131,6 +145,20 @@ export default {
 
       instructionsCode: `<h2>Jak się zalogować przy użyciu Kodu QR?</h2><ul><li>1. Zaskanuj kod telefonem.</li><li>2. Zaloguj się do swojego konta.</li><li>3. Kliknij przycisk "Authorize Station".</li></ul>`,
       useAccountData: "Użyj danych konta do zalogowania się",
+
+      itemsList:
+        '<div class="item labels"><p>PRZEDMIOT</p><div></div><p>ILOŚĆ</p></div>',
+      backToMenu: "&times; Wróć do menu",
+      completeOrder: "&check;&nbsp; Potwierdź & obciąż konto",
+
+      summary: {
+        title: "Podsumowanie",
+        second:
+          "Edytuj listę produktów, które wybrałeś i zakończ proces zamawiania.",
+        total: "SUMA",
+      },
+
+      closeServerMessage: "Zamknij",
     },
   },
 };

@@ -38,7 +38,7 @@ export default class Main extends Window {
 
   handleMenuClick(e) {
     if (!e.target.closest(".item")?.dataset.id) return;
-    // stop if item busy
+    if (this.controller.allowPopup === false) return;
     if (this.controller.itemPopup.inTransition) return;
     const item = e.target.closest(".item");
     const product = this.findMenuItemById(item.dataset.id);
@@ -48,7 +48,7 @@ export default class Main extends Window {
     const initialPos = image.getBoundingClientRect();
     if (initialPos.top < 166) zoom = false;
 
-    this.controller.itemPopup.showItem(product, item, zoom);
+    this.controller.showItem(product, item, zoom);
     if (zoom) this.handleImageZoom(item, initialPos);
     this.handleItemAnimation(item);
   }

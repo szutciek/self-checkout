@@ -30,6 +30,7 @@ export const accentItemClickAnimation = [
 export const accentItemClickOptions = {
   duration: 400,
 };
+
 export const selectItemClickAnimation = [
   {
     backgroundImage: "radial-gradient(#c0c0c0 50%, #f1f1f1 50%)",
@@ -71,6 +72,7 @@ export const selectItemClickAnimation = [
 export const selectItemClickOptions = {
   duration: 300,
 };
+
 export const itemClickAnimation = [
   {
     backgroundImage: "radial-gradient(#ececec 50%, #ffffff 50%)",
@@ -79,7 +81,7 @@ export const itemClickAnimation = [
     offset: 0,
   },
   {
-    backgroundSize: "250% 250%",
+    backgroundSize: "600px 600px",
     transform: "scale(0.95)",
     backgroundColor: "#fff",
     offset: 0.5,
@@ -101,17 +103,20 @@ export const itemClickAnimation = [
     offset: 1,
   },
 ];
+export const itemClickAnimationWide = JSON.parse(
+  JSON.stringify(itemClickAnimation).replace("600px 600px", "1200px 1200px")
+);
 export const itemClickOptions = {
   duration: 400,
 };
+
 export const attentionAnimation = [
   {
     transform: "scale(1)",
   },
   {
-    transform: "scale(1.1)",
+    transform: "scale(0.9)",
     border: "1px solid #d66",
-    // backgroundColor: "#d66",
   },
   {
     transform: "scale(1)",

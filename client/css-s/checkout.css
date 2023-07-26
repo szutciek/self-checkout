@@ -29,8 +29,8 @@
 }
 
 .checkoutPopup .section {
-  padding-top: 1rem;
-  transition: 0.6s cubic-bezier(0.87, 0, 0.13, 1);
+  height: max-content;
+  transition: 1s cubic-bezier(0.87, 0, 0.13, 1) !important;
 
   overflow-x: hidden;
   overflow-y: auto;
@@ -38,29 +38,30 @@
 .checkoutPopup .section.hidden {
   padding: 0 !important;
   margin: 0 !important;
+  min-height: 0 !important;
 }
 
-.checkoutPopup .head {
-  padding: 0 1rem;
+.checkoutPopup .brief .head {
+  padding: 1rem 1rem 0 1rem;
   justify-content: space-between;
 }
-.checkoutPopup .head h1 {
+.checkoutPopup .brief .head h1 {
   font-size: 2rem;
   line-height: 1;
   font-weight: 700;
   color: var(--dark-black-color);
 }
-.checkoutPopup .head .itemsContainer {
+.checkoutPopup .brief .head .itemsContainer {
   position: relative;
   padding: 0.5rem 0.75rem 0 0;
   height: min-content;
 }
-.checkoutPopup .head svg {
+.checkoutPopup .brief .head svg {
   height: 24px;
   aspect-ratio: 1;
   stroke-width: 10px;
 }
-.checkoutPopup .head .itemsContainer p {
+.checkoutPopup .brief .head .itemsContainer p {
   position: absolute;
   top: 0;
   right: 0;
@@ -74,7 +75,7 @@
   text-align: center;
 }
 
-.checkoutPopup .head .account {
+.checkoutPopup .brief .head .account {
   gap: 0.5rem;
   padding: 6px 1rem 6px 0.5rem;
   background-color: var(--background-color);
@@ -84,44 +85,44 @@
 
   color: var(--dark-black-color);
 }
-.checkoutPopup .head .account.active {
+.checkoutPopup .brief .head .account.active {
   color: #fff;
   background-color: var(--dark-black-color);
   border: 1px solid var(--dark-black-color);
 }
-.checkoutPopup .head .account.active img {
+.checkoutPopup .brief .head .account.active img {
   filter: invert(1);
 }
-.checkoutPopup .head .account img {
+.checkoutPopup .brief .head .account img {
   height: 30px;
   aspect-ratio: 1;
 }
-.checkoutPopup .head .account h2 {
+.checkoutPopup .brief .head .account h2 {
   font-size: 0.9rem;
   line-height: 1;
   font-weight: 500;
 }
-.checkoutPopup .head .account p {
+.checkoutPopup .brief .head .account p {
   font-size: 0.8rem;
   line-height: 1;
   font-weight: 300;
   margin-top: 0.25rem;
 }
 
-.checkoutPopup .head .total {
+.checkoutPopup .brief .head .total {
   gap: 1rem;
 }
 
-.checkoutPopup .action {
+.checkoutPopup .brief .action {
   width: 100%;
   padding: 1rem 1rem 3rem 1rem;
 
   justify-content: center;
 }
-.checkoutPopup .action .container {
+.checkoutPopup .brief .action .container {
   gap: 1rem;
 }
-.checkoutPopup .action button {
+.checkoutPopup .brief .action button {
   padding: 0.7rem 0;
 
   border: 2px solid var(--accent-color);
@@ -131,13 +132,13 @@
   font-size: 1rem;
   transition: 0.2s;
 }
-.checkoutPopup .action .cancel {
+.checkoutPopup .brief .action .cancel {
   flex: 1;
 
   color: var(--accent-color);
   font-weight: 500;
 }
-.checkoutPopup .action .confirm {
+.checkoutPopup .brief .action .confirm {
   flex: 2;
 
   background-color: var(--accent-color);
@@ -145,7 +146,7 @@
   color: white;
   font-weight: 600;
 }
-.checkoutPopup .action .confirm.locked {
+.checkoutPopup .brief .action .confirm.locked {
   border: 2px solid #323843;
   background-color: #323843;
 
@@ -153,9 +154,8 @@
 }
 
 .checkoutPopup .summary .head {
-  padding: 0 1rem;
+  padding: 1rem;
 }
-
 .checkoutPopup .summary .head h1 {
   font-size: 2rem;
   font-weight: 700;
@@ -167,11 +167,142 @@
   color: #333333;
 }
 .checkoutPopup .summary {
+  padding-bottom: 180px;
+}
+.checkoutPopup .summary .items {
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+.checkoutPopup .summary .item {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+}
+.checkoutPopup .summary .item .preview {
+  height: 80px;
+}
+.checkoutPopup .summary .item .preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.checkoutPopup .summary .item .info {
+  display: flex;
+  flex-direction: column;
+}
+.checkoutPopup .summary .item .info h2 {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  color: var(--dark-black-color);
+}
+.checkoutPopup .summary .item .info .icons {
+  font-size: 1rem;
+}
+.checkoutPopup .summary .item .info .price {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--dark-black-color);
+}
+.checkoutPopup .summary .item .info .size {
+  margin-top: auto;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #828282;
+}
+.checkoutPopup .summary .item .info .size span {
+  position: relative;
+  margin-right: 10px;
+  padding-right: 10px;
+}
+.checkoutPopup .summary .item .info .size span::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 2px);
+  right: -2px;
+  width: 4px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: #a6a6a6;
+}
+
+.checkoutPopup .summary .item .quantity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.checkoutPopup .summary .item .quantity .adjust {
+  gap: 0.5rem;
+}
+.checkoutPopup .summary .item .quantity .adjust h2 {
+  flex: 2;
+  padding: 4px 0;
+  background-color: var(--background-color);
+  border-radius: 0.25rem;
+  border: var(--whiteItemBorder);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--dark-black-color);
+  text-align: center;
+}
+.checkoutPopup .summary .item .quantity .adjust button {
+  border: 1px solid var(--accent-color);
+  padding: 4px 8px;
+  border-radius: 0.25rem;
+  background-color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-color);
+}
+.checkoutPopup .summary .item .quantity .delete {
+  display: none;
+  background-color: #ffc0c0;
+  border-radius: 0.25rem;
+  border: none;
+  font-size: 1rem;
+  line-height: 0.5;
+  padding: 0.5rem 0;
+}
+
+.checkoutPopup .summary .items .labels {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #707070;
+  padding: 0.5rem 0;
+  margin: 0;
+  border-radius: 0;
+  border-bottom: var(--whiteItemBorder);
 }
 
 .lastAction {
   transform: translateY(100%);
+}
+.lastAction .total {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.lastAction .filler {
+  flex: 1;
+}
+.lastAction .texts {
+  display: flex;
+  justify-content: space-between;
+  flex: 2;
+}
+.lastAction .total h1 {
   font-size: 2rem;
+  line-height: 1;
   font-weight: 700;
   color: #2b2b2b;
+}
+.lastAction .total p {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #707070;
 }
