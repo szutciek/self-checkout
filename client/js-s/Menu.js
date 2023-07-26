@@ -1,3 +1,5 @@
+import languages from "./languages.js";
+
 export default class Menu {
   #menu = {};
 
@@ -11,6 +13,7 @@ export default class Menu {
   prepareMenu(menu) {
     this.controller.supportedLanguages.forEach((lang) => {
       this.#menu[lang] = this.replaceIngredientsData(menu[lang], lang);
+      this.#menu[lang] = this.replacePropertiesData(menu[lang], lang);
     });
   }
 
@@ -18,6 +21,15 @@ export default class Menu {
     return menu.map((item) => {
       item.ingredients = item.ingredients.map(
         (ingredient) => this.ingredients[language][ingredient]
+      );
+      return item;
+    });
+  }
+
+  replacePropertiesData(menu, language) {
+    return menu.map((item) => {
+      item.properties = item.properties.map(
+        (property) => languages[language].main.properties[property]
       );
       return item;
     });

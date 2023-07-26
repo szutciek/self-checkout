@@ -6,16 +6,7 @@
       "image": "https://assets.kanapka.eu/images/pierogiCheckoutApp.png",
       "ingredients": ["cheese", "basil"],
       "types": ["popular", "meals"],
-      "properties": [
-        {
-          "name": "lactose",
-          "icon": "🥛"
-        },
-        {
-          "name": "w/ meat",
-          "icon": "🍖"
-        }
-      ],
+      "properties": ["lactose", "meat"],
       "sizes": {
         "small": {
           "name": "Small",
@@ -56,16 +47,7 @@
       "image": "https://assets.kanapka.eu/images/kebabCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
       "types": ["popular", "meals"],
-      "properties": [
-        {
-          "name": "vegetarian",
-          "icon": "🥕"
-        },
-        {
-          "name": "w/ meat",
-          "icon": "🍖"
-        }
-      ],
+      "properties": ["vegetarian", "meat"],
       "sizes": {
         "no meat": {
           "name": "No Meat",
@@ -102,12 +84,7 @@
       "image": "https://assets.kanapka.eu/images/drinkCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil", "salami"],
       "types": ["popular", "drinks"],
-      "properties": [
-        {
-          "name": "cold",
-          "icon": "❄️"
-        }
-      ],
+      "properties": ["cold"],
       "sizes": {
         "small": {
           "name": "Normal",
@@ -135,12 +112,7 @@
       "image": "https://assets.kanapka.eu/images/icecreamCheckoutApp.png",
       "ingredients": ["cactus"],
       "types": ["popular", "sweets"],
-      "properties": [
-        {
-          "name": "cold",
-          "icon": "❄️"
-        }
-      ],
+      "properties": ["cold"],
       "sizes": {
         "normal": {
           "name": "Normal",
@@ -163,12 +135,7 @@
       "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp.png",
       "ingredients": ["sugar"],
       "types": ["popular", "sweets"],
-      "properties": [
-        {
-          "name": "sweet",
-          "icon": "🍬"
-        }
-      ],
+      "properties": ["sweet"],
       "sizes": {
         "smallNuts": {
           "name": "Small Nuts",
@@ -206,12 +173,7 @@
       "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp2.png",
       "ingredients": ["sugar"],
       "types": ["popular", "sweets"],
-      "properties": [
-        {
-          "name": "sweet",
-          "icon": "🍬"
-        }
-      ],
+      "properties": ["sweet"],
       "sizes": {
         "normal": {
           "name": "Normal",
@@ -234,12 +196,7 @@
       "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp3.png",
       "ingredients": ["sugar"],
       "types": ["desserts"],
-      "properties": [
-        {
-          "name": "sweet",
-          "icon": "🍬"
-        }
-      ],
+      "properties": ["sweet"],
       "sizes": {
         "small": {
           "name": "Small",
@@ -310,12 +267,7 @@
       "image": "https://assets.kanapka.eu/images/saladCheckoutApp.png",
       "ingredients": [],
       "types": ["popular", "salads"],
-      "properties": [
-        {
-          "name": "vegetarian",
-          "icon": "🥕"
-        }
-      ],
+      "properties": ["vegetarian"],
       "sizes": {
         "small": {
           "name": "Small",
@@ -343,12 +295,7 @@
       "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp2.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
       "types": ["meals"],
-      "properties": [
-        {
-          "name": "vegetarian",
-          "icon": "🥕"
-        }
-      ],
+      "properties": ["vegetarian"],
       "sizes": {
         "small": {
           "name": "Small",
@@ -385,16 +332,7 @@
       "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
       "ingredients": ["salami"],
       "types": ["meals"],
-      "properties": [
-        {
-          "name": "spicy",
-          "icon": "🌶️"
-        },
-        {
-          "name": "w/ meat",
-          "icon": "🍖"
-        }
-      ],
+      "properties": ["spicy", "meat"],
       "sizes": {
         "small": {
           "name": "Small",
@@ -433,16 +371,7 @@
       "image": "https://assets.kanapka.eu/images/pierogiCheckoutApp.png",
       "ingredients": ["cheese", "basil"],
       "types": ["popular", "meals"],
-      "properties": [
-        {
-          "name": "laktoza",
-          "icon": "🥛"
-        },
-        {
-          "name": "mięsne",
-          "icon": "🍖"
-        }
-      ],
+      "properties": ["lactose", "meat"],
       "sizes": {
         "small": {
           "name": "Mały",
@@ -483,16 +412,7 @@
       "image": "https://assets.kanapka.eu/images/kebabCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
       "types": ["popular", "meals"],
-      "properties": [
-        {
-          "name": "wegetariańskie",
-          "icon": "🥕"
-        },
-        {
-          "name": "mięsne",
-          "icon": "🍖"
-        }
-      ],
+      "properties": ["vegetarian", "meat"],
       "sizes": {
         "no meat": {
           "name": "Bez mięsa",
@@ -529,12 +449,7 @@
       "image": "https://assets.kanapka.eu/images/drinkCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil", "salami"],
       "types": ["popular", "drinks"],
-      "properties": [
-        {
-          "name": "zimne",
-          "icon": "❄️"
-        }
-      ],
+      "properties": ["cold"],
       "sizes": {
         "small": {
           "name": "Normalny",
@@ -562,12 +477,7 @@
       "image": "https://assets.kanapka.eu/images/icecreamCheckoutApp.png",
       "ingredients": ["cactus"],
       "types": ["popular", "sweets"],
-      "properties": [
-        {
-          "name": "zimne",
-          "icon": "❄️"
-        }
-      ],
+      "properties": ["cold"],
       "sizes": {
         "normal": {
           "name": "Normalny",
@@ -590,12 +500,7 @@
       "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp.png",
       "ingredients": ["sugar"],
       "types": ["popular", "sweets"],
-      "properties": [
-        {
-          "name": "słodkie",
-          "icon": "🍬"
-        }
-      ],
+      "properties": ["sweet"],
       "sizes": {
         "smallNuts": {
           "name": "Orzechowy Mały",
@@ -633,12 +538,7 @@
       "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp2.png",
       "ingredients": ["sugar"],
       "types": ["popular", "sweets"],
-      "properties": [
-        {
-          "name": "słodkie",
-          "icon": "🍬"
-        }
-      ],
+      "properties": ["sweet"],
       "sizes": {
         "normal": {
           "name": "Normalny",
@@ -661,12 +561,7 @@
       "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp3.png",
       "ingredients": ["sugar"],
       "types": ["desserts"],
-      "properties": [
-        {
-          "name": "słodkie",
-          "icon": "🍬"
-        }
-      ],
+      "properties": ["sweet"],
       "sizes": {
         "small": {
           "name": "Mały",
@@ -737,12 +632,7 @@
       "image": "https://assets.kanapka.eu/images/saladCheckoutApp.png",
       "ingredients": [],
       "types": ["popular", "salads"],
-      "properties": [
-        {
-          "name": "wegetariańskie",
-          "icon": "🥕"
-        }
-      ],
+      "properties": ["vegetarian"],
       "sizes": {
         "small": {
           "name": "Mały",
@@ -770,12 +660,7 @@
       "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp2.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
       "types": ["meals"],
-      "properties": [
-        {
-          "name": "wegetariańskie",
-          "icon": "🥕"
-        }
-      ],
+      "properties": ["vegetarian"],
       "sizes": {
         "small": {
           "name": "Mały",
@@ -812,16 +697,7 @@
       "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
       "ingredients": ["salami"],
       "types": ["meals"],
-      "properties": [
-        {
-          "name": "pikantne",
-          "icon": "🌶️"
-        },
-        {
-          "name": "mięsne",
-          "icon": "🍖"
-        }
-      ],
+      "properties": ["spicy", "meat"],
       "sizes": {
         "small": {
           "name": "Mały",

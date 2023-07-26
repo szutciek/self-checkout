@@ -6,14 +6,10 @@ import ingredientRouter from "./ingredients.js";
 const apiRouter = Router();
 
 apiRouter.get("/", (_, res) => {
-  res.send("API");
+  res.send("Welcome to the API!");
 });
 
 apiRouter.use("/menu", menuRouter);
 apiRouter.use("/ingredients", ingredientRouter);
-
-apiRouter.get("/assign-station-id", (_, res) => {
-  res.json({ stationId: "123" });
-});
 
 export default apiRouter;

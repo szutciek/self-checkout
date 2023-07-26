@@ -210,6 +210,9 @@ export default class ClientController {
 
   awaitOrderConfirmation(cart) {
     return new Promise(async (res, rej) => {
+      if (this.#ws.readyState === WebSocket.CLOSED)
+        return rej("Connection to server lost. Please restart station.");
+
       const awaitOrder = (e) => {
         const message = JSON.parse(e.data);
         if (message.type === "orderAccepted") {

@@ -51,6 +51,32 @@ export default {
           icon: "🥤",
         },
       },
+      properties: {
+        lactose: {
+          name: "Lactose",
+          icon: "🥛",
+        },
+        meat: {
+          name: "W/ Meat",
+          icon: "🍖",
+        },
+        vegetarian: {
+          name: "Vegetarian",
+          icon: "🥦",
+        },
+        cold: {
+          name: "Cold",
+          icon: "❄️",
+        },
+        sweet: {
+          name: "Sweet",
+          icon: "🍬",
+        },
+        spicy: {
+          name: "Spicy",
+          icon: "🌶️",
+        },
+      },
     },
     items: {
       starting: "starting at",
@@ -124,6 +150,32 @@ export default {
           title: "Napoje",
           second: "Zimne napoje na gorące dni",
           icon: "🥤",
+        },
+      },
+      properties: {
+        lactose: {
+          name: "Laktoza",
+          icon: "🥛",
+        },
+        meat: {
+          name: "Mięsne",
+          icon: "🍖",
+        },
+        vegetarian: {
+          name: "Wegetariańskie",
+          icon: "🥦",
+        },
+        cold: {
+          name: "Zimne",
+          icon: "❄️",
+        },
+        sweet: {
+          name: "Słodkie",
+          icon: "🍬",
+        },
+        spicy: {
+          name: "Ostre",
+          icon: "🌶️",
         },
       },
     },
