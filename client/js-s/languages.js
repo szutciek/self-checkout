@@ -73,7 +73,7 @@ export default {
 
       itemsList:
         '<div class="item labels"><p>ITEM</p><div></div><p>QUANTITY</p></div>',
-      backToMenu: "&times; Back to menu",
+      backToMenu: "&darr;&nbsp; Back to menu",
       completeOrder: "&check;&nbsp; Confirm & Charge Account",
 
       summary: {
@@ -148,7 +148,7 @@ export default {
 
       itemsList:
         '<div class="item labels"><p>PRZEDMIOT</p><div></div><p>ILOŚĆ</p></div>',
-      backToMenu: "&times; Wróć do menu",
+      backToMenu: "&darr;&nbsp; Wróć do menu",
       completeOrder: "&check;&nbsp; Potwierdź & obciąż konto",
 
       summary: {
