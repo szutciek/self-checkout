@@ -24,21 +24,14 @@
           "size": "8 pieces"
         }
       },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": "400cal"
-        },
-        {
-          "name": "fat",
-          "value": "40g"
-        },
-        {
-          "name": "salt",
-          "value": "7g"
-        },
-        { "name": "sugar", "value": "10g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Values per piece."
     },
     {
@@ -65,17 +58,14 @@
           "size": "40cm"
         }
       },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": "1700cal"
-        },
-        {
-          "name": "fat",
-          "value": "260g"
-        },
-        { "name": "sugar", "value": "23g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Values per kebab."
     },
     {
@@ -97,13 +87,14 @@
           "size": "800ml"
         }
       },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": "700cal"
-        },
-        { "name": "sugar", "value": "36g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Values per 100ml."
     },
     {
@@ -120,13 +111,14 @@
           "size": "100ml"
         }
       },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": "700cal"
-        },
-        { "name": "sugar", "value": "36g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Values per 100ml."
     },
     {
@@ -158,13 +150,14 @@
           "size": "250g"
         }
       },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": "700cal"
-        },
-        { "name": "sugar", "value": "52g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Values per 100g."
     },
     {
@@ -181,13 +174,14 @@
           "size": "100g"
         }
       },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": "700cal"
-        },
-        { "name": "sugar", "value": "57g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Values per 100g."
     },
     {
@@ -209,13 +203,14 @@
           "size": "2 pieces"
         }
       },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": "700cal"
-        },
-        { "name": "sugar", "value": "34g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Values per piece."
     },
     {
@@ -252,13 +247,14 @@
           "size": "150ml"
         }
       },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": "700cal"
-        },
-        { "name": "sugar", "value": "17g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Values per coffee."
     },
     {
@@ -280,13 +276,14 @@
           "size": "300g"
         }
       },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": "700cal"
-        },
-        { "name": "sugar", "value": "4g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Values per 100g."
     },
     {
@@ -313,17 +310,14 @@
           "size": "40cm"
         }
       },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": "220cal"
-        },
-        {
-          "name": "fat",
-          "value": "20g"
-        },
-        { "name": "sugar", "value": "20g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Values per pizza."
     },
     {
@@ -350,17 +344,14 @@
           "size": "4 pieces"
         }
       },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": 1000
-        },
-        {
-          "name": "fat",
-          "value": 20
-        },
-        { "name": "sugar", "value": 20 }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Values per slice."
     }
   ],
@@ -389,21 +380,14 @@
           "size": "8 pierogów"
         }
       },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "400cal"
-        },
-        {
-          "name": "tłuszcze",
-          "value": "40g"
-        },
-        {
-          "name": "sól",
-          "value": "7g"
-        },
-        { "name": "cukier", "value": "10g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Wartości na 1 pieroga."
     },
     {
@@ -430,17 +414,14 @@
           "size": "40cm"
         }
       },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "1700cal"
-        },
-        {
-          "name": "tłuszcze",
-          "value": "260g"
-        },
-        { "name": "cukier", "value": "23g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Wartości na kebaba."
     },
     {
@@ -462,13 +443,14 @@
           "size": "800ml"
         }
       },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "700cal"
-        },
-        { "name": "cukier", "value": "36g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Wartości na 100ml."
     },
     {
@@ -485,13 +467,14 @@
           "size": "100ml"
         }
       },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "700cal"
-        },
-        { "name": "cukier", "value": "36g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Wartości na 100ml."
     },
     {
@@ -523,13 +506,14 @@
           "size": "250g"
         }
       },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "700cal"
-        },
-        { "name": "cukier", "value": "52g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Values per 100g."
     },
     {
@@ -546,13 +530,14 @@
           "size": "100g"
         }
       },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "700cal"
-        },
-        { "name": "cukier", "value": "57g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Wartości na 100g."
     },
     {
@@ -574,13 +559,14 @@
           "size": "2 kawałki"
         }
       },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "700cal"
-        },
-        { "name": "cukier", "value": "34g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Wartości na kawałek."
     },
     {
@@ -617,13 +603,14 @@
           "size": "150ml"
         }
       },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "700cal"
-        },
-        { "name": "cukier", "value": "17g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Wartości na kawę."
     },
     {
@@ -645,13 +632,14 @@
           "size": "300g"
         }
       },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "700cal"
-        },
-        { "name": "cukier", "value": "4g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Wartości na 100g."
     },
     {
@@ -678,17 +666,14 @@
           "size": "40cm"
         }
       },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": "220cal"
-        },
-        {
-          "name": "tłuszcze",
-          "value": "20g"
-        },
-        { "name": "cukier", "value": "20g" }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Wartości na pizzę."
     },
     {
@@ -715,17 +700,14 @@
           "size": "4 kawałki"
         }
       },
-      "nutrition": [
-        {
-          "name": "kalorie",
-          "value": 1000
-        },
-        {
-          "name": "tłuszcze",
-          "value": 20
-        },
-        { "name": "cukier", "value": 20 }
-      ],
+      "nutrition": {
+        "calories": "400cal",
+        "fats": "40g",
+        "salt": "7g",
+        "proteins": "10g",
+        "energy": "300cal",
+        "sugar": "10g"
+      },
       "nutritionInfo": "Wartości na kawałek."
     }
   ]

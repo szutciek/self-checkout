@@ -12,25 +12,24 @@ export default class Menu {
 
   prepareMenu(menu) {
     this.controller.supportedLanguages.forEach((lang) => {
-      this.#menu[lang] = this.replaceIngredientsData(menu[lang], lang);
-      this.#menu[lang] = this.replacePropertiesData(menu[lang], lang);
+      this.#menu[lang] = this.replaceFieldsData(menu[lang], lang);
     });
   }
 
-  replaceIngredientsData(menu, language) {
+  replaceFieldsData(menu, language) {
     return menu.map((item) => {
       item.ingredients = item.ingredients.map(
         (ingredient) => this.ingredients[language][ingredient]
       );
-      return item;
-    });
-  }
-
-  replacePropertiesData(menu, language) {
-    return menu.map((item) => {
       item.properties = item.properties.map(
         (property) => languages[language].main.properties[property]
       );
+      item.nutrition = Object.entries(item.nutrition).map(([key, value]) => {
+        const nutrition = languages[language].main.nutrition[key];
+        nutrition.value = value;
+        return nutrition;
+      });
+
       return item;
     });
   }

@@ -227,6 +227,9 @@ export default class ClientController {
         this.#ws.removeEventListener("message", awaitOrder);
       };
       this.#ws.addEventListener("message", awaitOrder);
+      this.#ws.addEventListener("close", () =>
+        rej("Connection to server lost. Please restart station.")
+      );
       this.serverPopup.showLoading("Processing your order");
       this.#ws.send(JSON.stringify({ type: "order", cart }));
     });

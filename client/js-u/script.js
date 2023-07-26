@@ -103,7 +103,10 @@ ws.addEventListener("message", (e) => {
   const message = JSON.parse(e.data);
   if (message.type === "userAuthorized") {
     document.querySelector(".authorizeSuccess").innerText =
-      "Station authorized successfully";
+      "Station authorized successfully. Closing tab in 2 seconds.";
+    setTimeout(() => {
+      window.close();
+    }, 2 * 1000);
     return;
   }
   if (message.type === "error") {

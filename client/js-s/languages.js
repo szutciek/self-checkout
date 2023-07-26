@@ -77,6 +77,26 @@ export default {
           icon: "🌶️",
         },
       },
+      nutrition: {
+        energy: {
+          name: "Energy",
+        },
+        calories: {
+          name: "Calories",
+        },
+        fats: {
+          name: "Fats",
+        },
+        sugar: {
+          name: "Sugar",
+        },
+        salt: {
+          name: "Salt",
+        },
+        proteins: {
+          name: "Proteins",
+        },
+      },
     },
     items: {
       starting: "starting at",
@@ -176,6 +196,26 @@ export default {
         spicy: {
           name: "Ostre",
           icon: "🌶️",
+        },
+      },
+      nutrition: {
+        energy: {
+          name: "Energia",
+        },
+        calories: {
+          name: "Kalorie",
+        },
+        fats: {
+          name: "Tłuszcze",
+        },
+        sugar: {
+          name: "Cukry",
+        },
+        salt: {
+          name: "Sól",
+        },
+        proteins: {
+          name: "Białka",
         },
       },
     },
