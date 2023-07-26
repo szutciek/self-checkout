@@ -30,6 +30,7 @@ export default class CheckoutPopup extends Popup {
     if (e.target.closest(".cancelOrder")) return this.controller.cancelOrder();
     if (e.target.closest(".logUserIn")) return this.loginClicked();
     if (e.target.closest(".showSummary")) return this.summaryButtonClick();
+    if (e.target.closest(".backToMenu")) return this.backToMenuButtonClick();
   }
 
   loginClicked() {
@@ -100,36 +101,63 @@ export default class CheckoutPopup extends Popup {
 
   summaryButtonClick() {
     const ready = this.checkIfCompleted();
-    if (!ready) return;
+    // if (!ready) return;
 
     this.showSummary();
     this.hideBrief();
   }
 
+  backToMenuButtonClick() {
+    this.hideSummary();
+    this.showBrief();
+  }
+
   showSummary() {
     this.insertSummaryContent();
     this.currentClamp = 1;
-    this.element.querySelector(".summary").style.opacity = 1;
-    this.element.querySelector(".summary").style.height = "auto";
+    const sumEl = this.element.querySelector(".summary");
+    sumEl.classList.remove("hidden");
+    sumEl.style.maxHeight = `${this.translateChangeElementHeight(
+      this.clamps[1]
+    )}px`;
+    this.showSummaryButtons();
     this.smoothResize();
   }
 
   hideSummary() {
     this.currentClamp = 0;
-    this.element.querySelector(".summary").style.opacity = 0;
-    this.element.querySelector(".summary").style.height = 0;
+    const sumEl = this.element.querySelector(".summary");
+    sumEl.classList.add("hidden");
+    sumEl.style.maxHeight = "0px";
+    this.hideSummaryButtons();
     this.smoothResize();
+  }
+
+  showSummaryButtons() {
+    const buttonDiv = this.element.querySelector(".lastAction");
+    buttonDiv.style.transform = "translateY(0%)";
+  }
+
+  hideSummaryButtons() {
+    const buttonDiv = this.element.querySelector(".lastAction");
+    buttonDiv.style.transform = "translateY(100%)";
   }
 
   showBrief() {
     this.currentClamp = 0;
-    this.element.querySelector(".brief").style.maxHeight = "300px";
+    const brEl = this.element.querySelector(".brief");
+    brEl.classList.remove("hidden");
+    brEl.style.maxHeight = `${this.translateChangeElementHeight(
+      this.clamps[0]
+    )}px`;
     this.smoothResize();
   }
 
   hideBrief() {
     this.currentClamp = 1;
-    this.element.querySelector(".brief").style.maxHeight = "0px";
+    const brEl = this.element.querySelector(".brief");
+    brEl.classList.add("hidden");
+    brEl.style.maxHeight = "0px";
     this.smoothResize();
   }
 
@@ -162,12 +190,13 @@ export default class CheckoutPopup extends Popup {
 
   insertSummaryContent() {
     const container = this.element.querySelector(".summary");
-    container.innerHTML = `${this.controller.cart
-      .map((prod) => {
-        const prodLang = this.controller.getProductById(prod.id);
-        return `<p>${prodLang.name}</p>`;
-      })
-      .join("")}`;
+
+    // container.innerHTML = `${this.controller.cart
+    //   .map((prod) => {
+    //     const prodLang = this.controller.getProductById(prod.id);
+    //     return `<p>${prodLang.name}</p>`;
+    //   })
+    //   .join("")}`;
   }
 
   insertCartContent() {

@@ -100,6 +100,7 @@
 }
 .itemPopup .details h1 {
   font-size: 2rem;
+  line-height: 2.5rem;
   font-weight: 600;
   color: var(--dark-black-color);
 }
@@ -256,56 +257,6 @@
 }
 .itemPopup .sizeBox li.active .price {
   color: #fff;
-}
-
-.itemPopup .floatingButton {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 1rem 1rem 3rem 1rem;
-  z-index: 99;
-
-  border-top: var(--whiteItemBorder);
-  background-color: #ffffffb2;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-
-  justify-content: center;
-  transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.itemPopup .floatingButton .container {
-  gap: 1rem;
-}
-.itemPopup .floatingButton button {
-  padding: 0.7rem 0;
-
-  border: 2px solid var(--accent-color);
-  background-color: white;
-  border-radius: 4px;
-
-  font-size: 1rem;
-  transition: 0.2s;
-}
-.itemPopup .floatingButton .cancel {
-  flex: 1;
-
-  color: var(--accent-color);
-  font-weight: 500;
-}
-.itemPopup .floatingButton .confirm {
-  flex: 2;
-
-  background-color: var(--accent-color);
-
-  color: white;
-  font-weight: 600;
-}
-.itemPopup .floatingButton .confirm.locked {
-  border: 2px solid #323843;
-  background-color: #323843;
-
-  color: #8e95a4;
 }
 
 .itemPopup .lastPart {

@@ -424,47 +424,6 @@
         { "name": "sugar", "value": 20 }
       ],
       "nutritionInfo": "Values per slice."
-    },
-    {
-      "id": "2546756846452",
-      "name": "Pizza Siciliana",
-      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp3.png",
-      "ingredients": ["tomato", "mozzarella", "basil", "salami"],
-      "types": ["meals"],
-      "properties": [
-        {
-          "name": "w/ meat",
-          "icon": "🍖"
-        },
-        {
-          "name": "lactose",
-          "icon": "🥛"
-        }
-      ],
-      "sizes": {
-        "standard": {
-          "name": "Small",
-          "price": 899,
-          "size": "3 pcs"
-        },
-        "extra": {
-          "name": "Large",
-          "price": 1199,
-          "size": "4 pcs"
-        }
-      },
-      "nutrition": [
-        {
-          "name": "calories",
-          "value": "2600cal"
-        },
-        {
-          "name": "salt",
-          "value": "20g"
-        },
-        { "name": "sugar", "value": "15g" }
-      ],
-      "nutritionInfo": "Values per slice."
     }
   ],
   "pl": []

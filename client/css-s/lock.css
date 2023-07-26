@@ -1,5 +1,5 @@
 .lock {
-  background-color: white;
+  background-color: var(--dark-black-color);
 
   display: grid;
   grid-template-rows: 1fr auto;
