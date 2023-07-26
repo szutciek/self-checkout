@@ -377,7 +377,7 @@
         },
         { "name": "sugar", "value": "20g" }
       ],
-      "nutritionInfo": "Values per slice."
+      "nutritionInfo": "Values per pizza."
     },
     {
       "id": "756785658556",
@@ -555,6 +555,302 @@
         { "name": "cukier", "value": "36g" }
       ],
       "nutritionInfo": "Wartości na 100ml."
+    },
+    {
+      "id": "389343932898523",
+      "name": "Lód Kaktus",
+      "image": "https://assets.kanapka.eu/images/icecreamCheckoutApp.png",
+      "ingredients": ["cactus"],
+      "types": ["popular", "sweets"],
+      "properties": [
+        {
+          "name": "zimne",
+          "icon": "❄️"
+        }
+      ],
+      "sizes": {
+        "normal": {
+          "name": "Normalny",
+          "price": 249,
+          "size": "100ml"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "kalorie",
+          "value": "700cal"
+        },
+        { "name": "cukier", "value": "36g" }
+      ],
+      "nutritionInfo": "Wartości na 100ml."
+    },
+    {
+      "id": "65685465375",
+      "name": "M&M's",
+      "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp.png",
+      "ingredients": ["sugar"],
+      "types": ["popular", "sweets"],
+      "properties": [
+        {
+          "name": "słodkie",
+          "icon": "🍬"
+        }
+      ],
+      "sizes": {
+        "smallNuts": {
+          "name": "Orzechowy Mały",
+          "price": 499,
+          "size": "70g"
+        },
+        "largeNuts": {
+          "name": "Orzechowy Duży",
+          "price": 1099,
+          "size": "250g"
+        },
+        "smallChocolate": {
+          "name": "Czekoladowy Mały",
+          "price": 499,
+          "size": "70g"
+        },
+        "largeChocolate": {
+          "name": "Czekoladowy Duży",
+          "price": 1099,
+          "size": "250g"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "kalorie",
+          "value": "700cal"
+        },
+        { "name": "cukier", "value": "52g" }
+      ],
+      "nutritionInfo": "Values per 100g."
+    },
+    {
+      "id": "7745754884",
+      "name": "Zozole Sticks",
+      "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp2.png",
+      "ingredients": ["sugar"],
+      "types": ["popular", "sweets"],
+      "properties": [
+        {
+          "name": "słodkie",
+          "icon": "🍬"
+        }
+      ],
+      "sizes": {
+        "normal": {
+          "name": "Normalny",
+          "price": 399,
+          "size": "100g"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "kalorie",
+          "value": "700cal"
+        },
+        { "name": "cukier", "value": "57g" }
+      ],
+      "nutritionInfo": "Wartości na 100g."
+    },
+    {
+      "id": "375875485474",
+      "name": "Brownie",
+      "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp3.png",
+      "ingredients": ["sugar"],
+      "types": ["desserts"],
+      "properties": [
+        {
+          "name": "słodkie",
+          "icon": "🍬"
+        }
+      ],
+      "sizes": {
+        "small": {
+          "name": "Mały",
+          "price": 399,
+          "size": "1 kawałek"
+        },
+        "large": {
+          "name": "Duży",
+          "price": 799,
+          "size": "2 kawałki"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "kalorie",
+          "value": "700cal"
+        },
+        { "name": "cukier", "value": "34g" }
+      ],
+      "nutritionInfo": "Wartości na kawałek."
+    },
+    {
+      "id": "65745745735",
+      "name": "Kawa",
+      "image": "https://assets.kanapka.eu/images/hotdrinkCheckoutApp.png",
+      "ingredients": [],
+      "types": ["popular", "hotdrinks"],
+      "properties": [],
+      "sizes": {
+        "black": {
+          "name": "Czarna",
+          "price": 399,
+          "size": "150ml"
+        },
+        "espresso": {
+          "name": "Espresso",
+          "price": 399,
+          "size": "150ml"
+        },
+        "latte": {
+          "name": "Latte",
+          "price": 399,
+          "size": "150ml"
+        },
+        "cappuccino": {
+          "name": "Cappuccino",
+          "price": 449,
+          "size": "150ml"
+        },
+        "mocha": {
+          "name": "Mocha",
+          "price": 449,
+          "size": "150ml"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "kalorie",
+          "value": "700cal"
+        },
+        { "name": "cukier", "value": "17g" }
+      ],
+      "nutritionInfo": "Wartości na kawę."
+    },
+    {
+      "id": "754568847547",
+      "name": "Mix Sałat",
+      "image": "https://assets.kanapka.eu/images/saladCheckoutApp.png",
+      "ingredients": [],
+      "types": ["popular", "salads"],
+      "properties": [
+        {
+          "name": "wegetariańskie",
+          "icon": "🥕"
+        }
+      ],
+      "sizes": {
+        "small": {
+          "name": "Mały",
+          "price": 399,
+          "size": "150g"
+        },
+        "large": {
+          "name": "Duży",
+          "price": 799,
+          "size": "300g"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "kalorie",
+          "value": "700cal"
+        },
+        { "name": "cukier", "value": "4g" }
+      ],
+      "nutritionInfo": "Wartości na 100g."
+    },
+    {
+      "id": "1232435235",
+      "name": "Pizza Margherita",
+      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp2.png",
+      "ingredients": ["tomato", "mozzarella", "basil"],
+      "types": ["meals"],
+      "properties": [
+        {
+          "name": "wegetariańskie",
+          "icon": "🥕"
+        }
+      ],
+      "sizes": {
+        "small": {
+          "name": "Mały",
+          "price": 599,
+          "size": "20cm"
+        },
+        "medium": {
+          "name": "Średni",
+          "price": 799,
+          "size": "30cm"
+        },
+        "large": {
+          "name": "Duży",
+          "price": 999,
+          "size": "40cm"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "kalorie",
+          "value": "220cal"
+        },
+        {
+          "name": "tłuszcze",
+          "value": "20g"
+        },
+        { "name": "cukier", "value": "20g" }
+      ],
+      "nutritionInfo": "Wartości na pizzę."
+    },
+    {
+      "id": "756785658556",
+      "name": "Pizza Salami",
+      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
+      "ingredients": ["salami"],
+      "types": ["meals"],
+      "properties": [
+        {
+          "name": "pikantne",
+          "icon": "🌶️"
+        },
+        {
+          "name": "mięsne",
+          "icon": "🍖"
+        }
+      ],
+      "sizes": {
+        "small": {
+          "name": "Mały",
+          "price": 649,
+          "size": "2 kawałki"
+        },
+        "medium": {
+          "name": "Średni",
+          "price": 799,
+          "size": "3 kawałki"
+        },
+        "large": {
+          "name": "Duży",
+          "price": 999,
+          "size": "4 kawałki"
+        }
+      },
+      "nutrition": [
+        {
+          "name": "kalorie",
+          "value": 1000
+        },
+        {
+          "name": "tłuszcze",
+          "value": 20
+        },
+        { "name": "cukier", "value": 20 }
+      ],
+      "nutritionInfo": "Wartości na kawałek."
     }
   ]
 }

@@ -24,6 +24,8 @@ export default class LoginPopup extends Popup {
   }
 
   handleClick(e) {
+    // temporary
+    return;
     if (e.target.closest(".useAccountData")) {
       this.currentClamp = 1;
       this.smoothResize();
