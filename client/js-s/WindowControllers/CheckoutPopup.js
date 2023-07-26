@@ -113,7 +113,7 @@ export default class CheckoutPopup extends Popup {
 
   summaryButtonClick() {
     const ready = this.checkIfCompleted();
-    // if (!ready) return;
+    if (!ready) return;
 
     const button = this.element.querySelector(".showSummary");
     button.animate(accentItemClickAnimation, accentItemClickOptions);
