@@ -1,7 +1,7 @@
 import { WebSocketServer } from "ws";
 
 import config from "./config.js";
-import SocketSender from "./models/SocketSender.js";
+import SocketSender from "./classes/SocketSender.js";
 import stations from "./state/stations.js";
 
 const wss = new WebSocketServer({ port: config.websocketPort });

@@ -3,7 +3,7 @@
     {
       "id": "967857456345423",
       "name": "Dumplings with cheese",
-      "image": "https://assets.kanapka.eu/images/pierogiCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/pierogiCheckoutApp.png",
       "ingredients": ["cheese", "basil"],
       "types": ["popular", "meals"],
       "properties": ["lactose", "meat"],
@@ -37,7 +37,7 @@
     {
       "id": "576643475346",
       "name": "Kebab",
-      "image": "https://assets.kanapka.eu/images/kebabCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/kebabCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
       "types": ["popular", "meals"],
       "properties": ["vegetarian", "meat"],
@@ -71,7 +71,7 @@
     {
       "id": "67646537364343",
       "name": "Apple Juice",
-      "image": "https://assets.kanapka.eu/images/drinkCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/drinkCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil", "salami"],
       "types": ["popular", "drinks"],
       "properties": ["cold"],
@@ -100,7 +100,7 @@
     {
       "id": "389343932898523",
       "name": "Kaktus Ice Cream",
-      "image": "https://assets.kanapka.eu/images/icecreamCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/icecreamCheckoutApp.png",
       "ingredients": ["cactus"],
       "types": ["popular", "sweets"],
       "properties": ["cold"],
@@ -124,7 +124,7 @@
     {
       "id": "65685465375",
       "name": "M&M's",
-      "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/sweetsCheckoutApp.png",
       "ingredients": ["sugar"],
       "types": ["popular", "sweets"],
       "properties": ["sweet"],
@@ -163,7 +163,7 @@
     {
       "id": "7745754884",
       "name": "Zozole Sticks",
-      "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp2.png",
+      "image": "https://assets.stfu.dad/images/sweetsCheckoutApp2.png",
       "ingredients": ["sugar"],
       "types": ["popular", "sweets"],
       "properties": ["sweet"],
@@ -187,7 +187,7 @@
     {
       "id": "375875485474",
       "name": "Brownie",
-      "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp3.png",
+      "image": "https://assets.stfu.dad/images/sweetsCheckoutApp3.png",
       "ingredients": ["sugar"],
       "types": ["desserts"],
       "properties": ["sweet"],
@@ -216,7 +216,7 @@
     {
       "id": "65745745735",
       "name": "Coffee",
-      "image": "https://assets.kanapka.eu/images/hotdrinkCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/hotdrinkCheckoutApp.png",
       "ingredients": [],
       "types": ["popular", "hotdrinks"],
       "properties": [],
@@ -260,7 +260,7 @@
     {
       "id": "754568847547",
       "name": "Salad Mix",
-      "image": "https://assets.kanapka.eu/images/saladCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/saladCheckoutApp.png",
       "ingredients": [],
       "types": ["popular", "salads"],
       "properties": ["vegetarian"],
@@ -289,7 +289,7 @@
     {
       "id": "1232435235",
       "name": "Pizza Margherita",
-      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp2.png",
+      "image": "https://assets.stfu.dad/images/pizzaCheckoutApp2.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
       "types": ["meals"],
       "properties": ["vegetarian"],
@@ -323,7 +323,7 @@
     {
       "id": "756785658556",
       "name": "Pizza Salami",
-      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/pizzaCheckoutApp.png",
       "ingredients": ["salami"],
       "types": ["meals"],
       "properties": ["spicy", "meat"],
@@ -359,7 +359,7 @@
     {
       "id": "967857456345423",
       "name": "Pierogi z serem",
-      "image": "https://assets.kanapka.eu/images/pierogiCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/pierogiCheckoutApp.png",
       "ingredients": ["cheese", "basil"],
       "types": ["popular", "meals"],
       "properties": ["lactose", "meat"],
@@ -393,7 +393,7 @@
     {
       "id": "576643475346",
       "name": "Kebab",
-      "image": "https://assets.kanapka.eu/images/kebabCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/kebabCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
       "types": ["popular", "meals"],
       "properties": ["vegetarian", "meat"],
@@ -427,7 +427,7 @@
     {
       "id": "67646537364343",
       "name": "Sok Jabłkowy",
-      "image": "https://assets.kanapka.eu/images/drinkCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/drinkCheckoutApp.png",
       "ingredients": ["tomato", "mozzarella", "basil", "salami"],
       "types": ["popular", "drinks"],
       "properties": ["cold"],
@@ -456,7 +456,7 @@
     {
       "id": "389343932898523",
       "name": "Lód Kaktus",
-      "image": "https://assets.kanapka.eu/images/icecreamCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/icecreamCheckoutApp.png",
       "ingredients": ["cactus"],
       "types": ["popular", "sweets"],
       "properties": ["cold"],
@@ -480,7 +480,7 @@
     {
       "id": "65685465375",
       "name": "M&M's",
-      "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/sweetsCheckoutApp.png",
       "ingredients": ["sugar"],
       "types": ["popular", "sweets"],
       "properties": ["sweet"],
@@ -519,7 +519,7 @@
     {
       "id": "7745754884",
       "name": "Zozole Sticks",
-      "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp2.png",
+      "image": "https://assets.stfu.dad/images/sweetsCheckoutApp2.png",
       "ingredients": ["sugar"],
       "types": ["popular", "sweets"],
       "properties": ["sweet"],
@@ -543,7 +543,7 @@
     {
       "id": "375875485474",
       "name": "Brownie",
-      "image": "https://assets.kanapka.eu/images/sweetsCheckoutApp3.png",
+      "image": "https://assets.stfu.dad/images/sweetsCheckoutApp3.png",
       "ingredients": ["sugar"],
       "types": ["desserts"],
       "properties": ["sweet"],
@@ -572,7 +572,7 @@
     {
       "id": "65745745735",
       "name": "Kawa",
-      "image": "https://assets.kanapka.eu/images/hotdrinkCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/hotdrinkCheckoutApp.png",
       "ingredients": [],
       "types": ["popular", "hotdrinks"],
       "properties": [],
@@ -616,7 +616,7 @@
     {
       "id": "754568847547",
       "name": "Mix Sałat",
-      "image": "https://assets.kanapka.eu/images/saladCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/saladCheckoutApp.png",
       "ingredients": [],
       "types": ["popular", "salads"],
       "properties": ["vegetarian"],
@@ -645,7 +645,7 @@
     {
       "id": "1232435235",
       "name": "Pizza Margherita",
-      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp2.png",
+      "image": "https://assets.stfu.dad/images/pizzaCheckoutApp2.png",
       "ingredients": ["tomato", "mozzarella", "basil"],
       "types": ["meals"],
       "properties": ["vegetarian"],
@@ -679,7 +679,7 @@
     {
       "id": "756785658556",
       "name": "Pizza Salami",
-      "image": "https://assets.kanapka.eu/images/pizzaCheckoutApp.png",
+      "image": "https://assets.stfu.dad/images/pizzaCheckoutApp.png",
       "ingredients": ["salami"],
       "types": ["meals"],
       "properties": ["spicy", "meat"],

@@ -7,7 +7,21 @@ const __root = config.root();
 
 const loadMenu = () => {
   try {
-    return JSON.parse(readFileSync(`${__root}data/menu.json`, "utf8"));
+    const menu = JSON.parse(readFileSync(`${__root}data/menu.json`, "utf8"));
+    console.log(menu.pl[0]);
+    const items = [];
+    menu.en.forEach((item) => {
+      const lang = "english";
+      items[item._id] = item;
+      items[item._id].name = [
+        {
+          language: lang,
+          value: item.name,
+        },
+      ];
+    });
+    console.log(items);
+    return menu;
   } catch (err) {
     console.log(`Error loading menu: ${err.message}`);
   }

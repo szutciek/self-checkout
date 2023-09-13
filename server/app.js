@@ -1,4 +1,5 @@
 import Express from "express";
+import mongoose from "mongoose";
 
 import config from "./config.js";
 import "./socket.js";
@@ -6,7 +7,24 @@ import apiRouter from "./routers/api.js";
 
 const __root = config.root();
 
+mongoose
+  .connect(config.dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connected to database");
+  })
+  .catch((err) => {
+    console.log("Error connecting to database: ", err);
+  });
+
 const app = Express();
+
+app.use((_, res, next) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 app.get("/", (_, res) => {
   res.send();

@@ -1,4 +1,4 @@
-import Station from "../models/Station.js";
+import Station from "../classes/Station.js";
 
 class Stations {
   #stations = [];
