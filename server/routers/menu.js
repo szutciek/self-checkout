@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { readFileSync } from "fs";
 
 import config from "../config.js";
 
@@ -7,97 +6,68 @@ import Item from "../models/Item.js";
 
 const __root = config.root();
 
-const loadMenu = () => {
+const loadMenu = async (language = null) => {
   try {
-    const menu = JSON.parse(readFileSync(`${__root}data/menu.json`, "utf8"));
-    const items = {};
-    menu.en.forEach((item) => {
-      const lang = "english";
-      items[item.id] = item;
-      items[item.id].name = [
-        {
-          language: lang,
-          value: item.name,
-        },
-      ];
-      Object.entries(item.sizes).forEach(([key, value]) => {
-        items[item.id].sizes[key].name = [
-          {
-            language: lang,
-            value: value.name,
-          },
-        ];
-        items[item.id].sizes[key].price = value.price;
-        items[item.id].sizes[key].size = value.size;
+    const menu = await Item.find();
+    const result = {
+      en: [],
+      pl: [],
+    };
+    menu.forEach((item) => {
+      result.en.push({
+        name: item.name.find((lang) => lang.language === "english").value,
+        image: item.image,
+        ingredients: item.ingredients,
+        types: item.types,
+        allergens: item.allergens,
+        sizes: item.sizes.map((size) => {
+          return {
+            name: size.name.find((lang) => lang.language === "english").value,
+            price: size.price,
+            size: size.size,
+            sizeKey: size.sizeKey,
+          };
+        }),
+        nutrition: item.nutrition,
+        nutritionInfo: item.nutritionInfo.find(
+          (lang) => lang.language === "english"
+        ).value,
       });
-      items[item.id].nutritionInfo = [
-        {
-          language: lang,
-          value: item.nutritionInfo,
-        },
-      ];
-    });
-    menu.pl.forEach((item) => {
-      const lang = "polish";
-      items[item.id].name.push({
-        language: lang,
-        value: item.name,
-      });
-      Object.entries(item.sizes).forEach(([key, value]) => {
-        items[item.id].sizes[key].name.push({
-          language: lang,
-          value: value.name,
-        });
-      });
-      items[item.id].nutritionInfo.push({
-        language: lang,
-        value: item.nutritionInfo,
-      });
-      Object.entries(item.nutrition).forEach(([key, value]) => {
-        items[item.id].nutrition[key] = Number(
-          value.replaceAll("g", "").replaceAll("cal", "")
-        );
+      result.pl.push({
+        name: item.name.find((lang) => lang.language === "polish").value,
+        image: item.image,
+        ingredients: item.ingredients,
+        types: item.types,
+        allergens: item.allergens,
+        sizes: item.sizes.map((size) => {
+          return {
+            name: size.name.find((lang) => lang.language === "polish").value,
+            price: size.price,
+            size: size.size,
+            sizeKey: size.sizeKey,
+          };
+        }),
+        nutrition: item.nutrition,
+        nutritionInfo: item.nutritionInfo.find(
+          (lang) => lang.language === "polish"
+        ).value,
       });
     });
-    Object.values(items).forEach(async (item) => {
-      delete item.id;
-      item.sizes = Object.entries(item.sizes).map(([key, value]) => {
-        return {
-          name: value.name,
-          price: value.price,
-          size: value.size,
-          sizeKey: key,
-        };
-      });
-      // const newItem = await Item.create(item);
-      // await newItem.save();
-    });
-    return menu;
+
+    if (language === "en") return result.en;
+    else if (language === "pl") return result.pl;
+    else return result;
   } catch (err) {
     console.log(`Error loading menu: ${err.message}`);
   }
 };
 
-const menu = loadMenu();
-
 const menuRouter = Router();
 
-menuRouter.get("/", (req, res) => {
+menuRouter.get("/", async (req, res) => {
   const language = req.query.language;
-
-  if (!language) {
-    res.status(200).json({ menu });
-  }
-  if (language === "pl") {
-    res.status(200).json({
-      menu: menu.pl,
-    });
-  }
-  if (language === "en") {
-    res.status(200).json({
-      menu: menu.en,
-    });
-  }
+  const menu = await loadMenu(language);
+  res.status(200).json(menu);
 });
 
 export default menuRouter;
