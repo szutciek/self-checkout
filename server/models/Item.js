@@ -1,4 +1,3 @@
-import { type } from "express/lib/response";
 import mongoose from "mongoose";
 
 const itemSchema = new mongoose.Schema({
@@ -57,6 +56,10 @@ const itemSchema = new mongoose.Schema({
         required: true,
       },
       size: {
+        type: "String",
+        required: true,
+      },
+      sizeKey: {
         type: "String",
         required: true,
       },
