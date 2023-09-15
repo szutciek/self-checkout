@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { readFileSync } from "fs";
+import { readFileSync, createReadStream } from "fs";
 
 import config from "../config.js";
 
@@ -13,26 +13,18 @@ const loadIngredients = () => {
   }
 };
 
-const ingredients = loadIngredients();
+// const ingredients = loadIngredients();
 
 const ingredientsRouter = Router();
 
-ingredientsRouter.get("/", (req, res) => {
-  const language = req.query.language;
-
-  if (!language) {
-    res.status(200).json({ ingredients });
-  }
-  if (language === "pl") {
-    res.status(200).json({
-      ingredients: ingredients.pl,
-    });
-  }
-  if (language === "en") {
-    res.status(200).json({
-      ingredients: ingredients.en,
-    });
-  }
+ingredientsRouter.get("/", (_, res) => {
+  const stream = createReadStream(`${__root}data/ingredients.json`);
+  stream.on("data", (chunk) => {
+    res.write(chunk);
+  });
+  stream.on("end", () => {
+    res.end();
+  });
 });
 
 export default ingredientsRouter;

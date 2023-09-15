@@ -41,7 +41,7 @@ export default class ClientController {
   setup() {
     return new Promise(async (res, rej) => {
       try {
-        // this.lockWindow.show();
+        this.lockWindow.show();
         await this.connectSocket();
         this.addSocketListeners();
         this.#sessionId = await this.getSessionId();
@@ -84,9 +84,15 @@ export default class ClientController {
     try {
       const res = await fetch(`${config.apiBaseUrl}/ingredients`);
       if (!res.ok) throw new Error("Failed to get ingredient info");
-      const data = await res.json();
-      if (!data) throw new Error("Failed to parse ingredient info");
-      return data.ingredients;
+      const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
+      let data = "";
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        data += value;
+      }
+      const parsed = await JSON.parse(data);
+      return parsed;
     } catch (err) {
       console.warn(err.message);
     }

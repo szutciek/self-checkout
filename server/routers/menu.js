@@ -15,11 +15,13 @@ const loadMenu = async (language = null) => {
     };
     menu.forEach((item) => {
       result.en.push({
+        id: item._id,
         name: item.name.find((lang) => lang.language === "english").value,
         image: item.image,
         ingredients: item.ingredients,
         types: item.types,
         allergens: item.allergens,
+        properties: item.properties,
         sizes: item.sizes.map((size) => {
           return {
             name: size.name.find((lang) => lang.language === "english").value,
@@ -34,11 +36,13 @@ const loadMenu = async (language = null) => {
         ).value,
       });
       result.pl.push({
+        id: item._id,
         name: item.name.find((lang) => lang.language === "polish").value,
         image: item.image,
         ingredients: item.ingredients,
         types: item.types,
         allergens: item.allergens,
+        properties: item.properties,
         sizes: item.sizes.map((size) => {
           return {
             name: size.name.find((lang) => lang.language === "polish").value,
@@ -54,9 +58,9 @@ const loadMenu = async (language = null) => {
       });
     });
 
-    if (language === "en") return result.en;
-    else if (language === "pl") return result.pl;
-    else return result;
+    if (language === "en") return { menu: result.en };
+    else if (language === "pl") return { menu: result.pl };
+    else return { menu: result };
   } catch (err) {
     console.log(`Error loading menu: ${err.message}`);
   }
