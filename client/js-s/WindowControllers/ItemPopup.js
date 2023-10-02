@@ -294,19 +294,6 @@ export default class ItemPopup extends Popup {
     this.currentProduct = product;
   }
 
-  insertUIContent() {
-    const selectSize = this.element.querySelector("#selectSizeText");
-    const ingredients = this.element.querySelector("#ingredients");
-    selectSize.innerText = languages[this.controller.lang].ui.selectSize;
-    ingredients.innerText = languages[this.controller.lang].ui.ingredients;
-
-    const confirmAddButton = this.element.querySelector(".confirmAddButton");
-    const cancelItem = this.element.querySelector(".cancelItem");
-    confirmAddButton.innerHTML =
-      languages[this.controller.lang].ui.confirmAddToCart;
-    cancelItem.innerHTML = languages[this.controller.lang].ui.cancelItem;
-  }
-
   showSpecific(useDelay) {
     this.element.querySelector(".content").scrollTo(0, 0);
     this.insertUIContent();
@@ -325,6 +312,19 @@ export default class ItemPopup extends Popup {
   handleLanguageChange() {
     this.hide();
     this.insertUIContent();
+  }
+
+  insertUIContent() {
+    const selectSize = this.element.querySelector("#selectSizeText");
+    const ingredients = this.element.querySelector("#ingredients");
+    selectSize.innerText = languages[this.controller.lang].ui.selectSize;
+    ingredients.innerText = languages[this.controller.lang].ui.ingredients;
+
+    const confirmAddButton = this.element.querySelector(".confirmAddButton");
+    const cancelItem = this.element.querySelector(".cancelItem");
+    confirmAddButton.innerHTML =
+      languages[this.controller.lang].ui.confirmAddToCart;
+    cancelItem.innerHTML = languages[this.controller.lang].ui.cancelItem;
   }
 
   toggleFloatingButton() {
