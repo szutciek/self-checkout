@@ -44,8 +44,7 @@ export default class LoginPopup extends Popup {
   insertContent() {
     this.insertUIContent();
     const parent = this.element.querySelector(".codeBackground");
-    // parent.innerHTML = "";
-    parent.innerHTML = `<a href="${config.baseUrl}/authorize?sessionId=${this.controller.sessionId}" target="_blank">temp. link</a>`;
+    parent.innerHTML = "";
     const canvas = document.createElement("canvas");
     new QRious({
       element: canvas,
