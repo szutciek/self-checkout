@@ -250,6 +250,7 @@ export default class CheckoutPopup extends Popup {
         list.push(prop.name);
       }
     });
+    if (list.length === 0) return;
     const detailString = `${item.name}${
       languages[this.controller.lang].ui.warnings.allergen
     }${list[0]}${languages[this.controller.lang].ui.warnings.explain}`;
