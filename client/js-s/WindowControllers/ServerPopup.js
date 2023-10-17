@@ -48,13 +48,13 @@ export default class ServerPopup extends Popup {
 
   showLoading(message) {
     if (this.#loading === true) this.hideMessage();
+    this.#loading = true;
     this.hideAllDivs();
     this.element.querySelector("#message").classList.add("loading");
     this.element.querySelector(".loading").classList.remove("hidden");
     this.message = message;
     this.updateLoadingMessageDisplay();
     this.interval = setInterval(() => this.updateLoadingMessageDisplay(), 200);
-    this.#loading = true;
     // this.evaluateButtonVisibility();
     this.show();
   }

@@ -117,6 +117,7 @@ export default class ClientController {
       this.popups.forEach((w) => w.hide());
       this.serverPopup.showLoading("Connection to server lost. Reconnecting");
       await this.connectSocket();
+      this.addSocketListeners();
       await this.requestRegistration();
       this.#sessionId = await this.getSessionId();
       this.serverPopup.hide();
