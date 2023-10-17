@@ -207,6 +207,8 @@ export default class CheckoutPopup extends Popup {
     this.insertSummaryContent();
     this.insertSummaryTitleContent();
     this.insertSummaryButtonsContent();
+
+    this.insertWarnings();
   }
 
   updateCart() {
@@ -227,6 +229,34 @@ export default class CheckoutPopup extends Popup {
     } else {
       loginText.innerText = languages[this.controller.lang].ui.clickToLogin;
     }
+  }
+
+  insertWarnings() {
+    const allergyList = ["Lactose", "water"];
+    const container = this.element.querySelector(".warnings");
+    container.classList.add("hidden");
+    container.innerHTML = "";
+    if (this.controller.cart.items.length === 0) return;
+    const title = document.createElement("h2");
+    title.innerHTML = `${languages[this.controller.lang].ui.warnings.title}`;
+    const details = document.createElement("p");
+    const item = this.controller.cart.items.find(
+      (item) => item.product.id === "6504337f6c955036a658a054"
+    )?.product;
+    if (!item) return;
+    const list = [];
+    item.properties.forEach((prop) => {
+      if (allergyList.includes(prop.name)) {
+        list.push(prop.name);
+      }
+    });
+    const detailString = `${item.name}${
+      languages[this.controller.lang].ui.warnings.allergen
+    }${list[0]}${languages[this.controller.lang].ui.warnings.explain}`;
+    details.innerHTML = detailString;
+    container.appendChild(title);
+    container.appendChild(details);
+    container.classList.remove("hidden");
   }
 
   insertSummaryContent() {

@@ -306,3 +306,21 @@
   font-weight: 400;
   color: #707070;
 }
+
+.checkoutPopup .summary .warnings {
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #ffc8c8;
+  border-radius: 0.25rem;
+  border: 1px solid #ec8c8c;
+}
+.checkoutPopup .summary .warnings h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #882121;
+}
+.checkoutPopup .summary .warnings p {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #882121;
+}

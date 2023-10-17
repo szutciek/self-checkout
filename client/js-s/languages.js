@@ -130,6 +130,12 @@ export default {
       },
 
       closeServerMessage: "Close",
+
+      warnings: {
+        title: "Allergy Warnings",
+        allergen: " contains ",
+        explain: ", which you are allergic to.",
+      },
     },
   },
   pl: {
@@ -251,6 +257,12 @@ export default {
       },
 
       closeServerMessage: "Zamknij",
+
+      warnings: {
+        title: "Ostrzeżenia dotyczące alergii",
+        allergen: " zawiera ",
+        explain: ", na które masz alergię.",
+      },
     },
   },
 };
