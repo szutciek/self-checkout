@@ -102,7 +102,9 @@ const ws = new WebSocket(config.wsUrl);
 ws.addEventListener("message", (e) => {
   const message = JSON.parse(e.data);
   if (message.type === "userAuthorized") {
-    document.querySelector(".authorizeSuccess").innerText =
+    const authSuc = document.querySelector(".authorizeSuccess");
+    authSuc.classList.add("active");
+    authSuc.innerText =
       "Station authorized successfully. Closing tab in 2 seconds.";
     setTimeout(() => {
       window.close();
@@ -110,7 +112,9 @@ ws.addEventListener("message", (e) => {
     return;
   }
   if (message.type === "error") {
-    document.querySelector(".authorizeError").innerText = message.message;
+    const errDiv = document.querySelector(".authorizeError");
+    errDiv.classList.add("active");
+    errDiv.innerText = message.message;
     return;
   }
   if (message.type === "redirectUser") {
@@ -122,9 +126,15 @@ ws.addEventListener("open", () => {
   console.log("Connection to server open");
 });
 
+const resetStatus = () => {
+  document.querySelector(".authorizeError").classList.remove("active");
+  document.querySelector(".authorizeSuccess").classList.remove("active");
+};
+
 let loggedIn = true;
 
 const handleLogin = () => {
+  resetStatus();
   loggedIn = true;
 
   // temporary
@@ -139,11 +149,13 @@ const handleLogin = () => {
 };
 
 const handleSwitchAccount = () => {
+  resetStatus();
   loggedIn = false;
   switchPages();
 };
 
 const switchPages = () => {
+  resetStatus();
   document.querySelector(".container").style.transform = `translateX(${
     loggedIn ? "-100%" : "0"
   })`;
@@ -153,6 +165,7 @@ const switchPages = () => {
 };
 
 const handleAuthorize = () => {
+  resetStatus();
   if (!sessionId) return;
   ws.send(JSON.stringify({ type: "authorizeStation", sessionId, user }));
 };

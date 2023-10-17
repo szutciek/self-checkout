@@ -66,16 +66,23 @@
   color: #181818;
 }
 
-.authorizeScreen .authorizeError,
-.authorizeScreen .authorizeSuccess {
+.authorizeScreen .authorizeError.active,
+.authorizeScreen .authorizeSuccess.active {
   font-size: 0.9rem;
   font-weight: 500;
   margin-top: 1rem;
+  padding: 0.5rem 1rem;
 }
-.authorizeScreen .authorizeError {
-  color: #9d2323;
+.authorizeScreen .authorizeError.active {
+  background-color: #ffc9c9;
+  border-radius: 4px;
+  border: 1px solid #ff9191;
+  color: #630e0e;
 }
-.authorizeScreen .authorizeSuccess {
+.authorizeScreen .authorizeSuccess.active {
+  background-color: #c7d9ff;
+  border-radius: 4px;
+  border: 1px solid #91b4ff;
   color: var(--accent-color);
 }
 
@@ -86,6 +93,7 @@
   border: 2px solid var(--accent-color);
   background-color: var(--accent-color);
   border-radius: 4px;
+  cursor: pointer;
 
   transition: 0.2s;
 
