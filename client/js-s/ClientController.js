@@ -43,6 +43,7 @@ export default class ClientController {
       try {
         this.lockWindow.show();
         await this.connectSocket();
+        await this.requestRegistration();
         this.addSocketListeners();
         this.#sessionId = await this.getSessionId();
         const ingredients = await this.getIngredientInfo();
@@ -111,17 +112,37 @@ export default class ClientController {
     }
   }
 
+  async handleConnectionClose() {
+    try {
+      this.popups.forEach((w) => w.hide());
+      this.serverPopup.showLoading("Connection to server lost. Reconnecting");
+      await this.connectSocket();
+      await this.requestRegistration();
+      this.#sessionId = await this.getSessionId();
+      this.serverPopup.hide();
+    } catch (err) {
+      this.serverPopup.showError(`Failed to connect to server.`);
+    }
+  }
+
   connectSocket() {
     return new Promise(async (res, rej) => {
       try {
         this.#ws = new WebSocket(config.wsUrl);
-        this.#ws.onopen = () => {
-          this.#ws.send(JSON.stringify({ type: "registerstation" }));
-          res();
-        };
+        this.#ws.addEventListener("close", () => this.handleConnectionClose());
+        this.#ws.addEventListener("open", () => res());
       } catch (err) {
         rej(err);
       }
+    });
+  }
+
+  requestRegistration() {
+    return new Promise((res, rej) => {
+      if (this.#ws.readyState !== WebSocket.OPEN)
+        return rej("Connection to server lost. Please restart station.");
+      this.#ws.send(JSON.stringify({ type: "registerstation" }));
+      res();
     });
   }
 

@@ -55,6 +55,7 @@ export default class ServerPopup extends Popup {
     this.updateLoadingMessageDisplay();
     this.interval = setInterval(() => this.updateLoadingMessageDisplay(), 200);
     this.#loading = true;
+    // this.evaluateButtonVisibility();
     this.show();
   }
 
