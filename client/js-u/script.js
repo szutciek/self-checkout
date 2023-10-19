@@ -155,9 +155,8 @@ const handleLogin = async () => {
       };
     }
 
-    console.log(json);
-
     user.name = json.name;
+    user.email = json.email;
 
     saveUser(user);
     switchPages();
