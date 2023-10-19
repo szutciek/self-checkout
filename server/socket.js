@@ -25,6 +25,7 @@ wss.addListener("connection", (ws) => {
   });
   ws.on("close", () => {
     if (ws.stationId) stations.removeStationById(ws.stationId);
+    console.log("Station disconnected");
   });
 });
 
