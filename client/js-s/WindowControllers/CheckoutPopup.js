@@ -232,6 +232,7 @@ export default class CheckoutPopup extends Popup {
   }
 
   insertWarnings() {
+    if (!this.controller.user) return;
     const allergyList = this.controller.user.allergies;
     console.log(allergyList);
     const container = this.element.querySelector(".warnings");
