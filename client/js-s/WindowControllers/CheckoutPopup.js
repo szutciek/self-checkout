@@ -232,7 +232,8 @@ export default class CheckoutPopup extends Popup {
   }
 
   insertWarnings() {
-    const allergyList = ["Lactose", "water"];
+    const allergyList = this.controller.user.allergies;
+    console.log(allergyList);
     const container = this.element.querySelector(".warnings");
     container.classList.add("hidden");
     container.innerHTML = "";
