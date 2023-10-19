@@ -133,19 +133,42 @@ const resetStatus = () => {
 
 let loggedIn = true;
 
-const handleLogin = () => {
-  resetStatus();
-  loggedIn = true;
+const handleLogin = async () => {
+  try {
+    resetStatus();
+    loggedIn = true;
 
-  // temporary
-  if (data.name) {
-    user.name = data.name;
-  } else {
-    user.name = "Anonymous";
+    const res = await fetch("/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await res.json();
+
+    if (res.status !== 200) {
+      throw {
+        type: "fetchError",
+        fields: json.fields,
+        message: json.error,
+      };
+    }
+
+    console.log(json);
+
+    user.name = json.name;
+
+    saveUser(user);
+    switchPages();
+  } catch (err) {
+    if (err.type === "fetchError") {
+      return err.fields.forEach((field) => {
+        handleInputError(field, err.message);
+      });
+    }
+    console.warn(err);
   }
-  saveUser(user);
-
-  switchPages();
 };
 
 const handleSwitchAccount = () => {
@@ -188,7 +211,7 @@ const saveUser = (data) => {
 };
 
 const loaded = loadUser();
-if (loaded.name) {
+if (loaded?.name) {
   loggedIn = true;
   user.name = loaded.name;
   switchPages();
