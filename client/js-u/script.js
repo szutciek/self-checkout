@@ -136,7 +136,6 @@ let loggedIn = true;
 const handleLogin = async () => {
   try {
     resetStatus();
-    loggedIn = true;
 
     const res = await fetch("/api/users/login", {
       method: "POST",
@@ -157,6 +156,8 @@ const handleLogin = async () => {
 
     user.name = json.name;
     user.email = json.email;
+    user.token = json.token;
+    loggedIn = true;
 
     saveUser(user);
     switchPages();
@@ -213,5 +214,7 @@ const loaded = loadUser();
 if (loaded?.name) {
   loggedIn = true;
   user.name = loaded.name;
+  user.email = loaded.email;
+  user.token = loaded.token;
   switchPages();
 }

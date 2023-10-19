@@ -3,6 +3,8 @@ import { WebSocketServer } from "ws";
 import config from "./config.js";
 import SocketSender from "./classes/SocketSender.js";
 import stations from "./state/stations.js";
+import User from "./models/User.js";
+import jwt from "jsonwebtoken";
 
 const wss = new WebSocketServer({ port: config.websocketPort });
 const socketSender = new SocketSender(wss);
@@ -44,9 +46,12 @@ const assignSessionId = (ws) => {
   socketSender.sendJSON(ws, { type: "sessionId", id });
 };
 
-const authorizeStation = (ws, json) => {
+const authorizeStation = async (ws, json) => {
   const sessionId = json.sessionId;
   const station = stations.getStationBySessionId(sessionId);
+
+  const decoded = jwt.verify(json.user.token, "compsciiayey");
+  const user = await User.findOne({ _id: decoded.id });
 
   if (!station)
     return socketSender.sendJSON(ws, {
@@ -59,7 +64,11 @@ const authorizeStation = (ws, json) => {
   socketSender.sendJSON(ws, { type: "userAuthorized" });
   socketSender.sendJSON(station.ws, {
     type: "userAuthorized",
-    user: json.user,
+    user: {
+      name: user.name,
+      email: user.email,
+      allergies: user.allergies,
+    },
   });
 };
 

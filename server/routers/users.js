@@ -1,5 +1,5 @@
 import { Router } from "express";
-
+import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
 const userRouter = Router();
@@ -50,9 +50,12 @@ userRouter.post("/login", async (req, res) => {
         error: "Invalid password",
       });
 
+    const token = jwt.sign({ id: user._id }, "compsciiayey");
+
     res.status(200).json({
       name: user.name,
       email: user.email,
+      token,
     });
   } catch (err) {
     res.status(500).send("Internal server error");
