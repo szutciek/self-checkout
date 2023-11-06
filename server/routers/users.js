@@ -1,6 +1,7 @@
 import { Router } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import bcrypt from "bcryptjs";
 
 const userRouter = Router();
 
@@ -12,9 +13,27 @@ userRouter.post("/", async (req, res) => {
   try {
     const { code, name, password, email, allergies } = req.body;
     if (code !== "io3j9382j98efje98") return res.status(403).send("Forbidden");
-    const user = await User.create({ name, password, email, allergies });
+
+    const encrypted = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      name,
+      password: encrypted,
+      email,
+      allergies,
+    });
+
     res.status(200).json(user);
   } catch (err) {
+    if (err.code === 11000) {
+      return res.status(400).json({
+        fields: [Object.keys(err.keyPattern)[0]],
+        error: `${
+          Object.keys(err.keyPattern)[0][0].toUpperCase() +
+          Object.keys(err.keyPattern)[0].slice(1)
+        } already exists`,
+      });
+    }
     if (err.name === "ValidationError")
       return res.status(400).json(err.message);
     res.status(500).send("Internal server error");
@@ -44,7 +63,9 @@ userRouter.post("/login", async (req, res) => {
         error: "User not found",
       });
 
-    if (password !== user.password)
+    const result = await bcrypt.compare(password, user.password);
+
+    if (result !== true)
       return res.status(401).json({
         fields: ["password"],
         error: "Invalid password",
