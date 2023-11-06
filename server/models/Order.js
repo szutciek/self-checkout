@@ -31,6 +31,10 @@ const orderSchema = new mongoose.Schema({
     enum: ["pending", "processing", "accepted", "rejected"],
     required: true,
   },
+  total: {
+    type: "Number",
+    required: true,
+  },
 });
 
 const Order = mongoose.model("Order", orderSchema);
