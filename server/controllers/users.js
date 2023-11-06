@@ -1,15 +1,8 @@
-import { Router } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 
-const userRouter = Router();
-
-userRouter.get("/", (_, res) => {
-  res.send("Welcome to the API!");
-});
-
-userRouter.post("/", async (req, res) => {
+export const createUser = async (req, res) => {
   try {
     const { code, name, password, email, allergies } = req.body;
     if (code !== "io3j9382j98efje98") return res.status(403).send("Forbidden");
@@ -38,9 +31,9 @@ userRouter.post("/", async (req, res) => {
       return res.status(400).json(err.message);
     res.status(500).send("Internal server error");
   }
-});
+};
 
-userRouter.post("/login", async (req, res) => {
+export const loginUser = async (req, res) => {
   try {
     const { name, password } = req.body;
 
@@ -81,6 +74,4 @@ userRouter.post("/login", async (req, res) => {
   } catch (err) {
     res.status(500).send("Internal server error");
   }
-});
-
-export default userRouter;
+};

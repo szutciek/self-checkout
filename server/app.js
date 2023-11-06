@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 import config from "./config.js";
 import "./socket.js";
-import apiRouter from "./routers/api.js";
+import apiRouter from "./routes/api.js";
 
 const __root = config.root();
 

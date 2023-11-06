@@ -1,5 +1,3 @@
-import { Router } from "express";
-
 import config from "../config.js";
 
 import Item from "../models/Item.js";
@@ -66,12 +64,8 @@ const loadMenu = async (language = null) => {
   }
 };
 
-const menuRouter = Router();
-
-menuRouter.get("/", async (req, res) => {
+export const getMenu = async (req, res) => {
   const language = req.query.language;
   const menu = await loadMenu(language);
   res.status(200).json(menu);
-});
-
-export default menuRouter;
+};
