@@ -199,18 +199,6 @@ export default class CheckoutPopup extends Popup {
     this.smoothResize();
   }
 
-  insertContent() {
-    this.insertCartContent();
-    this.insertUserContent();
-    this.insertButtonContent();
-
-    this.insertSummaryContent();
-    this.insertSummaryTitleContent();
-    this.insertSummaryButtonsContent();
-
-    this.insertWarnings();
-  }
-
   updateCart() {
     this.insertContent();
   }
@@ -325,6 +313,18 @@ export default class CheckoutPopup extends Popup {
 
   handleLanguageChange(lang) {
     this.insertContent();
+  }
+
+  insertContent() {
+    this.insertCartContent();
+    this.insertUserContent();
+    this.insertButtonContent();
+
+    this.insertSummaryContent();
+    this.insertSummaryTitleContent();
+    this.insertSummaryButtonsContent();
+
+    this.insertWarnings();
   }
 
   handleItemClick = (e) => {
