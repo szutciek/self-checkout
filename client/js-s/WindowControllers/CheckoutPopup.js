@@ -311,7 +311,7 @@ export default class CheckoutPopup extends Popup {
     ).innerHTML = `${this.controller.cart.numberOfItems}`;
   }
 
-  handleLanguageChange(lang) {
+  handleLanguageChange() {
     this.insertContent();
   }
 
