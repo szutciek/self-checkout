@@ -6,6 +6,8 @@ import stations from "./state/stations.js";
 import User from "./models/User.js";
 import jwt from "jsonwebtoken";
 
+import { createOrder } from "./controllers/orders.js";
+
 const wss = new WebSocketServer({ port: config.websocketPort });
 const socketSender = new SocketSender(wss);
 
@@ -54,6 +56,12 @@ const authorizeStation = async (ws, json) => {
   const decoded = jwt.verify(json.user.token, "compsciiayey");
   const user = await User.findOne({ _id: decoded.id });
 
+  if (!user)
+    return socketSender.sendJSON(ws, {
+      type: "error",
+      message: "User not found.",
+    });
+
   if (!station)
     return socketSender.sendJSON(ws, {
       type: "error",
@@ -90,13 +98,19 @@ const redirectUser = (ws, json) => {
 };
 
 const handleOrder = (ws, json) => {
-  return new Promise(async (res, rej) => {
+  return new Promise(async (res) => {
     try {
       if (!ws.stationId) throw new Error("Station not found");
-      await wait(5000);
-      throw new Error("Ordering isn't currently allowed. Try again later.");
+      const station = stations.getStationById(ws.stationId);
+      if (!station) throw new Error("Station not found");
+
+      if (!station.currentUser?.name) throw new Error("User not found");
+      const order = await createOrder(json, station.currentUser);
+      if (!order) throw new Error("Order not created");
+
+      socketSender.sendJSON(ws, { type: "orderAccepted", order });
+      res();
     } catch (err) {
-      console.log(err.message);
       socketSender.sendJSON(ws, { type: "orderFailure", message: err.message });
     }
   });

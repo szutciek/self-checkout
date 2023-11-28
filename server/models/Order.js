@@ -2,14 +2,12 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: "String",
   },
   items: [
     {
       id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Item",
+        type: "String",
         required: true,
       },
       size: {
